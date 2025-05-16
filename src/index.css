@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --color-background: #0D1117;
+  --color-primary:    #58A6FF;
+  --color-secondary:  #1F6FEB;
+  --color-accent:     #D2A8FF;
+  --color-text:       #C9D1D9;
+  --color-card:       #161B22;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  margin: 0; padding: 0;
+  height: 100%;
+  color: var(--color-text);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+

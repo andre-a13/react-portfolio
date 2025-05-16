@@ -1,0 +1,63 @@
+.card-container {
+  width: 80vw;
+  max-width: 600px;
+  height: 70vh;
+  background: var(--color-card);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.4);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-header {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.card-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-secondary);
+}
+
+.card-content {
+  flex-grow: 1;
+  font-size: 1rem;
+  line-height: 1.5;
+  overflow-y: auto;
+}
+
+/* Simple slide nav buttons */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--color-primary);
+  border: none;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.nav-button:hover {
+  opacity: 1;
+}
+
+.nav-prev {
+  left: 1rem;
+}
+
+.nav-next {
+  right: 1rem;
+}
