@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import '../card/card.scss'
 import Card from '../card/card';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const contentData = [
     {
@@ -43,8 +44,8 @@ const Content = () => {
                 subtitle={contentData[currentIndex].subtitle}
                 content={contentData[currentIndex].content}
             />
-            <button aria-label="Précédent" className="nav-button nav-prev" onClick={prev}>&lt;</button>
-            <button aria-label="Suivant" className="nav-button nav-next" onClick={next}>&gt;</button>
+            <button aria-label="Précédent" className="nav-button nav-prev" onClick={prev}><ChevronLeft size={16} /></button>
+            <button aria-label="Suivant" className="nav-button nav-next" onClick={next}><ChevronRight size={16} /></button>
         </div>
     );
 };

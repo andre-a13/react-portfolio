@@ -1,0 +1,36 @@
+$transition-color: #1a1a1a;
+
+.section {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    scroll-snap-align: start;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fade-top {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, $transition-color, transparent);
+    z-index: 1;
+    pointer-events: none;
+}
+
+// Dégradé bas
+.fade-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, transparent, $transition-color);
+    z-index: 1;
+    pointer-events: none;
+}

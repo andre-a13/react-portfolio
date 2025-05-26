@@ -4,12 +4,11 @@
   height: 70vh;
   background: var(--color-card);
   border-radius: 1rem;
-  box-shadow: 0 8px 24px rgba(88, 166, 255, 0.4);
+  box-shadow: 0 8px 24px var(--color-shadow);
   color: var(--color-text);
   display: flex;
   flex-direction: column;
   padding: 2rem;
-  overflow: hidden;
   position: relative;
 }
 
@@ -43,11 +42,14 @@
   background: var(--color-primary);
   border: none;
   border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   cursor: pointer;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-button:hover {
@@ -55,9 +57,9 @@
 }
 
 .nav-prev {
-  left: 1rem;
+  left: -1rem;
 }
 
 .nav-next {
-  right: 1rem;
+  right: -1rem;
 }
