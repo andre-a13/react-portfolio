@@ -61,7 +61,7 @@ function App() {
     <div className='app'>
       {datas.map((d, i) => {
         return (
-          <Section key={`sec-${i}`} data={d}>
+          <Section key={`sec-${i}`} data={d as any}>
             {d.children}
           </Section>
         )
