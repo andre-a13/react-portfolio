@@ -31,7 +31,8 @@
   flex-grow: 1;
   font-size: 1rem;
   line-height: 1.5;
-
+  height: 70%;
+  overflow-y: scroll;
   p {
     margin-bottom: 1rem;
   }

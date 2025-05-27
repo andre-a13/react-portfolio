@@ -81,7 +81,7 @@ const Content = () => {
             animate="center"
             exit="exit"
             transition={{ duration: 0.4 }}
-            className="w-full h-full"
+            className="w-full h-full overflow-hidden"
           >
             <Card title={currentContent.title} subtitle={currentContent.subtitle} content={currentContent.content}>
               {currentContent.children}
