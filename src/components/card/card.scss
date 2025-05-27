@@ -1,7 +1,7 @@
 .card-container {
   width: 80vw;
-  max-width: 600px;
-  height: 70vh;
+  max-width: 750px;
+  height: 60vh;
   background: var(--color-card);
   border-radius: 1rem;
   box-shadow: 0 8px 24px var(--color-shadow);
@@ -13,14 +13,14 @@
 }
 
 .card-header {
-  font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
   color: var(--color-primary);
 }
 
 .card-subtitle {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 1.2rem;
   margin-bottom: 1.5rem;
@@ -31,7 +31,10 @@
   flex-grow: 1;
   font-size: 1rem;
   line-height: 1.5;
-  overflow-y: auto;
+
+  p {
+    margin-bottom: 1rem;
+  }
 }
 
 /* Simple slide nav buttons */

@@ -1,53 +1,108 @@
-import { useState } from 'react';
-import '../card/card.scss'
-import Card from '../card/card';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useEffect, useState } from "react";
+import "../card/card.scss";
+import Card from "../card/card";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import ProIntroCard from "./ProIntroCard";
+import SkillsCard from "./SkillsCard";
 
 const contentData = [
-    {
-        title: "Arnaud ANDRE",
-        subtitle: "Développeur Full Stack",
-        content: "Je conçois des solutions techniques modernes, robustes et scalables, passionné par le front-end et le back-end.",
-    },
-    {
-        title: "Compétences",
-        subtitle: "Front-end / Back-end / Cloud",
-        content: "- React, Angular, JavaScript\n- Node.js, Laravel\n- MongoDB, PostgreSQL\n- Azure, AWS",
-    },
-    {
-        title: "Expériences",
-        subtitle: "Lead Developer chez WebexpR",
-        content: "Gestion de projets SharePoint / Office 365 avec une équipe Agile, développement full stack, conseil clients.",
-    },
-    {
-        title: "Contact",
-        subtitle: "Restons en contact",
-        content: "Email: arnaud.a.dev@gmail.com\nLinkedIn: linkedin.com/in/arnaud-andre",
-    }
+  {
+    title: "Arnaud",
+    subtitle: "Développeur Full Stack",
+    children: <ProIntroCard />,
+  },
+  {
+    title: "Compétences",
+    subtitle: "Front-end / Back-end / Cloud",
+    children: <SkillsCard />,
+  },
+  {
+    title: "Expériences",
+    subtitle: "Lead Developer chez WebexpR",
+    content:
+      "Gestion de projets SharePoint / Office 365 avec une équipe Agile, développement full stack, conseil clients.",
+  },
+  {
+    title: "Contact",
+    subtitle: "Restons en contact",
+    content: "Email: arnaud.a.dev@gmail.com\nLinkedIn: linkedin.com/in/arnaud-andre",
+  },
 ];
 
+const variants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 300 : -300,
+    opacity: 0,
+    position: "absolute" as const,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    position: "relative" as const,
+  },
+  exit: (direction: number) => ({
+    x: direction < 0 ? 300 : -300,
+    opacity: 0,
+    position: "absolute" as const,
+  }),
+};
+
 const Content = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
+  const [[currentIndex, direction], setState] = useState<[number, number]>([0, 0]);
 
-    const prev = () => {
-        setCurrentIndex((currentIndex - 1 + contentData.length) % contentData.length);
+  const paginate = (dir: number) => {
+    const newIndex = currentIndex + dir;
+    if (newIndex >= 0 && newIndex < contentData.length) {
+      setState([newIndex, dir]);
+    }
+  };
+
+  const currentContent = contentData[currentIndex];
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft") paginate(-1);
+      if (event.key === "ArrowRight") paginate(1);
     };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [currentIndex]);
 
-    const next = () => {
-        setCurrentIndex((currentIndex + 1) % contentData.length);
-    };
+  return (
+    <div className="relative">
+      <div className="relative overflow-hidden card-container" role="main">
+        <AnimatePresence custom={direction} mode="wait">
+          <motion.div
+            key={currentIndex}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ duration: 0.4 }}
+            className="w-full h-full"
+          >
+            <Card title={currentContent.title} subtitle={currentContent.subtitle} content={currentContent.content}>
+              {currentContent.children}
+            </Card>
+          </motion.div>
+        </AnimatePresence>
+      </div>
 
-    return (
-        <div className="card-container" role="main">
-            <Card
-                title={contentData[currentIndex].title}
-                subtitle={contentData[currentIndex].subtitle}
-                content={contentData[currentIndex].content}
-            />
-            <button aria-label="Précédent" className="nav-button nav-prev" onClick={prev}><ChevronLeft size={16} /></button>
-            <button aria-label="Suivant" className="nav-button nav-next" onClick={next}><ChevronRight size={16} /></button>
-        </div>
-    );
+      {/* Flèches positionnées en-dehors du container overflow-hidden */}
+      {currentIndex > 0 && (
+        <button aria-label="Précédent" className="nav-button nav-prev" onClick={() => paginate(-1)}>
+          <ChevronLeft size={24} />
+        </button>
+      )}
+      {currentIndex < contentData.length - 1 && (
+        <button aria-label="Suivant" className="nav-button nav-next" onClick={() => paginate(1)}>
+          <ChevronRight size={24} />
+        </button>
+      )}
+    </div>
+  );
 };
 
 export default Content;
