@@ -6,6 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import ProIntroCard from "./ProIntroCard";
 import SkillsCard from "./SkillsCard";
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
 const contentData = [
   {
     title: "Arnaud",
@@ -82,6 +87,17 @@ const Content = () => {
             exit="exit"
             transition={{ duration: 0.4 }}
             className="w-full h-full overflow-hidden"
+                        drag="x"                   // Permet de drag horizontalement
+            dragConstraints={{ left: 0, right: 0 }}  // limite à l'intérieur du conteneur
+            dragElastic={1}            // élasticité du drag
+            onDragEnd={(_e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1); // swipe vers la gauche -> next
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1); // swipe vers la droite -> prev
+              }
+            }}
           >
             <Card title={currentContent.title} subtitle={currentContent.subtitle} content={currentContent.content}>
               {currentContent.children}
