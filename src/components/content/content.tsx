@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react";
-import "../card/card.scss";
-import Card from "../card/card";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import Card from "../card/card";
+import "../card/card.scss";
 import ProIntroCard from "./ProIntroCard";
 import SkillsCard from "./SkillsCard";
-
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity;
-};
 
 const contentData = [
   {
     title: "Arnaud",
-    subtitle: "Développeur Full Stack",
+    subtitle: "fullstack",
     children: <ProIntroCard />,
   },
   {
@@ -31,9 +26,15 @@ const contentData = [
   {
     title: "Contact",
     subtitle: "Restons en contact",
-    content: "Email: arnaud.a.dev@gmail.com\nLinkedIn: linkedin.com/in/arnaud-andre",
+    content:
+      "Email: arnaud.a.dev@gmail.com\nLinkedIn: linkedin.com/in/arnaud-andre",
   },
 ];
+
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
 
 const variants = {
   enter: (direction: number) => ({
@@ -54,7 +55,9 @@ const variants = {
 };
 
 const Content = () => {
-  const [[currentIndex, direction], setState] = useState<[number, number]>([0, 0]);
+  const [[currentIndex, direction], setState] = useState<[number, number]>([
+    0, 0,
+  ]);
 
   const paginate = (dir: number) => {
     const newIndex = currentIndex + dir;
@@ -87,9 +90,9 @@ const Content = () => {
             exit="exit"
             transition={{ duration: 0.4 }}
             className="w-full h-full overflow-hidden"
-                        drag="x"                   // Permet de drag horizontalement
-            dragConstraints={{ left: 0, right: 0 }}  // limite à l'intérieur du conteneur
-            dragElastic={1}            // élasticité du drag
+            drag="x" // Permet de drag horizontalement
+            dragConstraints={{ left: 0, right: 0 }} // limite à l'intérieur du conteneur
+            dragElastic={1} // élasticité du drag
             onDragEnd={(_e, { offset, velocity }) => {
               const swipe = swipePower(offset.x, velocity.x);
               if (swipe < -swipeConfidenceThreshold) {
@@ -99,7 +102,11 @@ const Content = () => {
               }
             }}
           >
-            <Card title={currentContent.title} subtitle={currentContent.subtitle} content={currentContent.content}>
+            <Card
+              title={currentContent.title}
+              subtitle={currentContent.subtitle}
+              content={currentContent.content}
+            >
               {currentContent.children}
             </Card>
           </motion.div>
@@ -108,12 +115,20 @@ const Content = () => {
 
       {/* Flèches positionnées en-dehors du container overflow-hidden */}
       {currentIndex > 0 && (
-        <button aria-label="Précédent" className="nav-button nav-prev" onClick={() => paginate(-1)}>
+        <button
+          aria-label="Précédent"
+          className="nav-button nav-prev"
+          onClick={() => paginate(-1)}
+        >
           <ChevronLeft size={24} />
         </button>
       )}
       {currentIndex < contentData.length - 1 && (
-        <button aria-label="Suivant" className="nav-button nav-next" onClick={() => paginate(1)}>
+        <button
+          aria-label="Suivant"
+          className="nav-button nav-next"
+          onClick={() => paginate(1)}
+        >
           <ChevronRight size={24} />
         </button>
       )}

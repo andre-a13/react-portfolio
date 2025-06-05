@@ -11,4 +11,13 @@
     height: 100vh;
     overflow-y: scroll;
     scroll-snap-type: y mandatory;
+    position: relative;
+    scrollbar-width: thin;
+}
+
+.lang-management {
+    position: fixed;
+    right: 30px;
+    top: 10px;
+    z-index: 2;
 }

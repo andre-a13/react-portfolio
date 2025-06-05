@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface CardProps {
   title: string;
@@ -8,10 +9,11 @@ interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ title, subtitle, content, children }) => {
+  const { t } = useTranslation();
   return (
     <>
       <header className="card-header text-center">{title}</header>
-      <h2 className="card-subtitle text-center">{subtitle}</h2>
+      <h2 className="card-subtitle text-center">{t(subtitle)}</h2>
       <section className="card-content">
         {children}
         {content && content.split('\n').map((line, i) => (

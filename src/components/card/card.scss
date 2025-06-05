@@ -32,7 +32,8 @@
   font-size: 1rem;
   line-height: 1.5;
   height: 70%;
-  overflow-y: scroll;
+  overflow-y: auto;
+  scrollbar-width: thin;
   p {
     margin-bottom: 1rem;
   }
