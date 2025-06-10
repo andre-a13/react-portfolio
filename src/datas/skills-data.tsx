@@ -18,47 +18,47 @@ import AngularLogo from "../icons/AngularLogo";
 
 export const skillsData = [
   {
-    category: "Front-end",
+    category: "skills.categories.frontend",
     skills: [
-      { name: "React", icon: <ReactLogo width={20} height={20} /> },
-      { name: "Vue.js", icon: <VueLogo width={18} height={18} /> },
-      { name: "Angular", icon: <AngularLogo width={18} height={18} /> },
-      { name: "TypeScript", icon: <Type /> },
+      { name: "skills.items.react", icon: <ReactLogo width={20} height={20} /> },
+      { name: "skills.items.vue", icon: <VueLogo width={18} height={18} /> },
+      { name: "skills.items.angular", icon: <AngularLogo width={18} height={18} /> },
+      { name: "skills.items.typescript", icon: <Type /> },
     ],
   },
   {
-    category: "Back-end",
+    category: "skills.categories.backend",
     skills: [
-      { name: "Node.js", icon: <Server /> },
-      { name: "PHP / Laravel", icon: <Code /> },
-      { name: "PostgreSQL", icon: <Database /> },
-      { name: "MongoDB", icon: <Database /> },
+      { name: "skills.items.node", icon: <Server /> },
+      { name: "skills.items.php", icon: <Code /> },
+      { name: "skills.items.postgresql", icon: <Database /> },
+      { name: "skills.items.mongodb", icon: <Database /> },
     ],
   },
   {
-    category: "Cloud & DevOps",
+    category: "skills.categories.cloud",
     skills: [
-      { name: "Azure (AZ-204 / AZ-900)", icon: <Cloud className="text-blue-600 scale-110" /> },
-      { name: "Azure Functions", icon: <CloudCog /> },
-      { name: "GitHub Actions", icon: <Computer /> },
-      { name: "CI/CD", icon: <GitBranch /> },
+      { name: "skills.items.azure", icon: <Cloud className="text-blue-600 scale-110" /> },
+      { name: "skills.items.azureFunctions", icon: <CloudCog /> },
+      { name: "skills.items.githubActions", icon: <Computer /> },
+      { name: "skills.items.cicd", icon: <GitBranch /> },
     ],
   },
   {
-    category: "Outils & Méthodologie",
+    category: "skills.categories.tools",
     skills: [
-      { name: "Git", icon: <GitBranch /> },
-      { name: "Docker", icon: <TerminalSquare /> },
-      { name: "Agile / Scrum", icon: <Users /> },
-      { name: "TDD", icon: <Code /> },
+      { name: "skills.items.git", icon: <GitBranch /> },
+      { name: "skills.items.docker", icon: <TerminalSquare /> },
+      { name: "skills.items.agile", icon: <Users /> },
+      { name: "skills.items.tdd", icon: <Code /> },
     ],
   },
   {
-    category: "Compétences transverses",
+    category: "skills.categories.soft",
     skills: [
-      { name: "UX Design", icon: <LayoutDashboard /> },
-      { name: "Communication", icon: <MessageSquare /> },
-      { name: "Mentorat", icon: <Users /> },
+      { name: "skills.items.ux", icon: <LayoutDashboard /> },
+      { name: "skills.items.communication", icon: <MessageSquare /> },
+      { name: "skills.items.mentoring", icon: <Users /> },
     ],
   },
 ];

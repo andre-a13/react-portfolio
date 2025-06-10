@@ -1,4 +1,40 @@
 {
-    "hello"  : "Hello",
-    "fullstack": "Full Stack Developer"
+  "hello": "Hello",
+  "fullstack": "Full Stack Developer",
+  "proIntro": {
+    "1": "Full-stack developer with a front-end specialization (React, Vue, Angular), I design modern, accessible and high-performance interfaces, while ensuring clean back-end integration (Node.js, PHP).",
+    "2": "Certified Microsoft Azure (AZ-900 & AZ-204), I continuously engage in tech monitoring, particularly around cloud, modern architecture, and DevOps tools.",
+    "3": "My goal is to contribute to meaningful and impactful projects, with a strong focus on user experience. I value teamwork, knowledge sharing (mentor/mentee), and environments where quality matters.",
+    "4": "I have worked on SharePoint intranet designs using SPFx (headless CMS mode) and custom HR tools to help manage talent pools efficiently."
+  },
+  "skills": {
+    "categories": {
+      "frontend": "Front-end",
+      "backend": "Back-end",
+      "cloud": "Cloud & DevOps",
+      "tools": "Tools & Methodology",
+      "soft": "Soft Skills"
+    },
+    "items": {
+      "react": "React",
+      "vue": "Vue.js",
+      "angular": "Angular",
+      "typescript": "TypeScript",
+      "node": "Node.js",
+      "php": "PHP / Laravel",
+      "postgresql": "PostgreSQL",
+      "mongodb": "MongoDB",
+      "azure": "Azure (AZ-204 / AZ-900)",
+      "azureFunctions": "Azure Functions",
+      "githubActions": "GitHub Actions",
+      "cicd": "CI/CD",
+      "git": "Git",
+      "docker": "Docker",
+      "agile": "Agile / Scrum",
+      "tdd": "TDD",
+      "ux": "UX Design",
+      "communication": "Communication",
+      "mentoring": "Mentoring"
+    }
+  }
 }
