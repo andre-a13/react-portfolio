@@ -3,7 +3,6 @@ import Content from "./components/content/content";
 import LangSwitch from "./components/lang-switch/LangSwitch";
 import Section from "./components/sections/Section";
 
-
 const datas = [
   {
     children: <Content />,
@@ -43,6 +42,7 @@ const datas = [
       "--color-accent": "#4f2d1c", // Brun foncé pour profondeur (pierres, bois)
       "--color-text": "#1f1f1f", // Presque noir pour lisibilité optimale
       "--color-card": "#fdfdfd", // Fond de cartes ou blocs (quasi blanc neige)
+      "--color-shadow": "rgba(166, 191, 207, 0.4)", // Ajouté pour correspondre au type attendu
       "--color-text-background": "#f3f3e9", // Blanc cassé pour le texte, assurant une bonne lisibilité
     },
   },
@@ -63,18 +63,22 @@ const datas = [
 ];
 
 function App() {
+  const randomIndex = Math.floor(Math.random() * datas.length);
+  const selectedData = datas[randomIndex];
+
   return (
     <div className="app">
       <div className="lang-management">
         <LangSwitch />
       </div>
-      {datas.map((d, i) => {
+      <Section data={selectedData}>{selectedData.children}</Section>
+      {/* {datas.map((d, i) => {
         return (
           <Section key={`sec-${i}`} data={d as any}>
             {d.children}
           </Section>
         );
-      })}
+      })} */}
     </div>
   );
 }
