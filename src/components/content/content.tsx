@@ -1,35 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Card from "../card/card";
 import "../card/card.scss";
+import ExpCard from "./ExpCard";
 import ProIntroCard from "./ProIntroCard";
 import SkillsCard from "./SkillsCard";
-
-const contentData = [
-  {
-    title: "Arnaud",
-    subtitle: "fullstack",
-    children: <ProIntroCard />,
-  },
-  {
-    title: "Compétences",
-    subtitle: "Front-end / Back-end / Cloud",
-    children: <SkillsCard />,
-  },
-  {
-    title: "Expériences",
-    subtitle: "Lead Developer chez WebexpR",
-    content:
-      "Gestion de projets SharePoint / Office 365 avec une équipe Agile, développement full stack, conseil clients.",
-  },
-  {
-    title: "Contact",
-    subtitle: "Restons en contact",
-    content:
-      "Email: arnaud.a.dev@gmail.com\nLinkedIn: linkedin.com/in/arnaud-andre",
-  },
-];
+import ExpCard2 from "./ExpCard2";
+import ContactCard from "./ContactCard";
 
 const swipeConfidenceThreshold = 10000;
 const swipePower = (offset: number, velocity: number) => {
@@ -55,9 +34,38 @@ const variants = {
 };
 
 const Content = () => {
-  const [[currentIndex, direction], setState] = useState<[number, number]>([
-    0, 0,
-  ]);
+  const { t } = useTranslation();
+  const contentData = [
+    {
+      title: t("content.title"),
+      subtitle: t("content.subtitle"),
+      children: <ProIntroCard />,
+    },
+    {
+      title: t("skills.title"),
+      subtitle: t("skills.subtitle"),
+      children: <SkillsCard />,
+    },
+    {
+      title: t("content.experience.title"),
+      subtitle: `${t("experiences.webexpr.period")} · ${t("experiences.webexpr.contract")} · ${t(
+        "experiences.webexpr.location"
+      )}`,
+      children: <ExpCard />,
+    },
+    {
+      title: t("content.experience.title"),
+      subtitle: `${t("experiences.pwc.period")} · ${t("experiences.pwc.contract")} · ${t("experiences.pwc.location")}`,
+      children: <ExpCard2 />,
+    },
+    {
+      title: t("content.contact.title"),
+      subtitle: t("content.contact.subtitle"),
+      children: <ContactCard />,
+    },
+  ];
+
+  const [[currentIndex, direction], setState] = useState<[number, number]>([0, 0]);
 
   const paginate = (dir: number) => {
     const newIndex = currentIndex + dir;
@@ -90,23 +98,9 @@ const Content = () => {
             exit="exit"
             transition={{ duration: 0.4 }}
             className="w-full h-full overflow-hidden"
-            drag="x" // Permet de drag horizontalement
-            dragConstraints={{ left: 0, right: 0 }} // limite à l'intérieur du conteneur
-            dragElastic={1} // élasticité du drag
-            onDragEnd={(_e, { offset, velocity }) => {
-              const swipe = swipePower(offset.x, velocity.x);
-              if (swipe < -swipeConfidenceThreshold) {
-                paginate(1); // swipe vers la gauche -> next
-              } else if (swipe > swipeConfidenceThreshold) {
-                paginate(-1); // swipe vers la droite -> prev
-              }
-            }}
+
           >
-            <Card
-              title={currentContent.title}
-              subtitle={currentContent.subtitle}
-              content={currentContent.content}
-            >
+            <Card title={currentContent.title} subtitle={currentContent.subtitle}>
               {currentContent.children}
             </Card>
           </motion.div>
@@ -115,20 +109,12 @@ const Content = () => {
 
       {/* Flèches positionnées en-dehors du container overflow-hidden */}
       {currentIndex > 0 && (
-        <button
-          aria-label="Précédent"
-          className="nav-button nav-prev"
-          onClick={() => paginate(-1)}
-        >
+        <button aria-label="Précédent" className="nav-button nav-prev" onClick={() => paginate(-1)}>
           <ChevronLeft size={24} />
         </button>
       )}
       {currentIndex < contentData.length - 1 && (
-        <button
-          aria-label="Suivant"
-          className="nav-button nav-next"
-          onClick={() => paginate(1)}
-        >
+        <button aria-label="Suivant" className="nav-button nav-next" onClick={() => paginate(1)}>
           <ChevronRight size={24} />
         </button>
       )}
