@@ -10,10 +10,6 @@ import SkillsCard from "./SkillsCard";
 import ExpCard2 from "./ExpCard2";
 import ContactCard from "./ContactCard";
 
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-  return Math.abs(offset) * velocity;
-};
 
 const variants = {
   enter: (direction: number) => ({
