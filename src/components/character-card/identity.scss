@@ -1,0 +1,34 @@
+.ccard-identity {
+    display: grid;
+    gap: 6mm;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 8mm;
+}
+
+.ccard-field {
+    display: grid;
+    gap: 3mm;
+}
+
+.ccard-label {
+    font-variant: small-caps;
+    letter-spacing: .6px;
+    opacity: .85;
+}
+
+.ccard-value {
+    min-height: 14pt;
+    padding: 6px 10px;
+    border: 1px solid var(--parchment-accent);
+    border-radius: 6px;
+    background: color-mix(in oklab, var(--parchment) 92%, white 8%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
+}
+
+
+/* Placeholder visuel quand contentEditable est vide */
+.ccard-value[contenteditable="true"]:empty::before {
+    content: attr(aria-label) ", saisir…";
+    opacity: .5;
+    font-style: italic;
+}

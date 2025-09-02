@@ -1,0 +1,37 @@
+.ccard-stats {
+    display: grid;
+    gap: 6mm;
+    flex: 1;
+}
+
+.ccard-stat {
+    display: grid;
+    grid-template-columns: 100px 1fr 42px;
+    align-items: center;
+    gap: 6mm;
+}
+
+.ccard-statName {
+    font-variant: small-caps;
+    letter-spacing: .8px;
+}
+
+.ccard-bar {
+    height: 12px;
+    background: rgba(139, 94, 52, .25);
+    border-radius: 999px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ccard-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--parchment-line), var(--parchment-accent));
+    box-shadow: 0 0 6px rgba(139, 94, 52, .4) inset;
+    width: 0%;
+}
+
+.ccard-val {
+    text-align: right;
+    font-feature-settings: "tnum" 1;
+}
