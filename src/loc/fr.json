@@ -7,7 +7,44 @@
     "3": "Mon objectif est de contribuer à des projets concrets et utiles, avec une attention portée à l'impact utilisateur. Je valorise le travail en équipe, le partage de connaissances (mentor/mentoré), et les environnements où la qualité prime",
     "4": "J'ai notamment travaillé sur la conception d'intranets SharePoint en SPFx (mode headless CMS) et sur des outils RH personnalisés pour faciliter la gestion de viviers de talents."
   },
-    "skills": {
+  "content": {
+    "title": "Arnaud",
+    "subtitle": "Développeur Full Stack",
+    "experience": {
+      "title": "Experience",
+      "subtitle": "Parcours professionnel"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Restons en contact"
+    }
+  },
+  "experiences": {
+    "webexpr": {
+      "title": "Développeur Web - WebexpR (Groupe Genysia)",
+      "period": "2019 - Juillet 2024",
+      "contract": "CDI",
+      "location": "Télétravail & Paris/Compiègne",
+      "description1": "Spécialisé sur l'écosystème Microsoft (SPFx, React, Graph API), j'ai développé des applications sur mesure pour SharePoint Online et On-Premise, notamment pour BNP Paribas.",
+      "description2": "J'ai conçu des intranets brandés, des portails métiers, des systèmes de formation et des outils de gestion RH. Chaque projet était pensé avec une forte exigence UX et métier.",
+      "description3": "Impliqué dans la structuration des données, l'intégration front-end (SPFx/React) et le back-end (Node.js), j'ai aussi renforcé mes compétences en gestion agile (SCRUM) et en relation client.",
+      "description4": "J'ai particulièrement apprécié les projets à forte contrainte de temps, comme les pages d'événements, où la collaboration avec des équipes motivées et investies m'a permis de progresser rapidement."
+    },
+    "pwc": {
+      "title": "Consultant en développement - Hub Collab / PwC",
+      "period": "Août 2024 - Aujourd'hui",
+      "contract": "CDI",
+      "location": "Télétravail + déplacements ponctuels",
+      "description1": "Recruté par Hub Collab, cabinet expert Microsoft, j'ai intégré PwC suite au rachat début 2025. J'y conçois et développe des applications sur mesure en SPFx pour de grands comptes internationaux.",
+      "description2": "Je contribue à la stratégie de mise en œuvre sur les tenants Microsoft 365 des clients, et conçois des WebParts connectées à SharePoint et bases de données externes, y compris On-Premise.",
+      "description3": "J'ai renforcé mon expertise SPFx, enrichi ma maîtrise d'Azure, et évolué dans des méthodes de développement avancées, orientées qualité et efficacité métier.",
+      "description4": "Ce poste me permet de concilier expertise technique et accompagnement stratégique, tout en évoluant dans des environnements exigeants où la rigueur et la communication sont essentielles."
+    }
+  },
+
+  "skills": {
+    "title": "Compétences",
+    "subtitle": "Front-end, Back-end, Cloud & DevOps",
     "categories": {
       "frontend": "Front-end",
       "backend": "Back-end",
@@ -30,7 +67,7 @@
       "cicd": "CI/CD",
       "git": "Git",
       "docker": "Docker",
-      "agile": "Agile / Scrum",
+      "agile": "Agile / Scrum (PSPO1)",
       "tdd": "TDD",
       "ux": "UX Design",
       "communication": "Communication",

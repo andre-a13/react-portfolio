@@ -7,6 +7,43 @@
     "3": "My goal is to contribute to meaningful and impactful projects, with a strong focus on user experience. I value teamwork, knowledge sharing (mentor/mentee), and environments where quality matters.",
     "4": "I have worked on SharePoint intranet designs using SPFx (headless CMS mode) and custom HR tools to help manage talent pools efficiently."
   },
+
+  "content": {
+    "title": "Arnaud",
+    "subtitle": "Full Stack Developer",
+    "experience": {
+      "title": "Experience",
+      "subtitle": "Professional Journey"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Let's Stay in Touch"
+    }
+  },
+
+  "experiences": {
+    "webexpr": {
+      "title": "Web Developer - WebexpR (Genysia Group)",
+      "period": "2019 - July 2024",
+      "contract": "Full-time",
+      "location": "Remote & Paris/Compiègne",
+      "description1": "Specialized in the Microsoft ecosystem (SPFx, React, Graph API), I developed custom applications for SharePoint Online and On-Premise, notably for BNP Paribas.",
+      "description2": "I designed branded intranets, business portals, training platforms, and HR tools — all with a strong focus on UX and business alignment.",
+      "description3": "Involved in data modeling, front-end integration (SPFx/React) and back-end development (Node.js), I also strengthened my Agile (SCRUM) and client communication skills.",
+      "description4": "I particularly enjoyed high-pressure projects like event front pages, where working with skilled and dedicated teams helped me grow rapidly."
+    },
+    "pwc": {
+      "title": "Application Developer Consultant - Hub Collab / PwC",
+      "period": "August 2024 - Present",
+      "contract": "Full-time",
+      "location": "Remote + occasional travel",
+      "description1": "Initially hired by Hub Collab (Microsoft specialist firm), I joined PwC following the acquisition in early 2025. I design and develop custom SPFx applications for large international clients.",
+      "description2": "I contribute to the implementation strategy of solutions within client Microsoft 365 tenants, and build WebParts connected to SharePoint and external databases, including On-Premise systems.",
+      "description3": "I strengthened my expertise in SPFx, expanded my use of Azure, and evolved in structured development methods focused on quality and business impact.",
+      "description4": "This position allows me to combine technical expertise and strategic advisory, in high-stakes environments where precision and communication are key."
+    }
+  },
+
   "skills": {
     "categories": {
       "frontend": "Front-end",
@@ -15,6 +52,7 @@
       "tools": "Tools & Methodology",
       "soft": "Soft Skills"
     },
+
     "items": {
       "react": "React",
       "vue": "Vue.js",
