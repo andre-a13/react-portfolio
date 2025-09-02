@@ -3,3 +3,13 @@
         "rewrite": "/index.html"
     }
 }
+{
+  "routes": [
+    {
+      "route": "/char",
+      "methods": [
+        "get"
+      ]
+    }
+  ]
+}
