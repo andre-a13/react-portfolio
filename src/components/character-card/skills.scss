@@ -1,0 +1,27 @@
+.ccard-lists {
+    display: grid;
+    gap: 8mm;
+    margin-top: 8mm;
+}
+
+.ccard-listTitle {
+    margin: 0 0 3mm;
+    font-size: 1.1rem;
+    letter-spacing: .4px;
+}
+
+.ccard-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 3mm;
+}
+
+.ccard-listItem {
+    min-height: 14pt;
+    padding: 6px 10px;
+    border: 1px dashed var(--parchment-accent);
+    border-radius: 6px;
+    background: color-mix(in oklab, var(--parchment) 92%, white 8%);
+}
