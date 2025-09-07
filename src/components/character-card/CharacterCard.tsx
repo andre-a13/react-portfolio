@@ -23,9 +23,7 @@ interface CharacterCardProps {
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editableIdentity = false, className }) => {
     return (
         <main className={`ccard-sheet ${className ?? ""}`} role="document" aria-label="Fiche de personnage — Carte d'identité">
-            <h1 className="ccard-title">Carte d'identité du personnage</h1>
-
-
+            <h1 className="ccard-title">Fiche de personnage</h1>
             <Identity name={character.name} race={character.race} editable={editableIdentity} />
 
 
@@ -36,11 +34,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
                 </div>
                 <Skills primary={character.skillsPrimary} secondary={character.skillsSecondary} />
             </section>
-
-
-            <p className="ccard-help">
-                <strong>Astuce :</strong> Les jauges se basent sur un pourcentage 0–100. La somme recommandée de tes règles est 150.
-            </p>
+        
         </main>
     );
 };

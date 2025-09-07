@@ -25,6 +25,12 @@
     box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
 }
 
+.ccard-text {
+    min-height: 14pt;
+    padding: 10px 0;
+    border-radius: 6px;
+}
+
 
 /* Placeholder visuel quand contentEditable est vide */
 .ccard-value[contenteditable="true"]:empty::before {

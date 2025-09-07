@@ -14,7 +14,7 @@ const sylvae: Character = {
 
 
 
-export default function CharacterPage() {
+export default function Sylvae() {
     return (
         <div className="page">
             <CharacterCard character={sylvae} />

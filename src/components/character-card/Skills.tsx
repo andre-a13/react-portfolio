@@ -17,7 +17,7 @@ const List: React.FC<ListProps> = ({ title, items }) => (
 interface SkillsProps { primary: string[]; secondary: string[]; }
 export const Skills: React.FC<SkillsProps> = ({ primary, secondary }) => (
     <section className="ccard-lists">
-        <List title="Compétences principales (x2)" items={primary} />
-        <List title="Compétences secondaires (jusqu’à x3)" items={secondary} />
+        <List title="Compétences principales" items={primary} />
+        <List title="Compétences secondaires" items={secondary} />
     </section>
 );

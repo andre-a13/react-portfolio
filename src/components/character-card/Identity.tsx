@@ -22,8 +22,7 @@ export const Identity: React.FC<IdentityProps> = ({ name, race, editable }) => (
         <div className="ccard-field">
             <div className="ccard-label">Race</div>
             <div
-                className="ccard-value"
-                contentEditable={!!editable}
+                className="ccard-text"
                 suppressContentEditableWarning
                 aria-label="Race du personnage"
             >{race}</div>
