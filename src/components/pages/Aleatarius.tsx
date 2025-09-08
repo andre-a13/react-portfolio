@@ -9,7 +9,8 @@ const aleatarius: Character = {
         mental: 80, corps: 20, social: 50
     },
     skillsPrimary: ["Hearthstomancie" , "Chance insolante"],
-    skillsSecondary: ["Doigts agiles" , "Prestidigation" , "Ingénieur" , "Alchimie"]
+    skillsSecondary: ["Doigts agiles" , "Prestidigation" , "Ingénieur" , "Maîtrise du tir à la baguette"],
+    inventory:  ["Gantelet de hearthstomancien" , "Cape protectrice" , "Clé magique" , "Chapeau d'illustion et de changement de couleurs" , "Baguette de missile arcanique"]
 }
 
 

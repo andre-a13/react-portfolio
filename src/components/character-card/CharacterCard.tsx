@@ -11,6 +11,7 @@ import { Stats } from "./Stats";
 import { Portrait } from "./Portrait";
 import { Skills } from "./Skills";
 import type { Character } from "../../types/character";
+import Inventory from "./Inventory";
 
 
 interface CharacterCardProps {
@@ -33,6 +34,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
                     <Portrait src={character.portraitUrl} />
                 </div>
                 <Skills primary={character.skillsPrimary} secondary={character.skillsSecondary} />
+                <Inventory items={character.inventory ?? []} />
             </section>
         
         </main>

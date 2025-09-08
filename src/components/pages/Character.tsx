@@ -9,7 +9,8 @@ const sylvae: Character = {
         mental: 60, corps: 60, social: 30
     },
     skillsPrimary: ["Métamorphose animale" , "Vie en nature"],
-    skillsSecondary: ["Archerie" , "Communion avec les esprits" , "Discrétion" , "Connaissance des secrets"]
+    skillsSecondary: ["Archerie" , "Communion avec les esprits" , "Discrétion" , "Connaissance des secrets"],
+    inventory: []
 }
 
 

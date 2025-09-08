@@ -8,8 +8,9 @@ const sylvae: Character = {
     stats: {
         mental: 60, corps: 60, social: 30
     },
-    skillsPrimary: ["Métamorphose animale" , "Vie en nature"],
-    skillsSecondary: ["Archerie" , "Communion avec les esprits" , "Discrétion" , "Connaissance des secrets"]
+    skillsPrimary: ["Métamorphose animale" , "Symbiose avec la nature"],
+    skillsSecondary: ["Archerie" , "Communion avec les esprits" , "Discrétion" , "Connaissance des secrets"],
+    inventory : ["Arc kaldorei", "Talisman d'élune" ,"Sacoche druidique", "Collier de cuir et talisman d'Aelion" , "Carnet de notes"],
 }
 
 

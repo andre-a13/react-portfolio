@@ -12,4 +12,5 @@ export interface Character {
     stats: SkillSet;
     skillsPrimary: string[]; // 2 éléments
     skillsSecondary: string[]; // 0–3 éléments
+    inventory : string[];
 }
