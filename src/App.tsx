@@ -65,6 +65,7 @@ const datas = [
 function App() {
   const randomIndex = Math.floor(Math.random() * datas.length);
   const selectedData = datas[randomIndex];
+  console.log("Selected theme:", selectedData.theme);
 
   return (
     <div className="app">
