@@ -63,7 +63,6 @@ const datas = [
 ];
 
 function App() {
-
   const randomIndex = Math.floor(Math.random() * datas.length);
   const selectedData = datas[randomIndex];
 

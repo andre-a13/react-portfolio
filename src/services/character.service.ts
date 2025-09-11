@@ -12,6 +12,7 @@ async function create( body : IAddCharacter )
 
 async function getBySlug( slug : string )
 {
+    console.log(import.meta.env.VITE_TRPG_API_URL)
     const res = await axios.get( baseEndpoints + "/" + slug );
     return new Character(res.data);
 }
