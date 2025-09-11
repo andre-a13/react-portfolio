@@ -1,4 +1,3 @@
-import axios from "axios";
 import "./App.scss";
 import Content from "./components/content/content";
 import LangSwitch from "./components/lang-switch/LangSwitch";
