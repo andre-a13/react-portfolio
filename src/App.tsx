@@ -1,3 +1,4 @@
+import axios from "axios";
 import "./App.scss";
 import Content from "./components/content/content";
 import LangSwitch from "./components/lang-switch/LangSwitch";
@@ -63,6 +64,7 @@ const datas = [
 ];
 
 function App() {
+
   const randomIndex = Math.floor(Math.random() * datas.length);
   const selectedData = datas[randomIndex];
 

@@ -1,0 +1,68 @@
+.ccard-invHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 4mm;
+}
+
+
+.ccard-coinCounter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+.ccard-coinBtn {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--parchment-accent);
+    border-radius: 6px;
+    background: color-mix(in oklab, var(--parchment) 90%, white 10%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
+    cursor: pointer;
+    line-height: 1;
+    font-size: 18px;
+}
+
+.ccard-coinBtn:hover {
+    filter: brightness(1.02);
+}
+
+.ccard-coinBtn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+
+.ccard-coinDisplay {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 8px;
+    border: 1px solid var(--parchment-line);
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--parchment) 85%, white 15%);
+}
+
+.ccard-coinIcon {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+.ccard-coinValue {
+    min-width: 1.5ch;
+    text-align: right;
+    font-feature-settings: "tnum" 1;
+}
+
+
+@media print {
+    .ccard-coinBtn {
+        display: none;
+    }
+}

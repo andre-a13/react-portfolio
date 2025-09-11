@@ -1,24 +1,31 @@
+import { useState, useEffect } from "react";
+import characterService from "../../services/character.service";
 import CharacterCard from "../character-card/CharacterCard"
-import type { Character } from "../../types/character"
 import './page.scss'
+import axios from "axios";
+import type Character from "../../models/character";
 
-const valerius: Character = {
-    name: "Valerius",
-    race: "Humain",
-    stats: {
-        mental: 50, corps: 50, social: 50
-    },
-    skillsPrimary: ["Arts martiaux" , "Foi en la lumière"],
-    skillsSecondary: ["Survie et vie en nature" , "Connaissance des cultes" , "Forgeron amateur"],
-    inventory : ["Cestes", "Armure en cuir" ,"Médaillon de la main d'argent", "Flasque" , "Outils de forgeron"],
-}
+export default function Jace() {
 
+      const [char, setChar] = useState<Character | null>(null);
+      axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true';
 
-
-export default function Valerius() {
-    return (
-        <div className="page">
-            <CharacterCard character={valerius} />
-        </div>
-    )
+      const fetchCharacter = async () => {
+          try {
+              const response = await characterService.getBySlug("jace");
+              setChar(response);
+          } catch (error) {
+              console.error("Error fetching character:", error);
+          }
+      }
+  
+      useEffect(() => {
+          fetchCharacter();
+      }, []);
+  
+      return (
+          <div className="page">
+              {char && <CharacterCard refresh={fetchCharacter} character={char} />     }        
+          </div>
+      )
 }

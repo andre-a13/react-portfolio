@@ -28,4 +28,4 @@ export const Identity: React.FC<IdentityProps> = ({ name, race, editable }) => (
             >{race}</div>
         </div>
     </section>
-);
+);  
