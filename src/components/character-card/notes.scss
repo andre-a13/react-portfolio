@@ -1,0 +1,197 @@
+/* Parchment-themed Notes UI, using your existing variables:
+   --parchment, --parchment-ink, --parchment-line, --parchment-accent, --shadow */
+
+/* Launcher button */
+.btn.notes-open {
+    cursor: pointer;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .35rem .65rem;
+    border-radius: 8px;
+    color: var(--parchment-ink);
+    background:
+        radial-gradient(120% 90% at 10% 5%, rgba(255, 255, 255, .25), transparent 60%),
+        linear-gradient(0deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .12)),
+        var(--parchment);
+    border: 1px solid var(--parchment-line);
+    box-shadow:
+        0 1px 0 #b38b59 inset,
+        0 0 10px rgba(0, 0, 0, .08) inset,
+        0 4px 10px var(--shadow);
+    letter-spacing: .2px;
+    transition: transform .06s ease, filter .12s ease, border-color .12s ease;
+
+    &:hover {
+        filter: brightness(1.02) saturate(1.02);
+        border-color: color-mix(in oklab, var(--parchment-line) 70%, var(--parchment-accent) 30%);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid color-mix(in oklab, var(--parchment-accent) 70%, white 30%);
+        outline-offset: 2px;
+    }
+}
+
+/* When button sits next to the title */
+.ccard-title .btn.notes-open {
+    margin-left: .5rem;
+    vertical-align: middle;
+    font-size: .95rem;
+}
+
+/* Theme the generic modal panel when used for Notes */
+.modal__panel.notes-panel {
+    color: var(--parchment-ink);
+    background:
+        radial-gradient(180% 140% at 0% 0%, rgba(255, 255, 255, .28), rgba(255, 255, 255, 0) 60%),
+        radial-gradient(180% 140% at 100% 100%, rgba(139, 94, 52, .18), rgba(139, 94, 52, 0) 60%),
+        linear-gradient(0deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .12)),
+        repeating-linear-gradient(0deg, rgba(0, 0, 0, .012), rgba(0, 0, 0, .012) 2px, transparent 2px, transparent 4px),
+        var(--parchment);
+    border: 1px solid var(--parchment-line);
+    border-radius: 10px;
+    box-shadow:
+        0 2px 0 #b38b59 inset,
+        0 0 26px rgba(0, 0, 0, .18) inset,
+        0 12px 30px var(--shadow);
+
+    /* Inner double border like your card */
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        inset: 10px;
+        pointer-events: none;
+        border-radius: 8px;
+        border: 1px solid color-mix(in oklab, var(--parchment-line) 70%, transparent);
+    }
+
+    &::after {
+        inset: 6px;
+        border-style: dashed;
+        opacity: .25;
+    }
+}
+
+/* Notes header */
+.notes-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    padding: .85rem 1rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--parchment-line) 85%, transparent);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .09) 0%, transparent 100%);
+}
+
+.notes-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: .3px;
+}
+
+.notes-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+/* Save + Close */
+.btn.notes-save {
+    padding: .35rem .6rem;
+    border-radius: 8px;
+    color: var(--parchment-ink);
+    background: var(--parchment);
+    border: 1px solid var(--parchment-line);
+    box-shadow: 0 1px 0 #b38b59 inset, 0 2px 8px rgba(0, 0, 0, .08);
+
+    &:hover {
+        filter: brightness(1.02) saturate(1.02);
+        border-color: color-mix(in oklab, var(--parchment-line) 70%, var(--parchment-accent) 30%);
+    }
+}
+
+.icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    color: inherit;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: background .12s ease, border-color .12s ease, transform .06s ease;
+
+    &:hover {
+        background: color-mix(in oklab, var(--parchment) 85%, var(--parchment-accent) 15%);
+        border-color: color-mix(in oklab, var(--parchment-line) 70%, transparent);
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid color-mix(in oklab, var(--parchment-accent) 70%, white 30%);
+        outline-offset: 2px;
+    }
+}
+
+/* Editor */
+.notes-textarea {
+    flex: 1;
+    width: 100%;
+    padding: 1rem 1rem 1.2rem;
+    background: transparent;
+    color: var(--parchment-ink);
+    border: none;
+    outline: none;
+    resize: none;
+    font: 500 1rem/1.6 ui-serif, Georgia, "Times New Roman", serif;
+    caret-color: color-mix(in oklab, var(--parchment-accent) 70%, black 30%);
+
+    &::placeholder {
+        color: color-mix(in oklab, var(--parchment-ink) 55%, transparent);
+    }
+
+    /* optional ruled lines */
+    &.notes-ruled {
+        background:
+            repeating-linear-gradient(180deg,
+                transparent 0 26px,
+                color-mix(in oklab, var(--parchment-line) 18%, transparent) 26px 27px),
+            transparent;
+    }
+
+    /* nice scrollbars */
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: color-mix(in oklab, var(--parchment-line) 35%, transparent);
+        border-radius: 999px;
+        border: 2px solid transparent;
+        background-clip: padding-box;
+    }
+}
+
+/* Hide modal in print (notes are for on-screen editing) */
+@media print {
+    .modal {
+        display: none !important;
+    }
+}

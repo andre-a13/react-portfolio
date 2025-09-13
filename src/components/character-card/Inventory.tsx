@@ -78,7 +78,7 @@ export const Inventory: React.FC<InventoryProps> = ({
 
           <div className="ccard-coinDisplay" title="Pièces d'or">
             <svg className="ccard-coinIcon" viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="12" cy="12" r="10" fill="#f0c66e" stroke="#a77b5b" strokeWidth="1" />
+              <circle cx="12" cy="12" r="10" fill="#F5C518" stroke="#a77b5b" strokeWidth="1" />
               <circle cx="8" cy="8" r="3" fill="rgba(255,255,255,0.35)" />
             </svg>
             <span className="ccard-coinValue">{localGold}</span>

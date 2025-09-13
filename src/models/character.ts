@@ -11,6 +11,7 @@ export default class Character {
     portraitUrl?: string;
     inventory: string[];
     gold : number = 0;
+    notes : string = "";
     constructor(data: any) {
         this.id = data.id;
         this.name = data.name;
@@ -22,5 +23,6 @@ export default class Character {
         this.inventory = data.inventory;
         this.gold = data.gold ?? 0;
         this.portraitUrl = data.portraitUrl;
+        this.notes = data.notes ?? "";
     }
 }

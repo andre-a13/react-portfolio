@@ -1,0 +1,42 @@
+/* Generic modal skeleton & animations (un-themed) */
+.modal {
+  position: fixed; inset: 0; z-index: 9999;
+  display: grid; place-items: center;
+  animation: modal-fade .12s ease-out;
+}
+
+.modal__backdrop {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(1.5px);
+}
+
+.modal__panel {
+  position: relative;
+  width: min(820px, 92vw);
+  height: min(72vh, 92vh);
+  display: flex; flex-direction: column;
+  background: #fff; // consumers (like Notes) override this
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  overflow: hidden;
+  animation: modal-pop .16s cubic-bezier(.2,.8,.2,1);
+}
+
+@media (max-width: 520px) {
+  .modal__panel { width: 100vw; height: 100vh; border-radius: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal, .modal__panel { animation: none !important; }
+}
+
+/* Hide modals during printing by default (feature UIs are for screen) */
+@media print {
+  .modal { display: none !important; }
+}
+
+/* Animations */
+@keyframes modal-fade { from { opacity: 0 } to { opacity: 1 } }
+@keyframes modal-pop  { from { opacity: 0; transform: translateY(8px) scale(.985) }
+                        to   { opacity: 1; transform: translateY(0)  scale(1) } }

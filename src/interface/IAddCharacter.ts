@@ -9,7 +9,8 @@ export interface IAddCharacter {
     skillsPrimary : string[];
     skillsSecondary : string[];
     inventory : string[];
-    gold ?: number
+    gold ?: number;
+    notes ?: string;
 }
 
 export interface IUpdateCharacter extends Partial<IAddCharacter> {}

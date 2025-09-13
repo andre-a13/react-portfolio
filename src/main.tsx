@@ -2,9 +2,9 @@ import { createRoot } from "react-dom/client";
 import { I18nextProvider } from "react-i18next";
 import { BrowserRouter, Route, Routes } from "react-router";
 import App from "./App.tsx";
-import Aleatarius from "./components/pages/Jace.tsx";
+import Aleatarius from "./components/pages/Aleatarius.tsx";
 import Sylvae from "./components/pages/Sylvae.tsx";
-import Jace from "./components/pages/Valerius.tsx";
+import Jace from "./components/pages/Jace.tsx";
 import i18n from "./config/i18n";
 import "./index.css";
 

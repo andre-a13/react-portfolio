@@ -37,7 +37,7 @@ export default function Sylvae() {
 
     return (
         <div className="page">
-            {char && <CharacterCard refresh={fetchCharacter} character={char} />     }        
+            {char && <CharacterCard portraitUrl="/assets/sylvae.png" refresh={fetchCharacter} character={char} />     }        
         </div>
     )
 }

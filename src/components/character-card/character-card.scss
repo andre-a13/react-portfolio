@@ -20,7 +20,7 @@
 
 /* Conteneur principal de la carte */
 .ccard-sheet {
-    width: 148mm;
+    width: 50%;
     max-width: min(100%, 840px);
     position: relative;
     padding: 18mm 16mm;
@@ -73,7 +73,7 @@
 .ccard-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 14mm;
 }
 
