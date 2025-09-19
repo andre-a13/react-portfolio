@@ -13,6 +13,7 @@ import { Skills } from "./Skills";
 import Inventory from "./Inventory";
 import type Character from "../../models/character";
 import Notes from "./Notes";
+import HpBadge from "./HpBadge";
 
 
 interface CharacterCardProps {
@@ -30,6 +31,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
 
     return (
         <main className={`ccard-sheet ${className ?? ""}`} role="document" aria-label="Fiche de personnage — Carte d'identité">
+            <HpBadge showIcon={false} maxHp={character.getMaxHp()} label="Pv max :" />
             <h1 className="ccard-title">Fiche de personnage
                 <Notes slug={character.slug} notes={character.notes} />
             </h1>

@@ -91,6 +91,18 @@ export const Inventory: React.FC<InventoryProps> = ({
     // closeAddModal();
   };
 
+  const updateItemLabel = async (oldName: string, newName: string) => {
+    if (oldName === newName) return; // no change
+
+    const updatedItems = itemsList.map((item) => (item === oldName ? newName : item));
+    try {
+      await characterService.patch(slug, { inventory: updatedItems });
+      setItemsList(updatedItems);
+    } catch (error) {
+      console.error("Failed to update item:", error);
+    }
+  }
+
   const deleteItem = async (name: string) => {
     const updatedItems = items.filter((item) => item !== name);
     try {
@@ -155,6 +167,7 @@ export const Inventory: React.FC<InventoryProps> = ({
               <InventoryItem
                 key={`${item}-${idx}`}
                 name={item}
+                onEditContent={(newName) => updateItemLabel(item, newName)}
                 onDelete={() => deleteItem(item)}
               />
             ))

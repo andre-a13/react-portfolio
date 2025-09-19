@@ -25,4 +25,8 @@ export default class Character {
         this.portraitUrl = data.portraitUrl;
         this.notes = data.notes ?? "";
     }
+
+    getMaxHp(): number {
+        return (this.stats.corps / 5 ) + 5
+    }
 }
