@@ -1,0 +1,73 @@
+/* Inventory list layout/alignment */
+.ccard-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px; /* vertical spacing between rows */
+}
+
+/* Each row = flex container */
+.ccard-list .ccard-listItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;        /* ensures consistent row height */
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: transparent; /* keep card look; adjust if you want row bg */
+  line-height: 1.25;
+}
+
+/* Label grows, truncates neatly */
+.ccard-itemLabel {
+  flex: 1 1 auto;
+  min-width: 0;                 /* required for ellipsis in flex */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--parchment-ink, #2c2417);
+}
+
+/* Delete button: right-aligned with good hit area */
+.ccard-itemDelBtn {
+  margin-left: auto;
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--parchment-ink, #2c2417);
+  cursor: pointer;
+  transition: background .12s ease, border-color .12s ease, transform .06s ease;
+}
+
+.ccard-itemDelBtn:hover {
+  background: color-mix(in oklab, var(--parchment, #f4e8c1) 85%, var(--parchment-accent, #b08968) 15%);
+  border-color: color-mix(in oklab, var(--parchment-line, #8b5e34) 70%, transparent);
+}
+
+.ccard-itemDelBtn:active { transform: translateY(1px); }
+
+.ccard-itemDelBtn:focus-visible {
+  outline: 2px solid color-mix(in oklab, var(--parchment-accent, #b08968) 70%, white 30%);
+  outline-offset: 2px;
+}
+
+/* Icon sizing & alignment */
+.ccard-itemDelBtn svg {
+  width: 16px;
+  height: 16px;
+  display: block;       /* avoids extra inline spacing */
+  pointer-events: none; /* click goes to button */
+}
+
+/* Optional: subtle row hover to mirror parchment UI feel */
+.ccard-list .ccard-listItem:hover {
+  background:
+    linear-gradient(0deg, rgba(255,255,255,.06), rgba(255,255,255,.06)),
+    transparent;
+  border: 1px solid color-mix(in oklab, var(--parchment-line, #8b5e34) 35%, transparent);
+}

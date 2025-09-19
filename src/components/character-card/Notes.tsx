@@ -74,28 +74,21 @@ export const Notes: React.FC<NotesProps> = ({ slug, notes }) => {
         ref={modalRef}
         id={modalId}
         labelledBy={titleId}
+        title="Character Notes"
+        headerClassName="notes-header"
+        titleClassName="notes-title"
+        size="lg"
+        showCloseButton
+        ariaLabel="Character Notes"
+        closeOnBackdrop
+
         onOpen={() => setIsOpen(true)}
         onClose={() => {
           setIsOpen(false);
-          // flush any pending edits on close
           if (text !== initialRef.current) save(text);
         }}
         panelClassName="notes-panel"
       >
-        <header className="notes-header">
-          <h2 id={titleId} className="notes-title">Character Notes</h2>
-          <div className="notes-actions">
-            <button
-              type="button"
-              className="icon-btn"
-              onClick={() => modalRef.current?.close()}
-              aria-label="Close notes"
-            >
-              ✕
-            </button>
-          </div>
-        </header>
-
         <textarea
           className="notes-textarea"
           placeholder="Write anything about this character…"

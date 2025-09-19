@@ -6,6 +6,32 @@
     margin-bottom: 4mm;
 }
 
+.ccard-addItemBtn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: var(--parchment-ink);
+    background: var(--parchment);
+    border: 1px solid var(--parchment-line);
+    box-shadow: 0 1px 0 #b38b59 inset, 0 2px 8px rgba(0, 0, 0, .08);
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+        filter: brightness(1.03);
+    }
+
+    &:disabled {
+        opacity: .5;
+        cursor: not-allowed;
+    }
+}
+
+.ccard-listActions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
 .ccard-coinCounter {
     display: flex;
