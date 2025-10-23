@@ -15,7 +15,7 @@ export default function Jace() {
               const response = await characterService.getBySlug("jace");
               setChar(response);
           } catch (error) {
-              console.error("Error fetching character:", error);
+              console.error("Error fetching character: ", error);
           }
       }
   
