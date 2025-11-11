@@ -25,7 +25,7 @@ interface CharacterCardProps {
 }
 
 
-export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editableIdentity = false, className, portraitUrl,  }) => {
+export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editableIdentity = false, className, portraitUrl, refresh  }) => {
 
 
 
@@ -44,7 +44,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
                     <Portrait src={character.portraitUrl ?? portraitUrl ?? ""} />
                 </div>
                 <Skills primary={character.skillsPrimary} secondary={character.skillsSecondary} />
-                <Inventory slug={character.slug} items={character.inventory ?? []} gold={character.gold} />
+                <Inventory slug={character.slug} items={character.inventory ?? []} gold={character.gold} refresh={refresh} />
             </section>
         
         </main>

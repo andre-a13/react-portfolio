@@ -13,6 +13,7 @@ interface InventoryProps {
   title?: string;
   slug: string;
   gold?: number;
+  refresh: () => void;
 }
 
 export const Inventory: React.FC<InventoryProps> = ({
@@ -20,6 +21,7 @@ export const Inventory: React.FC<InventoryProps> = ({
   title = "Inventaire",
   slug,
   gold,
+  refresh
 }) => {
   // État local unique (pas de mode contrôlé)
   const [itemsList, setItemsList] = React.useState<string[]>(items);
@@ -39,6 +41,13 @@ export const Inventory: React.FC<InventoryProps> = ({
   // Debounce 500ms (fixe)
   const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastSentRef = React.useRef<number>(localGold); // évite PATCH si inchangé
+
+  React.useEffect(() => {
+    if (items.length)
+    {
+      setItemsList(items);
+    }
+  }, [items]);
 
   React.useEffect(() => {
     if (!slug) return;
@@ -80,7 +89,7 @@ export const Inventory: React.FC<InventoryProps> = ({
     const updatedItems = [...itemsList, newItem];
     characterService.patch(slug, { inventory: updatedItems })
       .then(() => {
-        setItemsList(updatedItems);
+        refresh();
         form.reset();
         closeAddModal();
       })
@@ -97,7 +106,7 @@ export const Inventory: React.FC<InventoryProps> = ({
     const updatedItems = itemsList.map((item) => (item === oldName ? newName : item));
     try {
       await characterService.patch(slug, { inventory: updatedItems });
-      setItemsList(updatedItems);
+      refresh();
     } catch (error) {
       console.error("Failed to update item:", error);
     }
@@ -107,7 +116,7 @@ export const Inventory: React.FC<InventoryProps> = ({
     const updatedItems = items.filter((item) => item !== name);
     try {
       await characterService.patch(slug, { inventory: updatedItems });
-      setItemsList(updatedItems);
+      refresh();
     } catch (error) {
       console.error("Failed to delete item:", error);
     }
