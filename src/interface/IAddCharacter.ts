@@ -11,6 +11,7 @@ export interface IAddCharacter {
     inventory : string[];
     gold ?: number;
     notes ?: string;
+    current_hp ?: number;
 }
 
 export interface IUpdateCharacter extends Partial<IAddCharacter> {}

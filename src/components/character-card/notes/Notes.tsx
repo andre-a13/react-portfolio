@@ -1,7 +1,7 @@
 import React from "react";
-import characterService from "../../services/character.service";
 import "./notes.scss";
-import { Modal, type ModalHandle } from "../ui/modal/Modal";
+import { Modal, type ModalHandle } from "../../ui/modal/Modal";
+import characterService from "../../../services/character.service";
 
 type NotesProps = {
   slug: string;

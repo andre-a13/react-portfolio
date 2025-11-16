@@ -1,11 +1,11 @@
 import React from "react";
 // Réutilise les styles existants
-import "./skills.scss";
+import "../skills/skills.scss";
 import "./inventory.scss";
-import characterService from "../../services/character.service";
-import type { IUpdateCharacter } from "../../interface/IAddCharacter";
-import InventoryItem from "./InventoryItem";
-import Modal, { type ModalHandle } from "../ui/modal/Modal";
+import characterService from "../../../services/character.service";
+import type { IUpdateCharacter } from "../../../interface/IAddCharacter";
+import InventoryItem from "./inventory-item/InventoryItem";
+import Modal, { type ModalHandle } from "../../ui/modal/Modal";
 import "./inventory-add-modal.scss";
 
 interface InventoryProps {

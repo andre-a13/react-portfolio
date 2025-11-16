@@ -12,6 +12,7 @@ export default class Character {
     inventory: string[];
     gold : number = 0;
     notes : string = "";
+    current_hp : number = 0;
     constructor(data: any) {
         this.id = data.id;
         this.name = data.name;
@@ -24,9 +25,11 @@ export default class Character {
         this.gold = data.gold ?? 0;
         this.portraitUrl = data.portraitUrl;
         this.notes = data.notes ?? "";
+        this.current_hp = data.current_hp ?? this.getMaxHp();
+
     }
 
     getMaxHp(): number {
-        return (this.stats.corps / 5 ) + 5
+        return Math.round((this.stats.corps / 5 ) + 5)
     }
 }

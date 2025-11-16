@@ -1,0 +1,150 @@
+.hp-badge {
+  z-index: 5;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.hp-badge__pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  line-height: 1;
+
+  color: var(--parchment-ink, #2c2417);
+  background:
+    radial-gradient(
+      120% 90% at 10% 5%,
+      rgba(255, 255, 255, 0.18),
+      transparent 60%
+    ),
+    linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.07),
+      rgba(255, 255, 255, 0.07)
+    ),
+    var(--parchment, #f4e8c1);
+  border: 1px solid var(--parchment-line, #8b5e34);
+  box-shadow:
+    0 1px 0 #b38b59 inset,
+    0 0 10px rgba(0, 0, 0, 0.06) inset,
+    0 4px 10px var(--shadow, rgba(0, 0, 0, 0.25));
+}
+
+.hp-badge__value {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2px;
+}
+
+.hp-badge__icon {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background:
+    radial-gradient(
+      120% 90% at 20% 20%,
+      rgba(255, 255, 255, 0.4),
+      transparent 60%
+    ),
+    linear-gradient(180deg, #ff9ba6, #e05260);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.hp-badge__icon-svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+  color: #7a0e1a;
+}
+
+.hp-badge__label {
+  opacity: 0.85;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.hp-badge__number {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* --- Controls toggle + popup --- */
+
+.hp-badge__toggle {
+  margin-left: 4px;
+  padding: 2px 6px;
+  border: none;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--parchment-ink, #2c2417);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.hp-badge__toggle:hover {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.hp-badge__popup {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: var(--parchment, #f4e8c1);
+  border: 1px solid var(--parchment-line, #8b5e34);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+
+.hp-badge__popup-btn {
+  min-width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  color: #1c140b;
+}
+
+.hp-badge__popup-btn--minus {
+  background: linear-gradient(180deg, #f8c1c1, #e17a7a);
+  color: #5e1212;
+}
+
+.hp-badge__popup-btn--plus {
+  background: linear-gradient(180deg, #c8f3c5, #6fba6a);
+  color: #104016;
+}
+
+.hp-badge__popup-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
