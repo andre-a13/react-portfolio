@@ -1,5 +1,5 @@
 import React from "react";
-import "./HpBadge.scss";
+import "./hpbadge.scss";
 
 export interface HpBadgeProps {
   /** Current HP to display (required) */
