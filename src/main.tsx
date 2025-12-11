@@ -7,6 +7,7 @@ import Sylvae from "./components/pages/Sylvae.tsx";
 import Jace from "./components/pages/Jace.tsx";
 import i18n from "./config/i18n";
 import "./index.css";
+import Maribeth from "./components/pages/Maribeth.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <I18nextProvider i18n={i18n}>
@@ -16,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/sylvae" element={<Sylvae />} />
         <Route path="/aleatarius" element={<Aleatarius />} />
         <Route path="/jace" element={<Jace />} />
+        <Route path="/maribeth" element={<Maribeth />} />
       </Routes>
     </BrowserRouter>
   </I18nextProvider>
