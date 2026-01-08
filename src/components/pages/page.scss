@@ -5,3 +5,50 @@
     justify-content: center;
     min-height: 100vh;
 }
+
+.character-message {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  max-width: 520px;
+}
+
+.character-message h2 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+}
+
+.character-message p {
+  margin: 0.25rem 0;
+  color: #333;
+}
+
+.character-message .spinner {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1rem auto;
+  border-radius: 50%;
+  border: 4px solid rgba(0,0,0,0.1);
+  border-top-color: rgba(0,0,0,0.25);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.character-message.not-found {
+  background: rgba(255,245,240,0.95);
+}
+
+.character-message.error {
+  background: rgba(255,240,245,0.95);
+}
+
+.character-message a {
+  color: var(--link-color, #2b6cb0);
+  text-decoration: underline;
+}

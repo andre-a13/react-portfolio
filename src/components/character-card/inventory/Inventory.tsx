@@ -14,6 +14,7 @@ interface InventoryProps {
   slug: string;
   gold?: number;
   refresh: () => void;
+  update ?: () => void;
 }
 
 export const Inventory: React.FC<InventoryProps> = ({
@@ -21,7 +22,7 @@ export const Inventory: React.FC<InventoryProps> = ({
   title = "Inventaire",
   slug,
   gold,
-  refresh
+  refresh,
 }) => {
   // État local unique (pas de mode contrôlé)
   const [itemsList, setItemsList] = React.useState<string[]>(items);
@@ -48,6 +49,69 @@ export const Inventory: React.FC<InventoryProps> = ({
       setItemsList(items);
     }
   }, [items]);
+
+  // --- Drag & drop state ---
+  const dragIndexRef = React.useRef<number | null>(null);
+  const [draggingIdx, setDraggingIdx] = React.useState<number | null>(null);
+  const [dragOverIdx, setDragOverIdx] = React.useState<number | null>(null);
+
+  const onDragStart = (e: React.DragEvent, idx: number) => {
+    dragIndexRef.current = idx;
+    setDraggingIdx(idx);
+    e.dataTransfer.effectAllowed = 'move';
+    try { e.dataTransfer.setData('text/plain', String(idx)); } catch (err) { /* some browsers may throw */ }
+  };
+
+  const onDragOverItem = (e: React.DragEvent, idx: number) => {
+    e.preventDefault(); // allow drop
+    e.dataTransfer.dropEffect = 'move';
+    if (dragOverIdx !== idx) setDragOverIdx(idx);
+  };
+
+  const onDropItem = async (e: React.DragEvent, idx: number) => {
+    e.preventDefault();
+    const src = dragIndexRef.current ?? Number(e.dataTransfer.getData('text/plain'));
+    if (typeof src !== 'number' || isNaN(src)) {
+      // nothing to do
+      setDragOverIdx(null);
+      setDraggingIdx(null);
+      dragIndexRef.current = null;
+      return;
+    }
+
+    if (src === idx) {
+      setDragOverIdx(null);
+      setDraggingIdx(null);
+      dragIndexRef.current = null;
+      return;
+    }
+
+    // reorder optimistically
+    const updated = [...itemsList];
+    const [moved] = updated.splice(src, 1);
+    updated.splice(idx, 0, moved);
+    setItemsList(updated);
+
+    // clear UI state
+    setDragOverIdx(null);
+    setDraggingIdx(null);
+    dragIndexRef.current = null;
+
+    // persist to server
+    try {
+      await characterService.patch(slug, { inventory: updated });
+    } catch (err) {
+      console.error("Failed to save inventory order:", err);
+      // fallback: refetch to sync state
+      refresh();
+    }
+  };
+
+  const onDragEnd = () => {
+    setDragOverIdx(null);
+    setDraggingIdx(null);
+    dragIndexRef.current = null;
+  };
 
   React.useEffect(() => {
     if (!slug) return;
@@ -170,7 +234,7 @@ export const Inventory: React.FC<InventoryProps> = ({
 
         </div>
 
-        <ul className="ccard-list">
+        <ul className="ccard-list" role="list">
           {itemsList.length > 0 ? (
             itemsList.map((item, idx) => (
               <InventoryItem
@@ -178,6 +242,13 @@ export const Inventory: React.FC<InventoryProps> = ({
                 name={item}
                 onEditContent={(newName) => updateItemLabel(item, newName)}
                 onDelete={() => deleteItem(item)}
+                draggable
+                onDragStart={(e) => onDragStart(e, idx)}
+                onDragOver={(e) => onDragOverItem(e, idx)}
+                onDrop={(e) => onDropItem(e, idx)}
+                onDragEnd={onDragEnd}
+                isDragging={draggingIdx === idx}
+                isDragOver={dragOverIdx === idx}
               />
             ))
           ) : (

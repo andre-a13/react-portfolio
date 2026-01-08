@@ -80,6 +80,18 @@
     border: 1px solid color-mix(in oklab, var(--parchment-line, #8b5e34) 35%, transparent);
 }
 
+/* Drag & drop visual states */
+.ccard-list .ccard-listItem.dragging {
+  opacity: 0.6;
+  transform: scale(0.995);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.ccard-list .ccard-listItem.drag-over {
+  outline: 2px dashed color-mix(in oklab, var(--parchment-accent, #b08968) 60%, white 40%);
+  background: color-mix(in oklab, var(--parchment, #f4e8c1) 92%, white 8%);
+}
+
 
 /* Layout for actions (edit/delete) */
 .ccard-itemActions {

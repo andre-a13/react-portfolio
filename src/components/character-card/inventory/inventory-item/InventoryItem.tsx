@@ -5,9 +5,18 @@ export interface InventoryItemProps {
   name: string;
   onEditContent?: (newName: string) => void;
   onDelete: () => void;
+
+  // Drag & drop related (optional)
+  draggable?: boolean;
+  onDragStart?: (e: React.DragEvent) => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDrop?: (e: React.DragEvent) => void;
+  onDragEnd?: () => void;
+  isDragging?: boolean;
+  isDragOver?: boolean;
 }
 
-const InventoryItem: React.FC<InventoryItemProps> = ({ name, onDelete, onEditContent }) => {
+const InventoryItem: React.FC<InventoryItemProps> = ({ name, onDelete, onEditContent, draggable, onDragStart, onDragOver, onDrop, onDragEnd, isDragging, isDragOver }) => {
   const [isEditing, setIsEditing] = React.useState(false);
   const [tempName, setTempName] = React.useState(name);
   const inputRef = React.useRef<HTMLInputElement | null>(null);
@@ -28,7 +37,15 @@ const InventoryItem: React.FC<InventoryItemProps> = ({ name, onDelete, onEditCon
   };
 
   return (
-    <li className="ccard-listItem">
+    <li
+      className={`ccard-listItem ${isDragging ? 'dragging' : ''} ${isDragOver ? 'drag-over' : ''}`}
+      draggable={!!draggable}
+      onDragStart={(e) => onDragStart?.(e)}
+      onDragOver={(e) => onDragOver?.(e)}
+      onDrop={(e) => onDrop?.(e)}
+      onDragEnd={() => onDragEnd?.()}
+      aria-grabbed={isDragging ? 'true' : 'false'}
+    >
       {isEditing ? (
         <input
           ref={inputRef}
