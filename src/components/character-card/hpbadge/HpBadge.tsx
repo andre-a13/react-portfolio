@@ -60,10 +60,19 @@ const HpBadge: React.FC<HpBadgeProps> = ({
 }) => {
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
 
+  // Local HP state for optimistic updates; sync to prop changes
+  const [localHp, setLocalHp] = React.useState<number>(currentHp);
+
+  React.useEffect(() => {
+    setLocalHp(currentHp);
+  }, [currentHp]);
+
+  const clampHp = (v: number) => Math.max(0, Math.min(v, maxHp));
+
   const hasControls = Boolean(onIncreaseHp || onDecreaseHp);
 
-  // Computed accessibility label
-  const a11y = ariaLabel ?? `${label} ${currentHp} / ${maxHp}`;
+  // Computed accessibility label (uses local state)
+  const a11y = ariaLabel ?? `${label} ${localHp} / ${maxHp}`;
 
   // Inline style uniquement pour la position dynamique
   const containerStyle: React.CSSProperties = {
@@ -102,7 +111,7 @@ const HpBadge: React.FC<HpBadgeProps> = ({
         <span className="hp-badge__value">
           <span className="hp-badge__label">{label}</span>
           <span className="hp-badge__number">
-            {currentHp} / {maxHp}
+            {localHp} / {maxHp}
           </span>
         </span>
 
@@ -126,7 +135,10 @@ const HpBadge: React.FC<HpBadgeProps> = ({
                 <button
                   type="button"
                   className="hp-badge__popup-btn hp-badge__popup-btn--plus"
-                  onClick={onIncreaseHp}
+                  onClick={() => {
+                    setLocalHp((h) => clampHp(h + 1));
+                    onIncreaseHp?.();
+                  }}
                   disabled={!onIncreaseHp}
                   aria-label="Increase HP"
                 >
@@ -135,7 +147,10 @@ const HpBadge: React.FC<HpBadgeProps> = ({
                 <button
                   type="button"
                   className="hp-badge__popup-btn hp-badge__popup-btn--minus"
-                  onClick={onDecreaseHp}
+                  onClick={() => {
+                    setLocalHp((h) => clampHp(h - 1));
+                    onDecreaseHp?.();
+                  }}
                   disabled={!onDecreaseHp}
                   aria-label="Decrease HP"
                 >

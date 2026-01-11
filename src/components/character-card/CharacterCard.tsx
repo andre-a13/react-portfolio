@@ -30,14 +30,14 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
 
     const increaseHp = async () => {
         if (character.current_hp >= character.getMaxHp()) return;
-        await characterService.patch(character.slug, { current_hp: character.current_hp + 1 });
-        refresh();
+        character.increaseHp();
+        await characterService.patch(character.slug, { current_hp: character.current_hp });
     }
 
     const decreaseHp = async () => {
         if (character.current_hp <= 0) return;
-        await characterService.patch(character.slug, { current_hp: character.current_hp - 1 });
-        refresh();
+        character.decreaseHp();
+        await characterService.patch(character.slug, { current_hp: character.current_hp });
     }
 
     return (

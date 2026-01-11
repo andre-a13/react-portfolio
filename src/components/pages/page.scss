@@ -52,3 +52,62 @@
   color: var(--link-color, #2b6cb0);
   text-decoration: underline;
 }
+
+/* Form styles to match character display */
+.page form {
+  background: rgba(255,255,255,0.92);
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 680px;
+}
+
+.page form h2 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+}
+
+.page form > div,
+.page form fieldset {
+  margin-bottom: 0.75rem;
+}
+
+.page label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #222;
+}
+
+.page input[type="text"],
+.page input[type="number"],
+.page input[type="url"],
+.page input,
+.page textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+  font-size: 0.98rem;
+  background: white;
+}
+
+.page textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.page fieldset {
+  border: 1px solid rgba(0,0,0,0.06);
+  padding: 0.75rem;
+  border-radius: 6px;
+}
+
+
+.page .character-message,
+.page form {
+  margin: 1rem;
+}

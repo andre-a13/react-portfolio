@@ -32,4 +32,12 @@ export default class Character {
     getMaxHp(): number {
         return Math.round((this.stats.corps / 5 ) + 5)
     }
+
+    increaseHp(amount: number = 1) {
+        this.current_hp = Math.min(this.current_hp + amount, this.getMaxHp());
+    }
+    decreaseHp(amount: number = 1) {
+        this.current_hp = Math.max(this.current_hp - amount, 0);
+    }
+    
 }

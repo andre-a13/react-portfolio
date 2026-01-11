@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router";
 import App from "./App";
 import CharacterPage from "./components/pages/Character";
+import CreateCharacter from "./components/pages/CreateCharacter";
 
 export default function AppRoutes() {
   return (
@@ -15,6 +16,7 @@ export default function AppRoutes() {
 
       {/* Dynamic routes */}
       <Route path="/characters/:slug" element={<CharacterPage />} />
+      <Route path="/characters/new" element={<CreateCharacter />} />
       <Route path="/:slug" element={<CharacterPage />} />
     </Routes>
   );
