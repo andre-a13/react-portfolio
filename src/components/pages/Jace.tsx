@@ -25,7 +25,7 @@ export default function Jace() {
   
       return (
           <div className="page">
-              {char && <CharacterCard portraitUrl="/assets/jace_jdr.png" refresh={fetchCharacter} character={char} />     }        
+              {char && <CharacterCard portraitUrl="/assets/jace_jdr.jpg" refresh={fetchCharacter} character={char} />     }        
           </div>
       )
 }
