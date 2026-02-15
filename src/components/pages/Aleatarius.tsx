@@ -27,7 +27,7 @@ export default function Aleatarius() {
 
     return (
         <div className="page">
-            {char && <CharacterCard portraitUrl="/assets/aleatarius_jdr.png" refresh={fetchCharacter} character={char} />}
+            {char && <CharacterCard portraitUrl="/assets/aleatarius_jdr.jpg" refresh={fetchCharacter} character={char} />}
         </div>
     )
 }
