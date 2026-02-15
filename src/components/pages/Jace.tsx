@@ -12,6 +12,7 @@ export default function Jace() {
 
       const fetchCharacter = async () => {
           try {
+                console.log("here")
               const response = await characterService.getBySlug("jace");
               setChar(response);
           } catch (error) {
