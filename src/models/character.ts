@@ -1,4 +1,5 @@
 import type { SkillSet } from "../types/character";
+import type { CharacterDto } from "../interface/IAddCharacter";
 
 export default class Character {
     id: string;
@@ -13,7 +14,7 @@ export default class Character {
     gold : number = 0;
     notes : string = "";
     current_hp : number = 0;
-    constructor(data: any) {
+    constructor(data: CharacterDto) {
         this.id = data.id;
         this.name = data.name;
         this.slug = data.slug;

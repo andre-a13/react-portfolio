@@ -14,4 +14,8 @@ export interface IAddCharacter {
     current_hp ?: number;
 }
 
-export interface IUpdateCharacter extends Partial<IAddCharacter> {}
+export interface CharacterDto extends IAddCharacter {
+    id: string;
+}
+
+export type IUpdateCharacter = Partial<IAddCharacter>;

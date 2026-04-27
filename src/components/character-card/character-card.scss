@@ -64,6 +64,53 @@
     font-size: 20pt;
 }
 
+.ccard-modeToggle {
+    cursor: pointer;
+    position: absolute;
+    top: 24px;
+    right: 132px;
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    box-sizing: border-box;
+    z-index: 1;
+    color: var(--parchment-ink);
+    background:
+        radial-gradient(120% 90% at 10% 5%, rgba(255, 255, 255, .25), transparent 60%),
+        linear-gradient(0deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .12)),
+        var(--parchment);
+    border: 1px solid var(--parchment-line);
+    border-radius: 8px;
+    box-shadow:
+        0 1px 0 #b38b59 inset,
+        0 0 10px rgba(0, 0, 0, .08) inset,
+        0 4px 10px var(--shadow);
+    transition: transform .06s ease, filter .12s ease, border-color .12s ease, background .12s ease;
+}
+
+.ccard-modeToggle:hover {
+    filter: brightness(1.02) saturate(1.02);
+    border-color: color-mix(in oklab, var(--parchment-line) 70%, var(--parchment-accent) 30%);
+}
+
+.ccard-modeToggle:active {
+    transform: translateY(1px);
+}
+
+.ccard-modeToggle:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--parchment-accent) 70%, white 30%);
+    outline-offset: 2px;
+}
+
+.ccard-modeToggle.is-active {
+    color: #f9f4df;
+    background:
+        radial-gradient(120% 90% at 10% 5%, rgba(255, 255, 255, .18), transparent 60%),
+        linear-gradient(180deg, var(--parchment-line), color-mix(in oklab, var(--parchment-line) 72%, black 28%));
+    border-color: color-mix(in oklab, var(--parchment-line) 78%, black 22%);
+}
+
 
 .ccard-grid {
     display: grid;

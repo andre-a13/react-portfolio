@@ -9,6 +9,13 @@
     letter-spacing: .4px;
 }
 
+.ccard-listHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
 .ccard-list {
     list-style: none;
     padding: 0;
@@ -23,4 +30,133 @@
     border: 1px dashed var(--parchment-accent);
     border-radius: 6px;
     background: color-mix(in oklab, var(--parchment) 92%, white 8%);
+}
+
+.ccard-skillItem {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+    transition: border-color .12s ease, box-shadow .12s ease, opacity .12s ease, transform .12s ease;
+}
+
+.ccard-skillItem[draggable="true"] {
+    cursor: grab;
+}
+
+.ccard-skillItem[draggable="true"]:active {
+    cursor: grabbing;
+}
+
+.ccard-skillItem.is-dragging {
+    opacity: .55;
+    transform: scale(.99);
+}
+
+.ccard-skillItem.is-drag-over {
+    border-color: var(--parchment-line);
+    box-shadow: 0 0 0 2px color-mix(in oklab, var(--parchment-accent) 38%, transparent);
+}
+
+.ccard-skillDragHandle {
+    display: inline-grid;
+    place-items: center;
+    width: 18px;
+    color: color-mix(in oklab, var(--parchment-ink) 58%, transparent);
+}
+
+.ccard-skillLabel {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.ccard-skillDelete {
+    cursor: pointer;
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    color: color-mix(in oklab, var(--parchment-ink) 72%, transparent);
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: background .12s ease, border-color .12s ease, color .12s ease, transform .06s ease;
+}
+
+.ccard-skillDelete:hover {
+    color: #7c2d20;
+    background: rgba(124, 45, 32, .08);
+    border-color: rgba(124, 45, 32, .22);
+}
+
+.ccard-skillDelete:active {
+    transform: translateY(1px);
+}
+
+.ccard-skillDelete:focus-visible {
+    outline: 2px solid var(--parchment-accent);
+    outline-offset: 2px;
+}
+
+.ccard-skillAdd {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 36px;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.ccard-skillAddInput {
+    min-width: 0;
+    height: 36px;
+    padding: 0 10px;
+    color: var(--parchment-ink);
+    font: inherit;
+    background: rgba(255, 255, 255, .5);
+    border: 1px solid rgba(139, 94, 52, .32);
+    border-radius: 6px;
+    box-shadow: inset 0 1px 2px rgba(82, 49, 22, .08);
+}
+
+.ccard-skillAddInput::placeholder {
+    color: color-mix(in oklab, var(--parchment-ink) 45%, transparent);
+}
+
+.ccard-skillAddInput:focus {
+    outline: 2px solid var(--parchment-accent);
+    outline-offset: 2px;
+}
+
+.ccard-skillAddButton {
+    cursor: pointer;
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    color: var(--parchment-ink);
+    background:
+        radial-gradient(120% 90% at 10% 5%, rgba(255, 255, 255, .25), transparent 60%),
+        linear-gradient(0deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .12)),
+        var(--parchment);
+    border: 1px solid var(--parchment-line);
+    border-radius: 6px;
+    box-shadow: 0 1px 0 #b38b59 inset, 0 2px 8px rgba(0, 0, 0, .12);
+    transition: transform .06s ease, filter .12s ease, opacity .12s ease;
+}
+
+.ccard-skillAddButton:hover:not(:disabled) {
+    filter: brightness(1.03) saturate(1.03);
+}
+
+.ccard-skillAddButton:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.ccard-skillAddButton:disabled {
+    cursor: default;
+    opacity: .45;
+}
+
+.ccard-skillAddButton:focus-visible {
+    outline: 2px solid var(--parchment-accent);
+    outline-offset: 2px;
 }

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.scss";
 import Content from "./components/content/content";
 import LangSwitch from "./components/lang-switch/LangSwitch";
@@ -63,9 +64,10 @@ const datas = [
 ];
 
 function App() {
-  const randomIndex = Math.floor(Math.random() * datas.length);
-  const selectedData = datas[randomIndex];
-  console.log("Selected theme:", selectedData.theme);
+  const [selectedData] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * datas.length);
+    return datas[randomIndex];
+  });
 
   return (
     <div className="app">
@@ -73,13 +75,6 @@ function App() {
         <LangSwitch />
       </div>
       <Section data={selectedData}>{selectedData.children}</Section>
-      {/* {datas.map((d, i) => {
-        return (
-          <Section key={`sec-${i}`} data={d as any}>
-            {d.children}
-          </Section>
-        );
-      })} */}
     </div>
   );
 }

@@ -33,21 +33,19 @@ export const Inventory: React.FC<InventoryProps> = ({
     modalRef.current?.close();
   };
   const modalRef = React.useRef<ModalHandle>(null);
+  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastSentRef = React.useRef<number>(localGold);
 
   // Si la prop gold change (ex: re-hydratation depuis le serveur), on synchronise l'initialisation
   React.useEffect(() => {
-    if (typeof gold === "number") setLocalGold(gold);
+    if (typeof gold === "number") {
+      setLocalGold(gold);
+      lastSentRef.current = gold;
+    }
   }, [gold]);
 
-  // Debounce 500ms (fixe)
-  const timerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastSentRef = React.useRef<number>(localGold); // évite PATCH si inchangé
-
   React.useEffect(() => {
-    if (items.length)
-    {
-      setItemsList(items);
-    }
+    setItemsList(items);
   }, [items]);
 
   // --- Drag & drop state ---
@@ -59,7 +57,7 @@ export const Inventory: React.FC<InventoryProps> = ({
     dragIndexRef.current = idx;
     setDraggingIdx(idx);
     e.dataTransfer.effectAllowed = 'move';
-    try { e.dataTransfer.setData('text/plain', String(idx)); } catch (err) { /* some browsers may throw */ }
+    try { e.dataTransfer.setData('text/plain', String(idx)); } catch { /* some browsers may throw */ }
   };
 
   const onDragOverItem = (e: React.DragEvent, idx: number) => {
@@ -151,6 +149,7 @@ export const Inventory: React.FC<InventoryProps> = ({
     if (!newItem) return; // should not happen due to required field
 
     const updatedItems = [...itemsList, newItem];
+    setItemsList(updatedItems);
     characterService.patch(slug, { inventory: updatedItems })
       .then(() => {
         refresh();
@@ -159,15 +158,17 @@ export const Inventory: React.FC<InventoryProps> = ({
       })
       .catch((error) => {
         console.error("Failed to add item:", error);
+        refresh();
       });
 
     // closeAddModal();
   };
 
-  const updateItemLabel = async (oldName: string, newName: string) => {
-    if (oldName === newName) return; // no change
+  const updateItemLabel = async (index: number, newName: string) => {
+    if (itemsList[index] === newName) return; // no change
 
-    const updatedItems = itemsList.map((item) => (item === oldName ? newName : item));
+    const updatedItems = itemsList.map((item, itemIndex) => (itemIndex === index ? newName : item));
+    setItemsList(updatedItems);
     try {
       await characterService.patch(slug, { inventory: updatedItems });
       refresh();
@@ -176,8 +177,9 @@ export const Inventory: React.FC<InventoryProps> = ({
     }
   }
 
-  const deleteItem = async (name: string) => {
-    const updatedItems = items.filter((item) => item !== name);
+  const deleteItem = async (index: number) => {
+    const updatedItems = itemsList.filter((_, itemIndex) => itemIndex !== index);
+    setItemsList(updatedItems);
     try {
       await characterService.patch(slug, { inventory: updatedItems });
       refresh();
@@ -240,8 +242,8 @@ export const Inventory: React.FC<InventoryProps> = ({
               <InventoryItem
                 key={`${item}-${idx}`}
                 name={item}
-                onEditContent={(newName) => updateItemLabel(item, newName)}
-                onDelete={() => deleteItem(item)}
+                onEditContent={(newName) => updateItemLabel(idx, newName)}
+                onDelete={() => deleteItem(idx)}
                 draggable
                 onDragStart={(e) => onDragStart(e, idx)}
                 onDragOver={(e) => onDragOverItem(e, idx)}

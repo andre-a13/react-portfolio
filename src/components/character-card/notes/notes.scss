@@ -9,9 +9,13 @@
     right: 24px;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: .45rem;
-    padding: .35rem .65rem;
+    height: 38px;
+    box-sizing: border-box;
+    padding: 0 .75rem;
     border-radius: 8px;
+    z-index: 1;
     color: var(--parchment-ink);
     background:
         radial-gradient(120% 90% at 10% 5%, rgba(255, 255, 255, .25), transparent 60%),

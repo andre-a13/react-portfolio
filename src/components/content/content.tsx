@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Card from "../card/card";
 import "../card/card.scss";
@@ -62,13 +62,16 @@ const Content = () => {
   ];
 
   const [[currentIndex, direction], setState] = useState<[number, number]>([0, 0]);
+  const contentCount = contentData.length;
 
-  const paginate = (dir: number) => {
-    const newIndex = currentIndex + dir;
-    if (newIndex >= 0 && newIndex < contentData.length) {
-      setState([newIndex, dir]);
-    }
-  };
+  const paginate = useCallback((dir: number) => {
+    setState((currentState) => {
+      const [index] = currentState;
+      const newIndex = index + dir;
+      if (newIndex < 0 || newIndex >= contentCount) return currentState;
+      return [newIndex, dir];
+    });
+  }, [contentCount]);
 
   const currentContent = contentData[currentIndex];
 
@@ -79,7 +82,7 @@ const Content = () => {
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex]);
+  }, [paginate]);
 
   return (
     <div className="relative">

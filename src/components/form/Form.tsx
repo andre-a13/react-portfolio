@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+import characterService from "../../services/character.service";
+import type { IAddCharacter } from "../../interface/IAddCharacter";
 
 type Stats = { corps: number; mental: number; social: number };
 
@@ -28,7 +31,7 @@ export default function Form() {
     e.preventDefault();
     setStatus(null);
 
-    const payload = {
+    const payload: IAddCharacter = {
       name,
       race,
       slug,
@@ -40,19 +43,8 @@ export default function Form() {
     };
 
     try {
-      const res = await fetch("http://localhost:8000/characters", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        setStatus(`Error: ${res.status} ${text}`);
-        return;
-      }
-
-      const data = await res.json();
+      const res = await characterService.create(payload);
+      const data = res.data;
       setStatus(`Created: ${data.id} ${data.name}`);
       // reset minimal fields
       setName("");
@@ -62,8 +54,12 @@ export default function Form() {
       setSkillsPrimary("");
       setSkillsSecondary("");
       setInventory("");
-    } catch (err: any) {
-      setStatus(`Network error: ${err.message}`);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setStatus(`Error: ${err.response?.status ?? "network"} ${err.message}`);
+        return;
+      }
+      setStatus("Network error: unable to create character");
     }
   }
 
@@ -110,6 +106,10 @@ export default function Form() {
       <div>
         <label>Secondary Skills (comma separated)</label>
         <input value={skillsSecondary} onChange={(e) => setSkillsSecondary(e.target.value)} />
+      </div>
+      <div>
+        <label>Inventory (comma separated)</label>
+        <input value={inventory} onChange={(e) => setInventory(e.target.value)} />
       </div>
 
       <div style={{ marginTop: 12 }}>

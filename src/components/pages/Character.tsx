@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router";
 import characterService from "../../services/character.service";
 import CharacterCard from "../character-card/CharacterCard";
@@ -18,10 +18,9 @@ export default function CharacterPage({ presetSlug, portraitUrl }: Props) {
   const [loading, setLoading] = useState<boolean>(true);
   const [notFound, setNotFound] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [isDesignMode, setIsDesignMode] = useState(false);
 
-  axios.defaults.headers.common['ngrok-skip-browser-warning'] = 'true';
-
-  const fetchCharacter = async () => {
+  const fetchCharacter = useCallback(async () => {
     if (!slug) {
       setLoading(false);
       setNotFound(true);
@@ -33,9 +32,9 @@ export default function CharacterPage({ presetSlug, portraitUrl }: Props) {
     setNotFound(false);
 
     try {
-      const response = await characterService.getBySlug(slug as string);
+      const response = await characterService.getBySlug(slug);
       setChar(response);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error fetching character:", err);
       if (axios.isAxiosError(err) && err.response?.status === 404) {
         setNotFound(true);
@@ -45,12 +44,11 @@ export default function CharacterPage({ presetSlug, portraitUrl }: Props) {
     } finally {
       setLoading(false);
     }
-  }
+  }, [slug]);
 
   useEffect(() => {
     fetchCharacter();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slug]);
+  }, [fetchCharacter]);
 
   const computedPortrait = portraitUrl ?? (slug ? `/assets/${slug}_jdr.jpg` : undefined);
 
@@ -84,7 +82,13 @@ export default function CharacterPage({ presetSlug, portraitUrl }: Props) {
       )}
 
       {!loading && !error && !notFound && char && (
-        <CharacterCard portraitUrl={computedPortrait} refresh={fetchCharacter} character={char} />
+        <CharacterCard
+          portraitUrl={computedPortrait}
+          refresh={fetchCharacter}
+          character={char}
+          designMode={isDesignMode}
+          onToggleDesignMode={() => setIsDesignMode((value) => !value)}
+        />
       )}
     </div>
   );
