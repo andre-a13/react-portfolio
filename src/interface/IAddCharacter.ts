@@ -12,6 +12,7 @@ export interface IAddCharacter {
     gold ?: number;
     notes ?: string;
     current_hp ?: number;
+    bonusHealth ?: number;
 }
 
 export interface CharacterDto extends IAddCharacter {

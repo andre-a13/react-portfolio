@@ -13,4 +13,5 @@ export interface Character {
     skillsPrimary: string[]; // 2 éléments
     skillsSecondary: string[]; // 0–3 éléments
     inventory : string[];
+    bonusHealth?: number;
 }

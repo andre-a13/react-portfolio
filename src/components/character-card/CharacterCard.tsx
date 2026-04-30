@@ -35,9 +35,15 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
     const [primarySkills, setPrimarySkills] = React.useState<string[]>(character.skillsPrimary ?? []);
     const [secondarySkills, setSecondarySkills] = React.useState<string[]>(character.skillsSecondary ?? []);
     const [currentHp, setCurrentHp] = React.useState(character.current_hp);
-    const maxHp = React.useMemo(() => Math.round((stats.corps / 5) + 5), [stats.corps]);
+    const [bonusHealth, setBonusHealth] = React.useState(character.bonusHealth ?? 0);
+    const [localPortraitUrl, setLocalPortraitUrl] = React.useState(character.portraitUrl ?? portraitUrl ?? "");
+    const [isPortraitUploading, setIsPortraitUploading] = React.useState(false);
+    const [portraitUploadError, setPortraitUploadError] = React.useState<string | null>(null);
+    const baseMaxHp = React.useMemo(() => Math.round((stats.corps / 5) + 5), [stats.corps]);
+    const maxHp = React.useMemo(() => baseMaxHp + bonusHealth, [baseMaxHp, bonusHealth]);
     const previousStatsRef = React.useRef(character.stats);
     const statsSaveTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+    const portraitPreviewUrlRef = React.useRef<string | null>(null);
 
     React.useEffect(() => {
         setStats(character.stats);
@@ -45,7 +51,16 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
         setSecondarySkills(character.skillsSecondary ?? []);
         previousStatsRef.current = character.stats;
         setCurrentHp(character.current_hp);
-    }, [character.current_hp, character.skillsPrimary, character.skillsSecondary, character.slug, character.stats]);
+        setBonusHealth(character.bonusHealth ?? 0);
+        setLocalPortraitUrl(character.portraitUrl ?? portraitUrl ?? "");
+        setPortraitUploadError(null);
+    }, [character.bonusHealth, character.current_hp, character.portraitUrl, character.skillsPrimary, character.skillsSecondary, character.slug, character.stats, portraitUrl]);
+
+    React.useEffect(() => {
+        return () => {
+            if (portraitPreviewUrlRef.current) URL.revokeObjectURL(portraitPreviewUrlRef.current);
+        };
+    }, []);
 
     React.useEffect(() => {
         const previousStats = previousStatsRef.current;
@@ -161,13 +176,97 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
         }
     };
 
-    const increaseHp = () => {
-        updateHp(currentHp + 1);
+    const increaseHp = async () => {
+        if (currentHp < maxHp) {
+            updateHp(currentHp + 1);
+            return;
+        }
+
+        const previousHp = currentHp;
+        const previousBonusHealth = bonusHealth;
+        const nextHp = currentHp + 1;
+        const nextBonusHealth = bonusHealth + 1;
+
+        setCurrentHp(nextHp);
+        setBonusHealth(nextBonusHealth);
+
+        try {
+            await characterService.patch(character.slug, {
+                bonusHealth: nextBonusHealth,
+                current_hp: nextHp,
+            });
+        } catch (error) {
+            console.error("Failed to update bonus health:", error);
+            setCurrentHp(previousHp);
+            setBonusHealth(previousBonusHealth);
+        }
     }
 
-    const decreaseHp = () => {
+    const decreaseHp = async () => {
+        if (bonusHealth > 0 && currentHp > baseMaxHp) {
+            const previousHp = currentHp;
+            const previousBonusHealth = bonusHealth;
+            const nextHp = currentHp - 1;
+            const nextBonusHealth = bonusHealth - 1;
+
+            setCurrentHp(nextHp);
+            setBonusHealth(nextBonusHealth);
+
+            try {
+                await characterService.patch(character.slug, {
+                    bonusHealth: nextBonusHealth,
+                    current_hp: nextHp,
+                });
+            } catch (error) {
+                console.error("Failed to update bonus health:", error);
+                setCurrentHp(previousHp);
+                setBonusHealth(previousBonusHealth);
+            }
+
+            return;
+        }
+
         updateHp(currentHp - 1);
     }
+
+    const uploadPortrait = async (file: File) => {
+        const allowedTypes = ["image/jpeg", "image/png", "image/webp"];
+        if (!allowedTypes.includes(file.type)) {
+            setPortraitUploadError("Format accepte: JPG, PNG ou WebP.");
+            return;
+        }
+
+        if (file.size > 5 * 1024 * 1024) {
+            setPortraitUploadError("Image trop lourde: 5 Mo maximum.");
+            return;
+        }
+
+        if (portraitPreviewUrlRef.current) {
+            URL.revokeObjectURL(portraitPreviewUrlRef.current);
+        }
+
+        const previewUrl = URL.createObjectURL(file);
+        portraitPreviewUrlRef.current = previewUrl;
+        setLocalPortraitUrl(previewUrl);
+        setPortraitUploadError(null);
+        setIsPortraitUploading(true);
+
+        try {
+            const publicUrl = await characterService.uploadPortrait(character.slug, file);
+            setLocalPortraitUrl(publicUrl);
+            refresh();
+        } catch (error) {
+            console.error("Failed to upload portrait:", error);
+            setLocalPortraitUrl(character.portraitUrl ?? portraitUrl ?? "");
+            setPortraitUploadError("Upload impossible. Reessayez plus tard.");
+        } finally {
+            setIsPortraitUploading(false);
+            if (portraitPreviewUrlRef.current === previewUrl) {
+                URL.revokeObjectURL(previewUrl);
+                portraitPreviewUrlRef.current = null;
+            }
+        }
+    };
 
     return (
         <main className={`ccard-sheet ${className ?? ""}`} role="document" aria-label="Fiche de personnage — Carte d'identité">
@@ -191,7 +290,13 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
             <section className="ccard-grid">
                 <div className="ccard-row">
                     <Stats values={stats} editable={designMode} onChange={updateStat} />
-                    <Portrait src={character.portraitUrl ?? portraitUrl ?? ""} />
+                    <Portrait
+                        src={localPortraitUrl}
+                        editable={designMode}
+                        uploading={isPortraitUploading}
+                        error={portraitUploadError}
+                        onUpload={uploadPortrait}
+                    />
                 </div>
                 <Skills
                     primary={primarySkills}

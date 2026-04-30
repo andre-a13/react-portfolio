@@ -14,6 +14,7 @@ export default class Character {
     gold : number = 0;
     notes : string = "";
     current_hp : number = 0;
+    bonusHealth : number = 0;
     constructor(data: CharacterDto) {
         this.id = data.id;
         this.name = data.name;
@@ -26,12 +27,13 @@ export default class Character {
         this.gold = data.gold ?? 0;
         this.portraitUrl = data.portraitUrl;
         this.notes = data.notes ?? "";
+        this.bonusHealth = data.bonusHealth ?? 0;
         this.current_hp = data.current_hp ?? this.getMaxHp();
 
     }
 
     getMaxHp(): number {
-        return Math.round((this.stats.corps / 5 ) + 5)
+        return Math.round((this.stats.corps / 5 ) + 5 + this.bonusHealth)
     }
 
     increaseHp(amount: number = 1) {

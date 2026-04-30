@@ -20,8 +20,7 @@
 
 /* Conteneur principal de la carte */
 .ccard-sheet {
-    width: 50%;
-    max-width: min(100%, 840px);
+    max-width: min(100%, 960px);
     position: relative;
     padding: 18mm 16mm;
     border: 1px solid var(--parchment-line);

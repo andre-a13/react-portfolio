@@ -31,6 +31,93 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.ccard-invControls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin: -1mm 0 3mm;
+}
+
+.ccard-pageToggle,
+.ccard-pageBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--parchment-line);
+    color: var(--parchment-ink);
+    background: color-mix(in oklab, var(--parchment) 90%, white 10%);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset;
+    cursor: pointer;
+    transition: filter .12s ease, border-color .12s ease, transform .06s ease, opacity .12s ease;
+}
+
+.ccard-pageToggle {
+    gap: 6px;
+    min-height: 30px;
+    padding: 5px 9px;
+    border-radius: 6px;
+    font: inherit;
+    font-size: .82rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.ccard-pageToggle.is-active {
+    border-color: color-mix(in oklab, var(--parchment-line) 72%, var(--parchment-accent) 28%);
+    background: color-mix(in oklab, var(--parchment) 82%, white 18%);
+}
+
+.ccard-pageToggle:hover,
+.ccard-pageBtn:hover:not(:disabled) {
+    filter: brightness(1.03);
+}
+
+.ccard-pageToggle:active,
+.ccard-pageBtn:active:not(:disabled) {
+    transform: translateY(1px);
+}
+
+.ccard-pageToggle:focus-visible,
+.ccard-pageBtn:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--parchment-accent) 70%, white 30%);
+    outline-offset: 2px;
+}
+
+.ccard-invPager {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.ccard-invList {
+    align-content: start;
+    min-height: calc((36px * 5) + (6px * 4));
+}
+
+.ccard-pageBtn {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+}
+
+.ccard-pageBtn:disabled {
+    opacity: .45;
+    cursor: default;
+}
+
+.ccard-pageStatus {
+    min-width: 8ch;
+    text-align: center;
+    font-size: .82rem;
+    font-weight: 600;
+    color: color-mix(in oklab, var(--parchment-ink) 78%, transparent);
+    font-variant-numeric: tabular-nums;
 }
 
 .ccard-coinCounter {
@@ -88,7 +175,27 @@
 
 
 @media print {
+    .ccard-invControls,
     .ccard-coinBtn {
         display: none;
+    }
+}
+
+@media (max-width: 620px) {
+    .ccard-invHeader,
+    .ccard-invControls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .ccard-listActions,
+    .ccard-invPager,
+    .ccard-pageToggle {
+        width: 100%;
+    }
+
+    .ccard-invPager {
+        justify-content: space-between;
+        margin-left: 0;
     }
 }
