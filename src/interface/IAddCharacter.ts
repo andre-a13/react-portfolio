@@ -1,5 +1,11 @@
 import type { SkillSet } from "../types/character";
 
+export interface CharacterTeamDto {
+    uuid: string;
+    name: string;
+    illustrationUrl?: string;
+}
+
 export interface IAddCharacter {
     name : string;
     slug : string;
@@ -17,6 +23,7 @@ export interface IAddCharacter {
 
 export interface CharacterDto extends IAddCharacter {
     id: string;
+    teams?: CharacterTeamDto[];
 }
 
 export type IUpdateCharacter = Partial<IAddCharacter>;

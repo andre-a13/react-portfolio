@@ -2,6 +2,9 @@ import { Route, Routes } from "react-router";
 import App from "./App";
 import CharacterPage from "./components/pages/Character";
 import CreateCharacter from "./components/pages/CreateCharacter";
+import CreateTeam from "./components/pages/CreateTeam";
+import Team from "./components/pages/Team";
+import Teams from "./components/pages/Teams";
 
 export default function AppRoutes() {
   return (
@@ -17,6 +20,9 @@ export default function AppRoutes() {
       {/* Dynamic routes */}
       <Route path="/characters/:slug" element={<CharacterPage />} />
       <Route path="/characters/new" element={<CreateCharacter />} />
+      <Route path="/teams" element={<Teams />} />
+      <Route path="/teams/create" element={<CreateTeam />} />
+      <Route path="/teams/:uuid" element={<Team />} />
       <Route path="/:slug" element={<CharacterPage />} />
     </Routes>
   );

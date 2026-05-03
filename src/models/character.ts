@@ -1,5 +1,5 @@
 import type { SkillSet } from "../types/character";
-import type { CharacterDto } from "../interface/IAddCharacter";
+import type { CharacterDto, CharacterTeamDto } from "../interface/IAddCharacter";
 
 export default class Character {
     id: string;
@@ -15,6 +15,7 @@ export default class Character {
     notes : string = "";
     current_hp : number = 0;
     bonusHealth : number = 0;
+    teams: CharacterTeamDto[] = [];
     constructor(data: CharacterDto) {
         this.id = data.id;
         this.name = data.name;
@@ -29,6 +30,7 @@ export default class Character {
         this.notes = data.notes ?? "";
         this.bonusHealth = data.bonusHealth ?? 0;
         this.current_hp = data.current_hp ?? this.getMaxHp();
+        this.teams = data.teams ?? [];
 
     }
 

@@ -22,7 +22,6 @@ import type { SkillSet } from "../../types/character";
 interface CharacterCardProps {
     character: Character;
     portraitUrl ?: string;
-    editableIdentity?: boolean; // pour activer contentEditable sur Nom/Race si tu veux
     className?: string;
     refresh : () => void;
     designMode?: boolean;
@@ -30,7 +29,7 @@ interface CharacterCardProps {
 }
 
 
-export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editableIdentity = false, className, portraitUrl, refresh, designMode = false, onToggleDesignMode  }) => {
+export const CharacterCard: React.FC<CharacterCardProps> = ({ character, className, portraitUrl, refresh, designMode = false, onToggleDesignMode  }) => {
     const [stats, setStats] = React.useState<SkillSet>(character.stats);
     const [primarySkills, setPrimarySkills] = React.useState<string[]>(character.skillsPrimary ?? []);
     const [secondarySkills, setSecondarySkills] = React.useState<string[]>(character.skillsSecondary ?? []);
@@ -271,7 +270,7 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
     return (
         <main className={`ccard-sheet ${className ?? ""}`} role="document" aria-label="Fiche de personnage — Carte d'identité">
             <HpBadge showIcon={false} currentHp= {currentHp} maxHp={maxHp} onIncreaseHp={increaseHp} onDecreaseHp={decreaseHp} label="Pv :" />
-            <h1 className="ccard-title">Fiche de personnage
+            <h1 className="ccard-title">{character.name}
                 <button
                     type="button"
                     className={`ccard-modeToggle ${designMode ? "is-active" : ""}`}
@@ -284,7 +283,10 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character, editabl
                 </button>
                 <Notes slug={character.slug} notes={character.notes} />
             </h1>
-            <Identity name={character.name} race={character.race} editable={editableIdentity} />
+            <Identity
+                race={character.race}
+                firstTeam={character.teams[0]}
+            />
 
 
             <section className="ccard-grid">
