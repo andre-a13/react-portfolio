@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router";
-import teamService from "../../services/team.service";
-import type { TeamDto } from "../../interface/IAddTeam";
-import "./page.scss";
+import teamService from "../../../services/team.service";
+import type { TeamDto } from "../../../interface/IAddTeam";
+import "./teams.scss";
 
 export default function Teams() {
   const [teams, setTeams] = useState<TeamDto[]>([]);

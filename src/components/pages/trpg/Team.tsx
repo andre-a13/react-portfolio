@@ -1,11 +1,11 @@
 import { type FormEvent, useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router";
-import type Character from "../../models/character";
-import characterService from "../../services/character.service";
-import teamService from "../../services/team.service";
-import type { TeamDto } from "../../interface/IAddTeam";
-import "./page.scss";
+import type Character from "../../../models/character";
+import characterService from "../../../services/character.service";
+import teamService from "../../../services/team.service";
+import type { TeamDto } from "../../../interface/IAddTeam";
+import "./team.scss";
 
 type TeamCharacter = {
   character: Character | null;

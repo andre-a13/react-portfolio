@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams, Link } from "react-router";
-import characterService from "../../services/character.service";
-import CharacterCard from "../character-card/CharacterCard";
-import './page.scss'
+import characterService from "../../../services/character.service";
+import CharacterCard from "../../character-card/CharacterCard";
+import "./character.scss";
 import axios from "axios";
-import type Character from "../../models/character";
+import type Character from "../../../models/character";
 
 type Props = {
   presetSlug?: string;
