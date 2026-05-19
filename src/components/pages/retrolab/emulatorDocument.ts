@@ -1,7 +1,9 @@
 import { RETROLAB_DATABASE } from "../../../services/retro-lab-storage.service";
 import type { StoredRomSummary } from "../../../services/retro-lab-storage.service";
 
-export type RetroLabLaunch = Pick<StoredRomSummary, "id" | "name">;
+export type RetroLabLaunch = Pick<StoredRomSummary, "id" | "name"> & {
+  assetUrl?: string;
+};
 
 const EMULATOR_DATA_URL = "https://cdn.emulatorjs.org/stable/data/";
 
@@ -63,6 +65,7 @@ export function createEmulatorDocument(rom: RetroLabLaunch) {
         const databaseVersion = ${RETROLAB_DATABASE.version};
         const romStore = ${scriptValue(RETROLAB_DATABASE.stores.roms)};
         const saveStateStore = ${scriptValue(RETROLAB_DATABASE.stores.saveStates)};
+        const assetUrl = ${scriptValue(rom.assetUrl ?? "")};
         const message = document.getElementById("message");
 
         function openDatabase() {
@@ -146,7 +149,15 @@ export function createEmulatorDocument(rom: RetroLabLaunch) {
         }
 
         function getRom() {
+          if (assetUrl) return fetchRomAsset();
           return readRecord(romStore, romId);
+        }
+
+        function fetchRomAsset() {
+          return fetch(assetUrl).then((response) => {
+            if (!response.ok) throw new Error("Unable to fetch bundled ROM.");
+            return response.blob();
+          }).then((blob) => ({ id: romId, name: ${scriptValue(rom.name)}, blob }));
         }
 
         function getSaveState() {

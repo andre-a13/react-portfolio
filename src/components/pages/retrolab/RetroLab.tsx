@@ -11,9 +11,26 @@ type SelectedRom = RetroLabLaunch & {
   launchKey: number;
 };
 
+type AvailableRom = RetroLabLaunch & {
+  size: number;
+  source: "bundled" | "local";
+  lastPlayedAt?: number;
+  saveStateUpdatedAt?: number;
+};
+
 type EmulatorMessage = {
   type?: string;
 };
+
+const BUNDLED_ROMS: AvailableRom[] = [
+  {
+    id: "bundled-rom1",
+    name: "Rom1.zip",
+    assetUrl: "/assets/Rom1.zip",
+    size: 7_177_758,
+    source: "bundled",
+  },
+];
 
 function formatBytes(bytes: number) {
   if (bytes === 0) return "0 B";
@@ -48,6 +65,14 @@ export default function RetroLab() {
     if (!selectedRom) return "";
     return createEmulatorDocument(selectedRom);
   }, [selectedRom]);
+  const availableRoms = useMemo(() => {
+    const localRoms = romLibrary.map<AvailableRom>((rom) => ({
+      ...rom,
+      source: "local",
+    }));
+
+    return [...BUNDLED_ROMS, ...localRoms];
+  }, [romLibrary]);
 
   useEffect(() => {
     refreshLibrary();
@@ -84,7 +109,18 @@ export default function RetroLab() {
 
   function launchRom(rom: RetroLabLaunch) {
     launchKeyRef.current += 1;
-    setSelectedRom({ id: rom.id, name: rom.name, launchKey: launchKeyRef.current });
+    setSelectedRom({ id: rom.id, name: rom.name, assetUrl: rom.assetUrl, launchKey: launchKeyRef.current });
+  }
+
+  async function launchAvailableRom(rom: AvailableRom) {
+    if (rom.source === "bundled") {
+      launchRom(rom);
+      setStatusMessage(`${rom.name} is ready to play.`);
+      setStorageError(null);
+      return;
+    }
+
+    await launchStoredRom(rom.id);
   }
 
   async function handleRomChange(event: ChangeEvent<HTMLInputElement>) {
@@ -165,17 +201,17 @@ export default function RetroLab() {
 
         <RomLibrary
           isLoading={isLibraryLoading}
-          roms={romLibrary}
+          roms={availableRoms}
           selectedRomId={selectedRom?.id}
           onDelete={deleteStoredRom}
-          onLaunch={launchStoredRom}
+          onLaunch={launchAvailableRom}
           onRefresh={refreshLibrary}
         />
 
         <EmulatorStage emulatorDocument={emulatorDocument} selectedRom={selectedRom} />
 
         <p className="retrolab__note">
-          ROM files are stored in this browser with IndexedDB. Nothing is uploaded by this page.
+          Bundled ROMs are served from the app assets. Imported ROMs are stored in this browser with IndexedDB.
         </p>
       </section>
     </main>
@@ -221,10 +257,10 @@ function StatusMessage({ error, message }: StatusMessageProps) {
 
 type RomLibraryProps = {
   isLoading: boolean;
-  roms: StoredRomSummary[];
+  roms: AvailableRom[];
   selectedRomId?: string;
   onDelete: (id: string) => void;
-  onLaunch: (id: string) => void;
+  onLaunch: (rom: AvailableRom) => void;
   onRefresh: () => void;
 };
 
@@ -232,7 +268,7 @@ function RomLibrary({ isLoading, roms, selectedRomId, onDelete, onLaunch, onRefr
   return (
     <section className="retrolab__library" aria-labelledby="retrolab-library-title">
       <div className="retrolab__library-header">
-        <h2 id="retrolab-library-title">Local ROM Library</h2>
+        <h2 id="retrolab-library-title">Available ROMs</h2>
         <button type="button" onClick={onRefresh}>
           Refresh
         </button>
@@ -263,30 +299,33 @@ function RomLibrary({ isLoading, roms, selectedRomId, onDelete, onLaunch, onRefr
 
 type RomCardProps = {
   isSelected: boolean;
-  rom: StoredRomSummary;
+  rom: AvailableRom;
   onDelete: (id: string) => void;
-  onLaunch: (id: string) => void;
+  onLaunch: (rom: AvailableRom) => void;
 };
 
 function RomCard({ isSelected, rom, onDelete, onLaunch }: RomCardProps) {
   const savedStateText = rom.saveStateUpdatedAt ? ` - Saved state ${formatDate(rom.saveStateUpdatedAt)}` : "";
+  const details =
+    rom.source === "bundled"
+      ? `${formatBytes(rom.size)} - Bundled ROM`
+      : `${formatBytes(rom.size)} - Last played ${formatDate(rom.lastPlayedAt ?? Date.now())}${savedStateText}`;
 
   return (
     <article className="retrolab__rom-card">
       <div>
         <h3>{rom.name}</h3>
-        <p>
-          {formatBytes(rom.size)} - Last played {formatDate(rom.lastPlayedAt)}
-          {savedStateText}
-        </p>
+        <p>{details}</p>
       </div>
       <div className="retrolab__rom-actions">
-        <button type="button" onClick={() => onLaunch(rom.id)}>
+        <button type="button" onClick={() => onLaunch(rom)}>
           {isSelected ? "Restart" : "Launch"}
         </button>
-        <button type="button" onClick={() => onDelete(rom.id)}>
-          Delete
-        </button>
+        {rom.source === "local" && (
+          <button type="button" onClick={() => onDelete(rom.id)}>
+            Delete
+          </button>
+        )}
       </div>
     </article>
   );
