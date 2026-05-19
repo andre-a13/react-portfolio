@@ -134,7 +134,7 @@ export default function Team() {
         <section className="team-detail">
           <header className="team-detail__header">
             <h1>{team.name}</h1>
-            <button style={{display:"none"}} type="button" onClick={() => setIsAddingMember((value) => !value)}>
+            <button type="button" onClick={() => setIsAddingMember((value) => !value)}>
               Add member
             </button>
           </header>
