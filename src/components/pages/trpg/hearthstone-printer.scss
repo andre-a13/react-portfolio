@@ -1,0 +1,446 @@
+@use "../portfolio/page";
+
+.hearthstone-page {
+  align-items: stretch;
+  justify-content: stretch;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 15% 8%, rgba(245, 158, 11, 0.18), transparent 24rem),
+    radial-gradient(circle at 86% 20%, rgba(20, 184, 166, 0.14), transparent 22rem),
+    linear-gradient(135deg, #17130f 0%, #221a1c 46%, #101c1b 100%);
+  color: #f8f1df;
+  padding: 1rem;
+}
+
+.hearthstone-workshop {
+  display: grid;
+  gap: 1rem;
+  width: min(1220px, 100%);
+  margin: 0 auto;
+}
+
+.hearthstone-workshop__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0;
+}
+
+.hearthstone-workshop__header h1 {
+  margin: 0;
+  color: #fff7e6;
+  font-size: clamp(2rem, 5vw, 4.6rem);
+  line-height: 1;
+}
+
+.hearthstone-workshop__header p {
+  max-width: 54rem;
+  margin: 0.6rem 0 0 0;
+  color: #d7c7a5;
+}
+
+.hearthstone-workshop__eyebrow {
+  margin: 0 0 0.45rem 0 !important;
+  color: #f6c453 !important;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hearthstone-workshop__home,
+.hearthstone-resolution__reset {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.7rem;
+  border: 1px solid rgba(248, 241, 223, 0.18);
+  border-radius: 8px;
+  background: rgba(12, 10, 9, 0.58);
+  color: #f8f1df;
+  cursor: pointer;
+}
+
+.hearthstone-workshop__home {
+  flex: 0 0 auto;
+  width: 2.7rem;
+}
+
+.hearthstone-workshop__home:hover,
+.hearthstone-resolution__reset:hover {
+  background: rgba(248, 241, 223, 0.12);
+  color: #fff7e6;
+}
+
+.hearthstone-workshop__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(19rem, 0.95fr);
+  align-items: start;
+  gap: 1rem;
+}
+
+.hearthstone-panel,
+.hearthstone-resolution,
+.hearthstone-rules {
+  border: 1px solid rgba(248, 241, 223, 0.14);
+  border-radius: 8px;
+  background: rgba(30, 24, 19, 0.78);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.2);
+}
+
+.hearthstone-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.hearthstone-panel__title {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #f6c453;
+}
+
+.hearthstone-panel__title h2,
+.hearthstone-rules h2,
+.hearthstone-rules h3 {
+  margin: 0;
+}
+
+.hearthstone-panel label,
+.hearthstone-tools label,
+.hearthstone-phase label {
+  color: #f8f1df;
+}
+
+.hearthstone-panel input,
+.hearthstone-panel textarea,
+.hearthstone-panel select,
+.hearthstone-tools input,
+.hearthstone-tools select,
+.hearthstone-phase input,
+.hearthstone-phase select {
+  width: 100%;
+  border: 1px solid rgba(248, 241, 223, 0.16);
+  border-radius: 6px;
+  background: rgba(12, 10, 9, 0.72);
+  color: #fff7e6;
+}
+
+.hearthstone-panel textarea {
+  min-height: 7rem;
+}
+
+.hearthstone-workshop__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.hearthstone-card-preview {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  min-height: 38rem;
+  border: 1px solid rgba(246, 196, 83, 0.35);
+  border-radius: 8px;
+  background:
+    linear-gradient(180deg, rgba(246, 196, 83, 0.22), transparent 7rem),
+    #2a1d14;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+}
+
+.hearthstone-card-preview__gem {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1;
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border: 3px solid rgba(255, 247, 230, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 24px currentColor;
+}
+
+.hearthstone-card-preview__gem--white {
+  color: #f8fafc;
+  background: #f8fafc;
+}
+
+.hearthstone-card-preview__gem--blue {
+  color: #38bdf8;
+  background: #0ea5e9;
+}
+
+.hearthstone-card-preview__gem--violet {
+  color: #c084fc;
+  background: #8b5cf6;
+}
+
+.hearthstone-card-preview__gem--orange {
+  color: #fb923c;
+  background: #f97316;
+}
+
+.hearthstone-card-preview__image {
+  overflow: hidden;
+  min-height: 24rem;
+}
+
+.hearthstone-card-preview__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 24rem;
+  object-fit: cover;
+}
+
+.hearthstone-card-preview__body {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+  padding: 1rem 1.15rem 4.4rem 1.15rem;
+  border-top: 1px solid rgba(246, 196, 83, 0.22);
+  background: rgba(18, 13, 10, 0.92);
+}
+
+.hearthstone-card-preview__body h2 {
+  margin: 0;
+  color: #fff7e6;
+  font-size: 1.35rem;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.hearthstone-card-preview__body p {
+  margin: 0;
+  color: #e8d8b8;
+  line-height: 1.45;
+}
+
+.hearthstone-card-preview__stats {
+  position: absolute;
+  inset: auto 1rem 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.hearthstone-card-preview__stats span,
+.hearthstone-resolution__numbers strong {
+  display: grid;
+  place-items: center;
+  width: 3.1rem;
+  aspect-ratio: 1;
+  border: 2px solid rgba(255, 247, 230, 0.74);
+  border-radius: 50%;
+  background: #6b2a1a;
+  color: #fff7e6;
+  font-weight: 900;
+}
+
+.hearthstone-phases {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.hearthstone-phase {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid rgba(248, 241, 223, 0.12);
+  border-radius: 8px;
+  background: rgba(12, 10, 9, 0.45);
+}
+
+.hearthstone-phase__header {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.hearthstone-phase__header h3 {
+  margin: 0;
+  color: #fff7e6;
+  font-size: 1rem;
+}
+
+.hearthstone-phase__header p {
+  margin: 0.15rem 0 0 0;
+  color: #d7c7a5;
+  font-size: 0.84rem;
+}
+
+.hearthstone-phase__score {
+  margin: 0;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(20, 184, 166, 0.12);
+  color: #ccfbf1;
+  font-weight: 800;
+}
+
+.hearthstone-tools {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.hearthstone-check {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.65rem;
+  margin: 0;
+}
+
+.hearthstone-check input {
+  width: 1rem !important;
+  height: 1rem;
+  accent-color: #f6c453;
+}
+
+.hearthstone-check--nested {
+  padding-left: 0.75rem;
+}
+
+.hearthstone-resolution {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(16rem, 0.9fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.hearthstone-resolution h2,
+.hearthstone-resolution h3,
+.hearthstone-resolution p {
+  margin: 0;
+}
+
+.hearthstone-resolution__label {
+  color: #f6c453;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.hearthstone-resolution__numbers {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.hearthstone-resolution__numbers span {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  color: #d7c7a5;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.hearthstone-resolution__numbers strong {
+  background: #123330;
+  font-size: 1.2rem;
+}
+
+.hearthstone-resolution__verdict {
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+
+.hearthstone-resolution__verdict--success {
+  background: rgba(34, 197, 94, 0.14);
+  color: #dcfce7;
+}
+
+.hearthstone-resolution__verdict--warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fef3c7;
+}
+
+.hearthstone-resolution__verdict--danger {
+  background: rgba(239, 68, 68, 0.14);
+  color: #fee2e2;
+}
+
+.hearthstone-resolution__reset {
+  gap: 0.45rem;
+  padding: 0 0.85rem;
+  font-weight: 900;
+}
+
+.hearthstone-rules {
+  display: grid;
+  grid-template-columns: 0.55fr 1fr 1.15fr;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.hearthstone-rules h2 {
+  color: #f6c453;
+}
+
+.hearthstone-rules h3 {
+  color: #fff7e6;
+  font-size: 1rem;
+}
+
+.hearthstone-rules p,
+.hearthstone-rules ul {
+  margin: 0.45rem 0 0 0;
+  color: #d7c7a5;
+}
+
+.hearthstone-rules ul {
+  padding-left: 1.1rem;
+}
+
+.hearthstone-rules li + li {
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 920px) {
+  .hearthstone-workshop__layout,
+  .hearthstone-phases,
+  .hearthstone-tools,
+  .hearthstone-resolution,
+  .hearthstone-rules {
+    grid-template-columns: 1fr;
+  }
+
+  .hearthstone-card-preview {
+    min-height: 34rem;
+  }
+
+  .hearthstone-resolution__numbers {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .hearthstone-page {
+    padding: 0.75rem;
+  }
+
+  .hearthstone-workshop__header {
+    flex-direction: column;
+  }
+
+  .hearthstone-workshop__home {
+    width: 100%;
+  }
+
+  .hearthstone-workshop__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .hearthstone-card-preview__image,
+  .hearthstone-card-preview__image img {
+    min-height: 18rem;
+  }
+}

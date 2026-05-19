@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-import teamService from "../../services/team.service";
-import type { IAddTeam } from "../../interface/IAddTeam";
-import "./page.scss";
+import teamService from "../../../services/team.service";
+import type { IAddTeam } from "../../../interface/IAddTeam";
+import "./create-team.scss";
 
 export default function CreateTeam() {
   const [uuid, setUuid] = useState("");

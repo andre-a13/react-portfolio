@@ -1,16 +1,17 @@
 import { Route, Routes } from "react-router";
-import App from "./App";
-import CharacterPage from "./components/pages/Character";
-import CreateCharacter from "./components/pages/CreateCharacter";
-import CreateTeam from "./components/pages/CreateTeam";
-import RetroLab from "./components/pages/RetroLab";
-import Team from "./components/pages/Team";
-import Teams from "./components/pages/Teams";
+import Portfolio from "./components/pages/portfolio/Portfolio";
+import CharacterPage from "./components/pages/trpg/Character";
+import CreateCharacter from "./components/pages/trpg/CreateCharacter";
+import CreateTeam from "./components/pages/trpg/CreateTeam";
+import HearthstonePrinter from "./components/pages/trpg/HearthstonePrinter";
+import RetroLab from "./components/pages/retrolab/RetroLab";
+import Team from "./components/pages/trpg/Team";
+import Teams from "./components/pages/trpg/Teams";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<App />} />
+      <Route path="/" element={<Portfolio />} />
 
       {/* Legacy explicit character paths kept but now use the generic CharacterPage for fetching */}
       <Route path="/sylvae" element={<CharacterPage presetSlug="sylvae" portraitUrl="/assets/sylvae_jdr.jpg" />} />
@@ -25,6 +26,7 @@ export default function AppRoutes() {
       <Route path="/teams/create" element={<CreateTeam />} />
       <Route path="/teams/:uuid" element={<Team />} />
       <Route path="/retrolab" element={<RetroLab />} />
+      <Route path="/hearthstone-printer" element={<HearthstonePrinter />} />
       <Route path="/:slug" element={<CharacterPage />} />
     </Routes>
   );

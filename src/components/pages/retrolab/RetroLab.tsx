@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { Link } from "react-router";
-import retroLabStorage from "../../services/retro-lab-storage.service";
-import type { StoredRomSummary } from "../../services/retro-lab-storage.service";
-import { createEmulatorDocument } from "./retrolab/emulatorDocument";
-import type { RetroLabLaunch } from "./retrolab/emulatorDocument";
-import "./page.scss";
+import retroLabStorage from "../../../services/retro-lab-storage.service";
+import type { StoredRomSummary } from "../../../services/retro-lab-storage.service";
+import { createEmulatorDocument } from "./emulatorDocument";
+import type { RetroLabLaunch } from "./emulatorDocument";
+import "./retrolab.scss";
 
 type SelectedRom = RetroLabLaunch & {
   launchKey: number;

@@ -1,0 +1,310 @@
+@use "../portfolio/page";
+
+.retrolab-page {
+  align-items: stretch;
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.16), transparent 32rem),
+    linear-gradient(135deg, #0f172a 0%, #151522 50%, #241524 100%);
+  color: #f8fafc;
+  padding: 1rem;
+}
+
+.retrolab {
+  display: grid;
+  grid-template-rows: auto auto auto auto minmax(20rem, 1fr) auto;
+  gap: 1rem;
+  width: min(1180px, 100%);
+  min-height: calc(100vh - 2rem);
+  margin: 0 auto;
+}
+
+.retrolab__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.retrolab__header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+}
+
+.retrolab__header p {
+  max-width: 48rem;
+  margin: 0.55rem 0 0 0;
+  color: #cbd5e1;
+}
+
+.retrolab__eyebrow {
+  margin: 0 0 0.45rem 0 !important;
+  color: #fbbf24 !important;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.retrolab__home-link,
+.retrolab__clear,
+.retrolab__file-picker {
+  min-height: 2.75rem;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  border-radius: 8px;
+  color: #f8fafc;
+  font-weight: 800;
+}
+
+.retrolab__home-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 0 0.9rem;
+  background: rgba(15, 23, 42, 0.62);
+}
+
+.retrolab__controls {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(248, 250, 252, 0.12);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.72);
+}
+
+.retrolab__file-picker {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 1rem;
+  background: #f59e0b;
+  color: #111827;
+  cursor: pointer;
+}
+
+.retrolab__file-picker input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.retrolab__rom-name {
+  overflow: hidden;
+  margin: 0;
+  color: #e2e8f0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.retrolab__clear {
+  padding: 0 0.9rem;
+  background: rgba(248, 250, 252, 0.08);
+  cursor: pointer;
+}
+
+.retrolab__clear:hover,
+.retrolab__home-link:hover {
+  background: rgba(248, 250, 252, 0.14);
+  color: #f8fafc;
+}
+
+.retrolab__status {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  background: rgba(22, 163, 74, 0.12);
+  color: #bbf7d0;
+}
+
+.retrolab__status--error {
+  border-color: rgba(248, 113, 113, 0.38);
+  background: rgba(185, 28, 28, 0.16);
+  color: #fecaca;
+}
+
+.retrolab__library {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(248, 250, 252, 0.12);
+  border-radius: 8px;
+  background: rgba(15, 23, 42, 0.52);
+}
+
+.retrolab__library-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.retrolab__library-header h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.retrolab__library-header button,
+.retrolab__rom-actions button {
+  min-height: 2.3rem;
+  border: 1px solid rgba(248, 250, 252, 0.18);
+  border-radius: 8px;
+  background: rgba(248, 250, 252, 0.08);
+  color: #f8fafc;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.retrolab__library-header button {
+  padding: 0 0.8rem;
+}
+
+.retrolab__library-header button:hover,
+.retrolab__rom-actions button:hover {
+  background: rgba(248, 250, 252, 0.14);
+}
+
+.retrolab__library-empty {
+  margin: 0;
+  color: #cbd5e1;
+}
+
+.retrolab__rom-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 0.75rem;
+}
+
+.retrolab__rom-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(248, 250, 252, 0.12);
+  border-radius: 8px;
+  background: rgba(17, 19, 26, 0.78);
+}
+
+.retrolab__rom-card h3 {
+  overflow: hidden;
+  margin: 0 0 0.25rem 0;
+  color: #f8fafc;
+  font-size: 0.98rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.retrolab__rom-card p {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 0.85rem;
+}
+
+.retrolab__rom-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.retrolab__rom-actions button {
+  padding: 0 0.75rem;
+}
+
+.retrolab__stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 20rem;
+  border: 1px solid rgba(248, 250, 252, 0.14);
+  border-radius: 8px;
+  background: #11131a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+}
+
+.retrolab__emulator {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: min(68vh, 44rem);
+  border: 0;
+  background: #11131a;
+}
+
+.retrolab__empty {
+  display: grid;
+  place-content: center;
+  min-height: min(68vh, 44rem);
+  padding: 2rem;
+  text-align: center;
+}
+
+.retrolab__empty h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.retrolab__empty p,
+.retrolab__note {
+  margin: 0;
+  color: #cbd5e1;
+}
+
+.retrolab__note {
+  font-size: 0.9rem;
+}
+
+.page .retrolab__file-picker {
+  display: inline-flex;
+  margin-bottom: 0;
+  color: #111827;
+}
+
+.page .retrolab__file-picker input {
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+@media (max-width: 680px) {
+  .retrolab {
+    grid-template-rows: auto auto auto auto minmax(18rem, 1fr) auto;
+  }
+
+  .retrolab__header,
+  .retrolab__controls,
+  .retrolab__rom-card {
+    grid-template-columns: 1fr;
+  }
+
+  .retrolab__header {
+    flex-direction: column;
+  }
+
+  .retrolab__home-link,
+  .retrolab__clear,
+  .retrolab__file-picker,
+  .retrolab__rom-actions button {
+    width: 100%;
+  }
+
+  .retrolab__library-header,
+  .retrolab__rom-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .retrolab__emulator,
+  .retrolab__empty {
+    min-height: 62vh;
+  }
+}

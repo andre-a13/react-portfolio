@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./App.scss";
-import Content from "./components/content/content";
-import LangSwitch from "./components/lang-switch/LangSwitch";
-import Section from "./components/sections/Section";
+import "./portfolio.scss";
+import Content from "../../content/content";
+import LangSwitch from "../../lang-switch/LangSwitch";
+import Section from "../../sections/Section";
 
 const datas = [
   {
@@ -63,7 +63,7 @@ const datas = [
   },
 ];
 
-function App() {
+function Portfolio() {
   const [selectedData] = useState(() => {
     const randomIndex = Math.floor(Math.random() * datas.length);
     return datas[randomIndex];
@@ -79,4 +79,4 @@ function App() {
   );
 }
 
-export default App;
+export default Portfolio;
