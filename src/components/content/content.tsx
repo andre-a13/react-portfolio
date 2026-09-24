@@ -29,12 +29,52 @@ function translatedList(value: unknown) {
   return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
 }
 
+const EXPERIENCE_IDS = ["pwc", "webexpr"] as const;
+const PROJECT_IDS = ["intranet", "hrTools", "alteryx", "trpg", "portfolioAssistant"] as const;
+
+type ExperienceId = (typeof EXPERIENCE_IDS)[number];
+type ProjectId = (typeof PROJECT_IDS)[number];
+
+const PERSONAL_PROJECT_IDS: readonly ProjectId[] = ["trpg", "portfolioAssistant"];
+
+function handleRovingTabKey<T extends string>(
+  event: KeyboardEvent<HTMLButtonElement>,
+  items: readonly T[],
+  activeItem: T,
+  onSelect: (item: T) => void,
+  refs: Array<HTMLButtonElement | null>,
+) {
+  const activeIndex = items.indexOf(activeItem);
+  let nextIndex: number | undefined;
+
+  if (["ArrowRight", "ArrowDown"].includes(event.key)) {
+    nextIndex = (activeIndex + 1) % items.length;
+  }
+  if (["ArrowLeft", "ArrowUp"].includes(event.key)) {
+    nextIndex = (activeIndex - 1 + items.length) % items.length;
+  }
+  if (event.key === "Home") nextIndex = 0;
+  if (event.key === "End") nextIndex = items.length - 1;
+  if (nextIndex === undefined) return;
+
+  event.preventDefault();
+  onSelect(items[nextIndex]);
+  refs[nextIndex]?.focus();
+}
+
 function ExperienceChapter() {
   const { t } = useTranslation();
-  const [activeExperience, setActiveExperience] = useState<"pwc" | "webexpr">("pwc");
+  const [activeExperience, setActiveExperience] = useState<ExperienceId>("pwc");
+  const [activeProject, setActiveProject] = useState<ProjectId>("intranet");
+  const experienceTabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const projectTabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const points = translatedList(
     t(`portfolio.experience.${activeExperience}.points`, { returnObjects: true }),
   );
+  const technologies = translatedList(
+    t(`portfolio.experience.projects.${activeProject}.technologies`, { returnObjects: true }),
+  );
+  const projectKind = PERSONAL_PROJECT_IDS.includes(activeProject) ? "personal" : "professional";
 
   return (
     <div className="portfolio-chapter portfolio-chapter--experience">
@@ -44,20 +84,40 @@ function ExperienceChapter() {
       </div>
 
       <div className="experience-switch" role="tablist" aria-label={t("portfolio.experience.selectorLabel")}>
-        {(["pwc", "webexpr"] as const).map((experience) => (
+        {EXPERIENCE_IDS.map((experience, index) => (
           <button
             key={experience}
+            id={`experience-tab-${experience}`}
+            ref={(element) => {
+              experienceTabRefs.current[index] = element;
+            }}
             type="button"
             role="tab"
+            aria-controls="experience-panel"
             aria-selected={activeExperience === experience}
+            tabIndex={activeExperience === experience ? 0 : -1}
             onClick={() => setActiveExperience(experience)}
+            onKeyDown={(event) =>
+              handleRovingTabKey(
+                event,
+                EXPERIENCE_IDS,
+                activeExperience,
+                setActiveExperience,
+                experienceTabRefs.current,
+              )
+            }
           >
             {t(`portfolio.experience.${experience}.shortTitle`)}
           </button>
         ))}
       </div>
 
-      <article className="experience-summary">
+      <article
+        id="experience-panel"
+        className="experience-summary"
+        role="tabpanel"
+        aria-labelledby={`experience-tab-${activeExperience}`}
+      >
         <div className="experience-summary__meta">
           <h2>{t(`portfolio.experience.${activeExperience}.title`)}</h2>
           <p>{t(`portfolio.experience.${activeExperience}.period`)}</p>
@@ -68,6 +128,69 @@ function ExperienceChapter() {
           ))}
         </ul>
       </article>
+
+      <section className="project-highlights" aria-labelledby="project-highlights-title">
+        <div className="project-highlights__heading">
+          <h2 id="project-highlights-title">{t("portfolio.experience.projects.title")}</h2>
+          <p>{t("portfolio.experience.projects.intro")}</p>
+        </div>
+
+        <div
+          className="project-switch"
+          role="tablist"
+          aria-label={t("portfolio.experience.projects.selectorLabel")}
+        >
+          {PROJECT_IDS.map((project, index) => (
+            <button
+              key={project}
+              id={`project-tab-${project}`}
+              ref={(element) => {
+                projectTabRefs.current[index] = element;
+              }}
+              type="button"
+              role="tab"
+              aria-controls="project-panel"
+              aria-selected={activeProject === project}
+              tabIndex={activeProject === project ? 0 : -1}
+              onClick={() => setActiveProject(project)}
+              onKeyDown={(event) =>
+                handleRovingTabKey(
+                  event,
+                  PROJECT_IDS,
+                  activeProject,
+                  setActiveProject,
+                  projectTabRefs.current,
+                )
+              }
+            >
+              {t(`portfolio.experience.projects.${project}.shortTitle`)}
+            </button>
+          ))}
+        </div>
+
+        <article
+          id="project-panel"
+          className="project-summary"
+          role="tabpanel"
+          aria-labelledby={`project-tab-${activeProject}`}
+        >
+          <div className="project-summary__meta">
+            <div>
+              <span>{t(`portfolio.experience.projects.kinds.${projectKind}`)}</span>
+              <h3>{t(`portfolio.experience.projects.${activeProject}.title`)}</h3>
+            </div>
+            <p>{t(`portfolio.experience.projects.${activeProject}.context`)}</p>
+          </div>
+          <p className="project-summary__description">
+            {t(`portfolio.experience.projects.${activeProject}.description`)}
+          </p>
+          <ul className="project-summary__technologies" aria-label={t("portfolio.experience.projects.technologiesLabel")}>
+            {technologies.map((technology) => (
+              <li key={technology}>{technology}</li>
+            ))}
+          </ul>
+        </article>
+      </section>
     </div>
   );
 }

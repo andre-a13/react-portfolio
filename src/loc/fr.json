@@ -49,7 +49,8 @@
       "frontend": "Front-end",
       "microsoft": "Microsoft 365",
       "cloud": "Cloud & automatisation",
-      "delivery": "Produit & réalisation"
+      "delivery": "Produit & réalisation",
+      "collaboration": "Collaboration & interactions"
     },
     "items": {
       "react": "React",
@@ -67,8 +68,12 @@
       "scaleway": "Scaleway",
       "rest": "API REST",
       "productOwner": "Product Owner (PSPO I)",
-      "documentation": "Documentation",
-      "support": "Support utilisateur"
+      "codeQuality": "Qualité du code",
+      "deployment": "Déploiement & maintenance",
+      "requirements": "Écoute & clarification des besoins",
+      "stakeholders": "Collaboration avec les parties prenantes",
+      "technicalAdvice": "Conseil & communication technique",
+      "knowledgeTransfer": "Support & transfert de connaissances"
     }
   },
   "portfolio": {
@@ -98,12 +103,12 @@
     },
     "skills": {
       "title": "Compétences",
-      "intro": "Un socle front-end, Microsoft 365, cloud et produit pour passer d’un besoin métier à une solution utile.",
+      "intro": "Un socle front-end, Microsoft 365, cloud, produit et collaboration pour passer d’un besoin métier à une solution utile.",
       "selectorLabel": "Catégories de compétences"
     },
     "experience": {
       "title": "Expérience",
-      "intro": "Des missions menées dans des environnements Microsoft exigeants, au contact des métiers et des utilisateurs.",
+      "intro": "Des missions et des projets menés dans des environnements Microsoft exigeants, au contact des métiers et des utilisateurs.",
       "selectorLabel": "Sélectionner une expérience",
       "pwc": {
         "shortTitle": "PwC",
@@ -124,6 +129,51 @@
           "WebParts et interfaces métier avec SPFx, React, TypeScript, JavaScript, HTML, CSS et SCSS.",
           "Projets pour BNP Paribas : intranets, outils RH, API REST, déploiement, documentation et support."
         ]
+      },
+      "projects": {
+        "title": "Projets sélectionnés",
+        "intro": "Des réalisations professionnelles et personnelles présentées sans données confidentielles.",
+        "selectorLabel": "Sélectionner un projet",
+        "technologiesLabel": "Technologies du projet",
+        "kinds": {
+          "professional": "Projet professionnel",
+          "personal": "Projet personnel"
+        },
+        "intranet": {
+          "shortTitle": "Intranets M365",
+          "title": "Intranets Microsoft 365 / SharePoint",
+          "context": "WebexpR pour BNP Paribas",
+          "description": "Interfaces SharePoint personnalisées et composants SPFx / React conçus pour la communication interne, la collaboration et une ergonomie adaptée aux usages.",
+          "technologies": ["SharePoint", "SPFx", "React", "TypeScript"]
+        },
+        "hrTools": {
+          "shortTitle": "Outils RH",
+          "title": "Outils RH et applications métier",
+          "context": "WebexpR pour BNP Paribas",
+          "description": "Modèles de données fondés sur des listes, interfaces métier sur mesure, documentation et accompagnement des utilisateurs internes.",
+          "technologies": ["Microsoft 365", "API REST", "TypeScript"]
+        },
+        "alteryx": {
+          "shortTitle": "Processus Alteryx",
+          "title": "Amélioration d’un processus métier Alteryx",
+          "context": "PwC",
+          "description": "Évolution d’un processus métier existant reposant sur Alteryx, avec conseil technique, clarification des besoins et attention portée à la maintenabilité.",
+          "technologies": ["Alteryx", "Microsoft 365", "Analyse métier"]
+        },
+        "trpg": {
+          "shortTitle": "Application TRPG",
+          "title": "Application full-stack TRPG",
+          "context": "Projet personnel",
+          "description": "Application associant une interface React / TypeScript à un back-end Python / FastAPI, avec intégration d’API et travail sur le déploiement.",
+          "technologies": ["React", "TypeScript", "Python", "FastAPI"]
+        },
+        "portfolioAssistant": {
+          "shortTitle": "Portfolio & assistant",
+          "title": "Portfolio et assistant personnel",
+          "context": "Projet personnel déployé",
+          "description": "Portfolio bilingue en React / TypeScript connecté à un assistant professionnel FastAPI et Azure AI Foundry, avec un front Azure Static Web Apps et une API conteneurisée.",
+          "technologies": ["React", "TypeScript", "FastAPI", "Azure AI Foundry"]
+        }
       }
     },
     "contact": {

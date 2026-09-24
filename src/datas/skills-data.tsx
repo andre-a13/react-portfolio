@@ -6,11 +6,13 @@ import {
   Cloud,
   Code2,
   GitBranch,
-  LifeBuoy,
+  MessageCircleQuestion,
+  MessagesSquare,
   Network,
   PanelsTopLeft,
   ServerCog,
   Share2,
+  UsersRound,
   Workflow,
   Zap,
 } from "lucide-react";
@@ -49,8 +51,17 @@ export const skillsData = [
     skills: [
       { name: "skills.items.rest", icon: <Network /> },
       { name: "skills.items.productOwner", icon: <BadgeCheck /> },
-      { name: "skills.items.documentation", icon: <BookOpenCheck /> },
-      { name: "skills.items.support", icon: <LifeBuoy /> },
+      { name: "skills.items.codeQuality", icon: <Code2 /> },
+      { name: "skills.items.deployment", icon: <GitBranch /> },
+    ],
+  },
+  {
+    category: "skills.categories.collaboration",
+    skills: [
+      { name: "skills.items.requirements", icon: <MessageCircleQuestion /> },
+      { name: "skills.items.stakeholders", icon: <UsersRound /> },
+      { name: "skills.items.technicalAdvice", icon: <MessagesSquare /> },
+      { name: "skills.items.knowledgeTransfer", icon: <BookOpenCheck /> },
     ],
   },
 ];
