@@ -5,20 +5,20 @@ import { useMainSectionObserver } from "../../hooks/useMainSectionObserver";
 interface IProps {
   children: React.ReactNode;
   data: {
-    asset: string;
+    asset?: string;
     theme: Record<string, string>;
   };
 }
 
 // Génère le style avec background + variables CSS
-function renderStyle(asset: string, theme: Record<string, string>) {
+function renderStyle(asset: string | undefined, theme: Record<string, string>) {
   const cssVars = Object.entries(theme).reduce((vars, [key, value]) => {
     vars[key] = value;
     return vars;
   }, {} as Record<string, string>);
 
   return {
-    backgroundImage: `url(${asset})`,
+    ...(asset ? { backgroundImage: `url(${asset})` } : {}),
     ...cssVars,
   };
 }

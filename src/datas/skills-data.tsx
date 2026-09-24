@@ -1,64 +1,56 @@
 import {
-  Type,
-  Code,
-  Server,
-  Database,
+  BadgeCheck,
+  Blocks,
+  BookOpenCheck,
+  Braces,
   Cloud,
-  CloudCog,
+  Code2,
   GitBranch,
-  TerminalSquare,
-  LayoutDashboard,
-  MessageSquare,
-  Users,
-  Computer,
+  LifeBuoy,
+  Network,
+  PanelsTopLeft,
+  ServerCog,
+  Share2,
+  Workflow,
+  Zap,
 } from "lucide-react";
-import ReactLogo from "../icons/ReactLogo";
-import VueLogo from "../icons/VueLogo";
-import AngularLogo from "../icons/AngularLogo";
 
 export const skillsData = [
   {
     category: "skills.categories.frontend",
     skills: [
-      { name: "skills.items.react", icon: <ReactLogo width={20} height={20} /> },
-      { name: "skills.items.vue", icon: <VueLogo width={18} height={18} /> },
-      { name: "skills.items.angular", icon: <AngularLogo width={18} height={18} /> },
-      { name: "skills.items.typescript", icon: <Type /> },
+      { name: "skills.items.react", icon: <PanelsTopLeft /> },
+      { name: "skills.items.typescript", icon: <Braces /> },
+      { name: "skills.items.javascript", icon: <Code2 /> },
+      { name: "skills.items.web", icon: <Blocks /> },
     ],
   },
   {
-    category: "skills.categories.backend",
+    category: "skills.categories.microsoft",
     skills: [
-      { name: "skills.items.node", icon: <Server /> },
-      { name: "skills.items.php", icon: <Code /> },
-      { name: "skills.items.postgresql", icon: <Database /> },
-      { name: "skills.items.mongodb", icon: <Database /> },
+      { name: "skills.items.sharepoint", icon: <Share2 /> },
+      { name: "skills.items.spfx", icon: <PanelsTopLeft /> },
+      { name: "skills.items.pnpjs", icon: <Code2 /> },
+      { name: "skills.items.graph", icon: <Network /> },
     ],
   },
   {
     category: "skills.categories.cloud",
     skills: [
-      { name: "skills.items.azure", icon: <Cloud className="text-blue-600 scale-110" /> },
-      { name: "skills.items.azureFunctions", icon: <CloudCog /> },
-      { name: "skills.items.githubActions", icon: <Computer /> },
-      { name: "skills.items.cicd", icon: <GitBranch /> },
+      { name: "skills.items.azure", icon: <Cloud /> },
+      { name: "skills.items.azureDevOps", icon: <GitBranch /> },
+      { name: "skills.items.powerAutomate", icon: <Workflow /> },
+      { name: "skills.items.powerApps", icon: <Zap /> },
+      { name: "skills.items.scaleway", icon: <ServerCog /> },
     ],
   },
   {
-    category: "skills.categories.tools",
+    category: "skills.categories.delivery",
     skills: [
-      { name: "skills.items.git", icon: <GitBranch /> },
-      { name: "skills.items.docker", icon: <TerminalSquare /> },
-      { name: "skills.items.agile", icon: <Users /> },
-      { name: "skills.items.tdd", icon: <Code /> },
-    ],
-  },
-  {
-    category: "skills.categories.soft",
-    skills: [
-      { name: "skills.items.ux", icon: <LayoutDashboard /> },
-      { name: "skills.items.communication", icon: <MessageSquare /> },
-      { name: "skills.items.mentoring", icon: <Users /> },
+      { name: "skills.items.rest", icon: <Network /> },
+      { name: "skills.items.productOwner", icon: <BadgeCheck /> },
+      { name: "skills.items.documentation", icon: <BookOpenCheck /> },
+      { name: "skills.items.support", icon: <LifeBuoy /> },
     ],
   },
 ];

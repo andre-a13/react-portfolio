@@ -1,33 +1,14 @@
 import { Route, Routes } from "react-router";
 import Portfolio from "./components/pages/portfolio/Portfolio";
-import CharacterPage from "./components/pages/trpg/Character";
-import CreateCharacter from "./components/pages/trpg/CreateCharacter";
-import CreateTeam from "./components/pages/trpg/CreateTeam";
-import HearthstonePrinter from "./components/pages/trpg/HearthstonePrinter";
-import RetroLab from "./components/pages/retrolab/RetroLab";
-import Team from "./components/pages/trpg/Team";
-import Teams from "./components/pages/trpg/Teams";
+import Resume from "./components/pages/resume/Resume";
 
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Portfolio />} />
-
-      {/* Legacy explicit character paths kept but now use the generic CharacterPage for fetching */}
-      <Route path="/sylvae" element={<CharacterPage presetSlug="sylvae" portraitUrl="/assets/sylvae_jdr.jpg" />} />
-      <Route path="/aleatarius" element={<CharacterPage presetSlug="aleatarius" portraitUrl="/assets/aleatarius_jdr.jpg" />} />
-      <Route path="/jace" element={<CharacterPage presetSlug="jace" portraitUrl="/assets/jace_jdr.jpg" />} />
-      <Route path="/maribeth" element={<CharacterPage presetSlug="maribeth" portraitUrl="/assets/maribeth_jdr.jpg" />} />
-
-      {/* Dynamic routes */}
-      <Route path="/characters/:slug" element={<CharacterPage />} />
-      <Route path="/characters/new" element={<CreateCharacter />} />
-      <Route path="/teams" element={<Teams />} />
-      <Route path="/teams/create" element={<CreateTeam />} />
-      <Route path="/teams/:uuid" element={<Team />} />
-      <Route path="/retrolab" element={<RetroLab />} />
-      <Route path="/hearthstone-printer" element={<HearthstonePrinter />} />
-      <Route path="/:slug" element={<CharacterPage />} />
+      <Route path="/cv" element={<Resume />} />
+      <Route path="/cv/microsoft" element={<Resume variant="microsoft" />} />
+      <Route path="/cv/full-stack" element={<Resume variant="full-stack" />} />
+      <Route path="*" element={<Portfolio />} />
     </Routes>
   );
 }

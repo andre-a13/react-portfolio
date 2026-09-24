@@ -1,37 +1,37 @@
 .lang-container {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
+  padding: 0.2rem;
+  border: 1px solid #d4d4d8;
+  border-radius: 7px;
+  background: #fff;
+}
+
+.lang-container button {
+  min-width: 2rem;
+  height: 1.85rem;
+  padding: 0 0.35rem;
+  border: 0;
+  border-radius: 5px;
   background: transparent;
-  border-radius: 10%;
+  color: #71717a;
+  font-family: inherit;
+  font-size: 0.65rem;
+  font-weight: 750;
   cursor: pointer;
-  max-height: 24px;
-  overflow: hidden;
-  transition: max-height 300ms, background-color 300ms;
+}
 
-  &:hover {
-    background-color: var(--color-background);
-    max-height: 200px;
+.lang-container button:hover {
+  color: #6d28a2;
+}
 
-    .lang-active {
-      color: var(--color-text);
-    }
+.lang-container button[aria-pressed="true"] {
+  background: #f3edf8;
+  color: #6d28a2;
+}
 
-    .lang-item {
-      color: var(--color-text);
-      &:hover {
-        color: var(--color-primary);
-      }
-    }
-  }
-
-  .lang-active {
-    color: var(--color-text-background);
-    font-weight: bold;
-  }
-
-  > * {
-    height: 24px;
-    margin: 0 4px;
+@media (max-width: 760px) {
+  .lang-container button {
+    min-width: 1.8rem;
   }
 }

@@ -1,16 +1,16 @@
 {
   "hello": "Hello",
-  "fullstack": "Full Stack Developer",
+  "fullstack": "Senior Front-end and Cloud Developer",
   "proIntro": {
-    "1": "Full-stack developer with a front-end specialization (React, Vue, Angular), I design modern, accessible and high-performance interfaces, while ensuring clean back-end integration (Node.js, PHP).",
-    "2": "Certified Microsoft Azure (AZ-900 & AZ-204), I continuously engage in tech monitoring, particularly around cloud, modern architecture, and DevOps tools.",
-    "3": "My goal is to contribute to meaningful and impactful projects, with a strong focus on user experience. I value teamwork, knowledge sharing (mentor/mentee), and environments where quality matters.",
-    "4": "I have worked on SharePoint intranet designs using SPFx (headless CMS mode) and custom HR tools to help manage talent pools efficiently."
+    "1": "Senior front-end and cloud developer, I build modern, maintainable and user-friendly applications with React, TypeScript and JavaScript.",
+    "2": "My experience covers SharePoint, Microsoft 365, SPFx, PnPjs, Microsoft Graph, REST APIs and cloud services.",
+    "3": "As a technical lead on complex web projects, I connect business needs, technical choices, code quality and user experience.",
+    "4": "Certified AZ-900, AZ-204, AI-102 and PSPO I, I target remote B2B SharePoint / Microsoft 365 and Product Owner engagements."
   },
 
   "content": {
     "title": "Arnaud",
-    "subtitle": "Full Stack Developer",
+    "subtitle": "Senior Front-end and Cloud Developer",
     "experience": {
       "title": "Experience",
       "subtitle": "Professional Journey"
@@ -23,23 +23,23 @@
 
   "experiences": {
     "webexpr": {
-      "title": "Web Developer - WebexpR (Genysia Group)",
+      "title": "Lead Developer / Full-Stack Developer - WebexpR for BNP Paribas",
       "period": "2019 - July 2024",
       "contract": "Full-time",
-      "location": "Remote & Paris/Compiègne",
-      "description1": "Specialized in the Microsoft ecosystem (SPFx, React, Graph API), I developed custom applications for SharePoint Online and On-Premise, notably for BNP Paribas.",
+      "location": "France · remote B2B engagements across Europe",
+      "description1": "Specialized in the Microsoft ecosystem (SPFx, React, Microsoft Graph), I developed custom SharePoint and Microsoft 365 applications for BNP Paribas projects.",
       "description2": "I designed branded intranets, business portals, training platforms, and HR tools — all with a strong focus on UX and business alignment.",
-      "description3": "Involved in data modeling, front-end integration (SPFx/React) and back-end development (Node.js), I also strengthened my Agile (SCRUM) and client communication skills.",
+      "description3": "I integrated solutions with PnPjs, Microsoft Graph and REST APIs, then supported deployment, maintenance, user support and handover to internal teams.",
       "description4": "I particularly enjoyed high-pressure projects like event front pages, where working with skilled and dedicated teams helped me grow rapidly."
     },
     "pwc": {
-      "title": "Application Developer Consultant - Hub Collab / PwC",
+      "title": "Application Development Consultant - PwC",
       "period": "August 2024 - Present",
       "contract": "Full-time",
       "location": "Remote + occasional travel",
-      "description1": "Initially hired by Hub Collab (Microsoft specialist firm), I joined PwC following the acquisition in early 2025. I design and develop custom SPFx applications for large international clients.",
-      "description2": "I contribute to the implementation strategy of solutions within client Microsoft 365 tenants, and build WebParts connected to SharePoint and external databases, including On-Premise systems.",
-      "description3": "I strengthened my expertise in SPFx, expanded my use of Azure, and evolved in structured development methods focused on quality and business impact.",
+      "description1": "At PwC, I provide technical consulting and develop Microsoft 365 solutions, including an intranet built with SPFx and React.",
+      "description2": "I use Power Automate and Azure DevOps to support implementation, delivery and solution documentation.",
+      "description3": "I also helped improve an Alteryx-based business process, from requirements analysis through delivery and support.",
       "description4": "This position allows me to combine technical expertise and strategic advisory, in high-stakes environments where precision and communication are key."
     }
   },
@@ -47,32 +47,128 @@
   "skills": {
     "categories": {
       "frontend": "Front-end",
-      "backend": "Back-end",
-      "cloud": "Cloud & DevOps",
-      "tools": "Tools & Methodology",
-      "soft": "Soft Skills"
+      "microsoft": "Microsoft 365",
+      "cloud": "Cloud & Automation",
+      "delivery": "Product & Delivery"
     },
 
     "items": {
       "react": "React",
-      "vue": "Vue.js",
-      "angular": "Angular",
       "typescript": "TypeScript",
-      "node": "Node.js",
-      "php": "PHP / Laravel",
-      "postgresql": "PostgreSQL",
-      "mongodb": "MongoDB",
-      "azure": "Azure (AZ-204 / AZ-900)",
-      "azureFunctions": "Azure Functions",
-      "githubActions": "GitHub Actions",
-      "cicd": "CI/CD",
-      "git": "Git",
-      "docker": "Docker",
-      "agile": "Agile / Scrum",
-      "tdd": "TDD",
-      "ux": "UX Design",
-      "communication": "Communication",
-      "mentoring": "Mentoring"
+      "javascript": "JavaScript ES8+",
+      "web": "HTML / CSS / SCSS",
+      "sharepoint": "SharePoint",
+      "spfx": "SPFx",
+      "pnpjs": "PnPjs",
+      "graph": "Microsoft Graph",
+      "azure": "Azure",
+      "azureDevOps": "Azure DevOps",
+      "powerAutomate": "Power Automate",
+      "powerApps": "Power Apps",
+      "scaleway": "Scaleway",
+      "rest": "REST APIs",
+      "productOwner": "Product Owner (PSPO I)",
+      "documentation": "Documentation",
+      "support": "User support"
+    }
+  },
+  "portfolio": {
+    "skipLink": "Skip to content",
+    "languageLabel": "Choose language",
+    "navigationLabel": "Portfolio chapters",
+    "chapters": {
+      "profile": "Profile",
+      "skills": "Skills",
+      "experience": "Experience",
+      "contact": "Contact"
+    },
+    "header": {
+      "homeLabel": "Portfolio home",
+      "ask": "Personal Assistant",
+      "resume": "Résumé"
+    },
+    "profile": {
+      "name": "Arnaud André",
+      "role": "Senior Front-end and Cloud Developer",
+      "intro": "A senior front-end and cloud developer turning business needs into reliable, maintainable and user-centred web and Microsoft 365 solutions.",
+      "facts": [
+        "React, TypeScript, JavaScript and REST APIs for modern enterprise interfaces.",
+        "Technical lead experience on SharePoint, SPFx and Microsoft 365 projects for BNP Paribas.",
+        "Azure, Power Platform and product thinking, supported by AZ-900, AZ-204, AI-102 and PSPO I."
+      ]
+    },
+    "skills": {
+      "title": "Skills",
+      "intro": "A front-end, Microsoft 365, cloud and product foundation to turn business needs into useful solutions.",
+      "selectorLabel": "Skill categories"
+    },
+    "experience": {
+      "title": "Experience",
+      "intro": "Assignments delivered in demanding Microsoft environments, working closely with business teams and users.",
+      "selectorLabel": "Select an experience",
+      "pwc": {
+        "shortTitle": "PwC",
+        "title": "Application Development Consultant",
+        "period": "Since August 2024",
+        "points": [
+          "Advising internal teams and external clients on technical approaches for Microsoft 365 projects.",
+          "SharePoint and intranet solutions using SPFx, React, Power Automate and Azure DevOps.",
+          "Custom components and improvement of an existing Alteryx-based business process."
+        ]
+      },
+      "webexpr": {
+        "shortTitle": "WebexpR",
+        "title": "Lead Developer / Full-Stack Developer",
+        "period": "2019 — July 2024",
+        "points": [
+          "Led front-end and full-stack development for Microsoft 365 and SharePoint applications.",
+          "WebParts and business interfaces using SPFx, React, TypeScript, JavaScript, HTML, CSS and SCSS.",
+          "Projects for BNP Paribas covering intranets, HR tools, REST APIs, deployment, documentation and support."
+        ]
+      }
+    },
+    "contact": {
+      "title": "Let’s talk",
+      "intro": "An opportunity, an assignment or a question about Arnaud’s background? Choose the easiest way to connect.",
+      "emailLabel": "Email",
+      "linkedinLabel": "View the professional profile",
+      "mobility": "Based in France, Arnaud targets remote B2B engagements across France and Europe."
+    },
+    "actions": {
+      "ask": "Open the Personal Assistant",
+      "resume": "View résumé"
+    }
+  },
+  "chatbot": {
+    "panelLabel": "Arnaud’s Personal Assistant",
+    "title": "Personal Assistant",
+    "subtitle": "Arnaud’s professional profile",
+    "close": "Close the Personal Assistant",
+    "reset": "Reset conversation",
+    "welcomeTitle": "Prepare your interview with Arnaud.",
+    "welcomeText": "Ask about his background, skills or fit for a role. Answers are grounded in documented professional information.",
+    "suggestionLabel": "Suggested questions",
+    "suggestions": {
+      "fullstack": "Why choose Arnaud for a SharePoint / SPFx / Microsoft 365 engagement?",
+      "product": "What evidence supports his Product Owner skills?",
+      "project": "What are his main front-end and cloud strengths?"
+    },
+    "inputLabel": "Your question",
+    "placeholder": "Ask about his experience or skills…",
+    "send": "Send question",
+    "sending": "Preparing an answer…",
+    "userLabel": "You",
+    "assistantLabel": "Personal Assistant",
+    "counter": "{{count}} / {{max}} questions",
+    "limitTitle": "Conversation limit reached",
+    "limitText": "Reset to start a new exchange.",
+    "restart": "New conversation",
+    "errors": {
+      "configuration": "The assistant is not configured for this environment.",
+      "invalid_request": "This question could not be sent. Rephrase it and try again.",
+      "rate_limited": "Too many requests in a short period. Please wait before trying again.",
+      "unavailable": "The Personal Assistant is temporarily unavailable. Please try again shortly.",
+      "empty_response": "The assistant returned no usable answer. Please try again."
     }
   }
 }

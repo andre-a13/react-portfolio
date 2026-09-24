@@ -1,13 +1,37 @@
+import { useState } from "react";
 import type { JSX } from "react";
 import { skillsData } from "../../datas/skills-data";
 import { useTranslation } from "react-i18next";
 
 function SkillsCard(): JSX.Element {
+  const { t } = useTranslation();
+  const [activeCategory, setActiveCategory] = useState(0);
+  const selectedCategory = skillsData[activeCategory];
+
   return (
-    <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
-      {skillsData.map(({ category, skills }) => (
-        <SkillCategory key={category} title={category} skills={skills} />
-      ))}
+    <div className="skills-overview">
+      <div className="skills-overview__desktop">
+        {skillsData.map(({ category, skills }) => (
+          <SkillCategory key={category} title={category} skills={skills} />
+        ))}
+      </div>
+
+      <div className="skills-overview__mobile">
+        <div className="skills-category-selector" role="tablist" aria-label={t("portfolio.skills.selectorLabel")}>
+          {skillsData.map(({ category }, index) => (
+            <button
+              key={category}
+              type="button"
+              role="tab"
+              aria-selected={index === activeCategory}
+              onClick={() => setActiveCategory(index)}
+            >
+              {t(category)}
+            </button>
+          ))}
+        </div>
+        <SkillCategory title={selectedCategory.category} skills={selectedCategory.skills} />
+      </div>
     </div>
   );
 }
@@ -15,17 +39,19 @@ function SkillsCard(): JSX.Element {
 function SkillCategory({ title, skills }: { title: string; skills: { name: string; icon: JSX.Element }[] }) {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col gap-3">
-      <h3 className="text-lg font-semibold">{t(title)}</h3>
-      <ul className="flex flex-col gap-2 mb-[20px] md:mb-0">
+    <section className="skill-category">
+      <h2>{t(title)}</h2>
+      <ul>
         {skills.map(({ name, icon }) => (
-          <li key={name} className="flex items-center gap-2 text-sm">
-            <span className="w-5 h-5">{icon}</span>
+          <li key={name}>
+            <span className="skill-category__icon" aria-hidden="true">
+              {icon}
+            </span>
             <span>{t(name)}</span>
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
 

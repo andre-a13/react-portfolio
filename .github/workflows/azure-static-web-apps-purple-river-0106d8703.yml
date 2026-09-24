@@ -33,7 +33,7 @@ jobs:
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
         env:
-          VITE_TRPG_API_URL: ${{ secrets.VITE_TRPG_API_URL }}
+          VITE_CHATBOT_API_URL: https://ai.arnaud-a.dev/chat
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
