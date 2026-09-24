@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">AA — Arnaud André</title>
+  <rect width="64" height="64" rx="12" fill="#18181b" />
+  <path
+    d="M10.5 46 22 17.5 33.5 46M15.5 34h13"
+    fill="none"
+    stroke="#fafafa"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="5"
+  />
+  <path
+    d="M30.5 46 42 17.5 53.5 46M35.5 34h13"
+    fill="none"
+    stroke="#c084fc"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="5"
+  />
+</svg>
