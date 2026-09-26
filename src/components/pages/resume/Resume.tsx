@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ArrowUpRight, Award, BadgeCheck, Blocks, BriefcaseBusiness, Check, Cloud, CodeXml, Database, Github, Globe2, Languages, Linkedin, Mail, MapPin, Printer, Server, Share2, Workflow } from 'lucide-react';
 import { certifications, contact, resumeLabels, resumePath, resumes } from './resume-data';
 import type { ResumeLanguage, ResumeVariant } from './resume-data';
+import { trackAnalyticsEvent } from '../../../services/analytics.service';
 import './resume.css';
 
 const icons = { platform: Blocks, code: CodeXml, cloud: Cloud, workflow: Workflow, server: Server, database: Database };
@@ -47,6 +48,13 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
   }, [language, resume.title, resume.intro]);
 
   useEffect(() => {
+    const item = window.location.pathname === '/cv'
+      ? 'general_cv'
+      : variant === 'microsoft' ? 'microsoft_cv' : 'full_stack_cv';
+    trackAnalyticsEvent('cv_opened', { item });
+  }, [variant]);
+
+  useEffect(() => {
     if (shareState === 'manual') manualLink.current?.select();
     if (shareState !== 'copied') return;
     const timer = window.setTimeout(() => setShareResult({ url: '', status: 'idle' }), 3000);
@@ -54,6 +62,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
   }, [shareState]);
 
   function changeLanguage(value: ResumeLanguage) {
+    if (value !== language) trackAnalyticsEvent('language_changed', { language: value });
     setSearchParams({ lang: value });
     void i18n.changeLanguage(value);
     resetShare();
@@ -97,7 +106,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
                 {shareState === 'copied' ? <Check size={18} aria-hidden="true" /> : <Share2 size={18} aria-hidden="true" />}
                 {shareState === 'copied' ? labels.copied : labels.copy}
               </button>
-              <a className="resume-button" href={`mailto:${contact.email}`}><Mail size={18} aria-hidden="true" />{labels.contact}</a>
+              <a className="resume-button" href={`mailto:${contact.email}`} onClick={() => trackAnalyticsEvent('contact_clicked', { item: 'email' })}><Mail size={18} aria-hidden="true" />{labels.contact}</a>
               <button className="resume-print" type="button" onClick={() => window.print()}><Printer size={17} aria-hidden="true" />{labels.print}</button>
             </div>
             <div className="resume-share-status" role="status" aria-live="polite">{shareState === 'copied' ? labels.copied : shareState === 'manual' ? labels.copyError : ''}</div>
@@ -179,8 +188,8 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
         <section className="resume-contact" aria-labelledby="resume-contact-title">
           <div><p className="resume-eyebrow">{labels.remote} · {labels.b2b}</p><h2 id="resume-contact-title">{labels.contactTitle}</h2><p>{labels.contactText}</p></div>
           <div className="resume-contact-links">
-            <a className="resume-email" href={`mailto:${contact.email}`}><Mail size={20} aria-hidden="true" />{contact.email}<ArrowUpRight size={19} aria-hidden="true" /></a>
-            <div className="resume-socials"><a href={contact.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin size={19} aria-hidden="true" />LinkedIn<ArrowUpRight size={14} aria-hidden="true" /></a><a href={contact.github} target="_blank" rel="noopener noreferrer"><Github size={19} aria-hidden="true" />GitHub<ArrowUpRight size={14} aria-hidden="true" /></a></div>
+            <a className="resume-email" href={`mailto:${contact.email}`} onClick={() => trackAnalyticsEvent('contact_clicked', { item: 'email' })}><Mail size={20} aria-hidden="true" />{contact.email}<ArrowUpRight size={19} aria-hidden="true" /></a>
+            <div className="resume-socials"><a href={contact.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => trackAnalyticsEvent('contact_clicked', { item: 'linkedin' })}><Linkedin size={19} aria-hidden="true" />LinkedIn<ArrowUpRight size={14} aria-hidden="true" /></a><a href={contact.github} target="_blank" rel="noopener noreferrer" onClick={() => trackAnalyticsEvent('contact_clicked', { item: 'github' })}><Github size={19} aria-hidden="true" />GitHub<ArrowUpRight size={14} aria-hidden="true" /></a></div>
           </div>
         </section>
 

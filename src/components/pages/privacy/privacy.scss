@@ -1,0 +1,131 @@
+.privacy-page {
+  min-height: 100dvh;
+  background: #fafafa;
+  color: #18181b;
+  font-family: "Manrope Variable", Manrope, sans-serif;
+}
+
+.privacy-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 4.5rem;
+  padding: 0 max(1rem, calc((100vw - 64rem) / 2));
+  border-bottom: 1px solid #d4d4d8;
+}
+
+.privacy-header > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #52525b;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.privacy-main {
+  width: min(100% - 2rem, 64rem);
+  margin: 0 auto;
+  padding: clamp(2.5rem, 7vw, 5rem) 0;
+}
+
+.privacy-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: #6d28a2;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.privacy-main h1 {
+  max-width: 48rem;
+  margin: 0.8rem 0 0;
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.privacy-lead {
+  max-width: 46rem;
+  margin: 1.2rem 0 0;
+  color: #52525b;
+  line-height: 1.7;
+}
+
+.privacy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 2.5rem;
+  overflow: hidden;
+  border: 1px solid #d4d4d8;
+  border-radius: 8px;
+  background: #d4d4d8;
+}
+
+.privacy-grid section {
+  padding: 1.4rem;
+  background: #fff;
+}
+
+.privacy-grid h2,
+.privacy-choice h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.privacy-grid p,
+.privacy-choice p,
+.privacy-contact {
+  margin: 0.55rem 0 0;
+  color: #52525b;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.privacy-choice {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 1.25rem;
+  border: 1px solid #dfd0e9;
+  border-radius: 8px;
+  background: #f3edf8;
+}
+
+.privacy-choice > svg { color: #6d28a2; }
+
+.privacy-choice button {
+  min-height: 2.7rem;
+  padding: 0 1rem;
+  border: 1px solid #6d28a2;
+  border-radius: 7px;
+  background: #6d28a2;
+  color: #fff;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.privacy-choice button:focus-visible,
+.privacy-header a:focus-visible,
+.privacy-contact a:focus-visible {
+  outline: 3px solid rgb(109 40 162 / 24%);
+  outline-offset: 3px;
+}
+
+.privacy-contact a { color: #6d28a2; font-weight: 700; }
+
+@media (max-width: 640px) {
+  .privacy-header { min-height: 3.75rem; padding: 0 1rem; }
+  .privacy-grid { grid-template-columns: 1fr; }
+  .privacy-choice { grid-template-columns: auto 1fr; }
+  .privacy-choice button { grid-column: 1 / -1; }
+}

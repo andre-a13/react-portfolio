@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useEffect } from "react";
+import { trackAnalyticsEvent } from "../../services/analytics.service";
 import "./LangSwitch.scss";
 
 const languages = [
@@ -10,6 +11,12 @@ const languages = [
 export default function LangSwitch() {
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.resolvedLanguage?.startsWith("en") ? "en" : "fr";
+
+  function changeLanguage(language: "fr" | "en") {
+    if (language === currentLanguage) return;
+    trackAnalyticsEvent("language_changed", { language });
+    void i18n.changeLanguage(language);
+  }
 
   useEffect(() => {
     document.documentElement.lang = currentLanguage;
@@ -22,7 +29,7 @@ export default function LangSwitch() {
           key={language.value}
           type="button"
           aria-pressed={currentLanguage === language.value}
-          onClick={() => void i18n.changeLanguage(language.value)}
+          onClick={() => changeLanguage(language.value)}
         >
           {language.label}
         </button>

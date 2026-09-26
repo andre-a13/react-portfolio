@@ -6,6 +6,7 @@ import { Link } from "react-router";
 import PortfolioChatbot from "../../chatbot/PortfolioChatbot";
 import Content from "../../content/content";
 import LangSwitch from "../../lang-switch/LangSwitch";
+import { trackAnalyticsEvent } from "../../../services/analytics.service";
 import "./portfolio.scss";
 
 function Portfolio() {
@@ -17,10 +18,12 @@ function Portfolio() {
   const openChat = useCallback((trigger: HTMLButtonElement) => {
     lastChatTrigger.current = trigger;
     setIsChatOpen(true);
+    trackAnalyticsEvent("assistant_opened");
   }, []);
 
   const closeChat = useCallback(() => {
     setIsChatOpen(false);
+    trackAnalyticsEvent("assistant_closed");
     window.requestAnimationFrame(() => lastChatTrigger.current?.focus());
   }, []);
 
@@ -36,7 +39,10 @@ function Portfolio() {
 
         <div className="portfolio-header__actions">
           <LangSwitch />
-          <Link className="portfolio-header__resume" to={`/cv/full-stack?lang=${language}`}>
+          <Link
+            className="portfolio-header__resume"
+            to={`/cv/full-stack?lang=${language}`}
+          >
             <FileUser size={17} aria-hidden="true" />
             <span>{t("portfolio.header.resume")}</span>
           </Link>

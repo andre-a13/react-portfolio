@@ -1,0 +1,25 @@
+.analytics-preference-notice {
+  position: fixed;
+  z-index: 200;
+  right: 1rem;
+  bottom: 1rem;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: 0.75rem 1rem;
+  border: 1px solid #d4d4d8;
+  border-radius: 7px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(24 24 27 / 10%);
+  color: #18181b;
+  font: 650 0.78rem/1.45 "Manrope Variable", Manrope, sans-serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .analytics-preference-notice {
+    animation: analytics-notice-in 180ms ease-out;
+  }
+}
+
+@keyframes analytics-notice-in {
+  from { opacity: 0; transform: translateY(0.5rem); }
+  to { opacity: 1; transform: translateY(0); }
+}

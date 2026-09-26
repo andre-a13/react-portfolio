@@ -182,6 +182,8 @@
       "intro": "An opportunity, an assignment or a question about Arnaud’s background? Choose the easiest way to connect.",
       "emailLabel": "Email",
       "linkedinLabel": "View the professional profile",
+      "githubLabel": "Explore public projects",
+      "privacyLabel": "Privacy and audience measurement",
       "mobility": "Based in France, Arnaud targets remote B2B engagements across France and Europe."
     },
     "actions": {
@@ -219,6 +221,42 @@
       "rate_limited": "Too many requests in a short period. Please wait before trying again.",
       "unavailable": "The Personal Assistant is temporarily unavailable. Please try again shortly.",
       "empty_response": "The assistant returned no usable answer. Please try again."
+    }
+  },
+  "privacy": {
+    "back": "Back to portfolio",
+    "eyebrow": "Privacy",
+    "title": "Minimal, privacy-conscious audience measurement.",
+    "lead": "This site uses a self-hosted statistics tool to understand useful journeys and improve the portfolio. It does not try to recognise you on a future visit.",
+    "purpose": {
+      "title": "Purpose",
+      "text": "Measure use of the chapters, résumés, contact links and assistant solely for the benefit of this portfolio’s publisher. Data is not sold, shared or combined with other services."
+    },
+    "data": {
+      "title": "Data processed",
+      "text": "A random identifier limited to the current page load, predefined events, language, a device category and a broad source. No visitor cookie, fingerprint, stored IP address, full User-Agent or conversation content."
+    },
+    "retention": {
+      "title": "Hosting and retention",
+      "text": "Data is hosted on the publisher’s VPS. Detailed events are deleted after 7 days; aggregate statistics are retained for no more than 13 months."
+    },
+    "rights": {
+      "title": "Your choices and rights",
+      "text": "Collection is automatically disabled when Global Privacy Control or Do Not Track is enabled. You can also opt out below; this choice is stored in your browser for six months."
+    },
+    "choice": {
+      "title": "Audience measurement preference",
+      "enabled": "Audience measurement is allowed in this browser.",
+      "disabled": "Audience measurement is disabled in this browser.",
+      "action": {
+        "enabled": "Disable",
+        "disabled": "Enable again"
+      }
+    },
+    "contact": "For any question about this information or your rights:",
+    "notice": {
+      "enabled": "Audience measurement has been enabled again in this browser.",
+      "disabled": "Audience measurement is disabled for six months in this browser."
     }
   }
 }

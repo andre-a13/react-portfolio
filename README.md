@@ -1,5 +1,30 @@
 # React + TypeScript + Vite
 
+## Anonymous audience measurement
+
+The portfolio includes a dependency-free, first-party analytics client. It sends only allowlisted
+interaction categories to the FastAPI backend and never sends chat text, arbitrary URLs, IP
+addresses or a persistent visitor identifier.
+
+```dotenv
+VITE_ANALYTICS_API_URL=https://ai.arnaud-a.dev/analytics/events
+VITE_ANALYTICS_DISABLED=true
+```
+
+Keep `VITE_ANALYTICS_DISABLED=true` until the CNIL self-assessment has been completed. Collection
+is always disabled on `localhost` and `127.0.0.1`, with Global Privacy Control, with Do Not Track,
+or after a six-month browser opt-out. `?analytics=off` activates the opt-out and removes itself
+from the address bar; `?analytics=on` reverses it. The bilingual policy and preference control are
+available at `/privacy`.
+
+Run the validation suite with:
+
+```bash
+npm run lint
+npm test
+npm run build
+```
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

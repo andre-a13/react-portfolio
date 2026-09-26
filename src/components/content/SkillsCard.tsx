@@ -2,6 +2,15 @@ import { useRef, useState } from "react";
 import type { JSX, KeyboardEvent } from "react";
 import { skillsData } from "../../datas/skills-data";
 import { useTranslation } from "react-i18next";
+import { trackAnalyticsEvent, type AnalyticsItem } from "../../services/analytics.service";
+
+const ANALYTICS_SKILL_IDS: AnalyticsItem[] = [
+  "frontend",
+  "microsoft",
+  "cloud",
+  "delivery",
+  "collaboration",
+];
 
 function SkillsCard(): JSX.Element {
   const { t } = useTranslation();
@@ -12,6 +21,7 @@ function SkillsCard(): JSX.Element {
   function selectCategory(index: number) {
     const normalizedIndex = (index + skillsData.length) % skillsData.length;
     setActiveCategory(normalizedIndex);
+    trackAnalyticsEvent("skill_selected", { item: ANALYTICS_SKILL_IDS[normalizedIndex] });
     tabRefs.current[normalizedIndex]?.focus();
   }
 
@@ -56,7 +66,7 @@ function SkillsCard(): JSX.Element {
               aria-controls="skills-category-panel"
               aria-selected={index === activeCategory}
               tabIndex={index === activeCategory ? 0 : -1}
-              onClick={() => setActiveCategory(index)}
+              onClick={() => selectCategory(index)}
               onKeyDown={handleCategoryKeyDown}
             >
               {t(category)}

@@ -34,6 +34,8 @@ jobs:
           ###### End of Repository/Build Configurations ######
         env:
           VITE_CHATBOT_API_URL: https://ai.arnaud-a.dev/chat
+          VITE_ANALYTICS_API_URL: https://ai.arnaud-a.dev/analytics/events
+          VITE_ANALYTICS_DISABLED: "true"
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest

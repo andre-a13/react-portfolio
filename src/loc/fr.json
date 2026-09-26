@@ -181,6 +181,8 @@
       "intro": "Une opportunité, une mission ou une question sur le parcours d’Arnaud ? Choisissez le canal le plus simple.",
       "emailLabel": "E-mail",
       "linkedinLabel": "Voir le profil professionnel",
+      "githubLabel": "Découvrir les projets publics",
+      "privacyLabel": "Confidentialité et mesure d’audience",
       "mobility": "Basé en France, Arnaud recherche des missions B2B en télétravail en France et en Europe."
     },
     "actions": {
@@ -218,6 +220,42 @@
       "rate_limited": "Trop de demandes rapprochées. Patientez un instant avant de réessayer.",
       "unavailable": "L’assistant personnel est momentanément indisponible. Réessayez dans quelques instants.",
       "empty_response": "L’assistant n’a pas renvoyé de réponse exploitable. Réessayez."
+    }
+  },
+  "privacy": {
+    "back": "Retour au portfolio",
+    "eyebrow": "Confidentialité",
+    "title": "Une mesure d’audience minimale et respectueuse.",
+    "lead": "Ce site utilise un outil de statistiques auto-hébergé pour comprendre les parcours utiles et améliorer le portfolio. Il ne cherche pas à vous reconnaître lors d’une prochaine visite.",
+    "purpose": {
+      "title": "Finalité",
+      "text": "Mesurer l’usage des chapitres, des CV, des contacts et de l’assistant, uniquement au bénéfice de l’éditeur de ce portfolio. Les données ne sont ni vendues, ni partagées, ni recoupées avec d’autres services."
+    },
+    "data": {
+      "title": "Données traitées",
+      "text": "Un identifiant aléatoire limité au chargement de la page, des événements prédéfinis, la langue, une catégorie d’appareil et une source générale. Aucun cookie visiteur, fingerprint, adresse IP stockée, User-Agent complet ou contenu de conversation."
+    },
+    "retention": {
+      "title": "Hébergement et conservation",
+      "text": "Les données sont hébergées sur le VPS de l’éditeur. Les événements détaillés sont supprimés après 7 jours ; les statistiques agrégées sont conservées au maximum 13 mois."
+    },
+    "rights": {
+      "title": "Vos choix et vos droits",
+      "text": "La collecte est automatiquement désactivée avec Global Privacy Control ou Do Not Track. Vous pouvez aussi vous y opposer ci-dessous ; ce choix est conservé six mois dans votre navigateur."
+    },
+    "choice": {
+      "title": "Préférence de mesure d’audience",
+      "enabled": "La mesure d’audience est autorisée sur ce navigateur.",
+      "disabled": "La mesure d’audience est désactivée sur ce navigateur.",
+      "action": {
+        "enabled": "Désactiver",
+        "disabled": "Réactiver"
+      }
+    },
+    "contact": "Pour toute question relative à ces informations ou à vos droits :",
+    "notice": {
+      "enabled": "La mesure d’audience a été réactivée pour ce navigateur.",
+      "disabled": "La mesure d’audience est désactivée pour six mois sur ce navigateur."
     }
   }
 }

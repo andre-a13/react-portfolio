@@ -7,6 +7,11 @@ import {
   sendChatbotMessage,
 } from "../../services/chatbot.service";
 import type { ChatbotMessage } from "../../services/chatbot.service";
+import {
+  analyticsLengthBucket,
+  trackAnalyticsEvent,
+  type AnalyticsItem,
+} from "../../services/analytics.service";
 import "./portfolio-chatbot.scss";
 
 const MAX_QUESTIONS = 10;
@@ -25,6 +30,7 @@ export default function PortfolioChatbot({ isOpen, onClose }: PortfolioChatbotPr
   const [errorCode, setErrorCode] = useState<string | null>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const limitTrackedRef = useRef(false);
 
   const questionCount = useMemo(
     () => messages.filter((message) => message.role === "user").length,
@@ -32,9 +38,9 @@ export default function PortfolioChatbot({ isOpen, onClose }: PortfolioChatbotPr
   );
   const hasReachedLimit = questionCount >= MAX_QUESTIONS;
   const suggestions = [
-    t("chatbot.suggestions.fullstack"),
-    t("chatbot.suggestions.product"),
-    t("chatbot.suggestions.project"),
+    { content: t("chatbot.suggestions.fullstack"), item: "fullstack_suggestion" as const },
+    { content: t("chatbot.suggestions.product"), item: "product_suggestion" as const },
+    { content: t("chatbot.suggestions.project"), item: "project_suggestion" as const },
   ];
 
   useEffect(() => {
@@ -57,15 +63,36 @@ export default function PortfolioChatbot({ isOpen, onClose }: PortfolioChatbotPr
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   }, [isOpen, isSending, messages]);
 
+  useEffect(() => {
+    if (hasReachedLimit && !limitTrackedRef.current) {
+      limitTrackedRef.current = true;
+      trackAnalyticsEvent("assistant_error", { outcome: "limit_reached" });
+    }
+    if (!hasReachedLimit) limitTrackedRef.current = false;
+  }, [hasReachedLimit]);
+
   function resetConversation() {
+    trackAnalyticsEvent("assistant_reset");
     setMessages([]);
     setDraft("");
     setErrorCode(null);
     window.setTimeout(() => inputRef.current?.focus(), 0);
   }
 
-  async function sendMessage(content: string) {
+  async function sendMessage(
+    content: string,
+    inputMethod: "suggestion" | "typed" = "typed",
+    suggestionItem?: AnalyticsItem,
+  ) {
     if (!content || isSending || hasReachedLimit) return;
+
+    if (suggestionItem) {
+      trackAnalyticsEvent("assistant_suggestion_clicked", { item: suggestionItem });
+    }
+    trackAnalyticsEvent("assistant_question_sent", {
+      input_method: inputMethod,
+      length_bucket: analyticsLengthBucket(content.length),
+    });
 
     const nextMessages: ChatbotMessage[] = [...messages, { role: "user", content }];
     setMessages(nextMessages);
@@ -76,9 +103,13 @@ export default function PortfolioChatbot({ isOpen, onClose }: PortfolioChatbotPr
     try {
       const reply = await sendChatbotMessage(nextMessages);
       setMessages([...nextMessages, { role: "assistant", content: reply }]);
+      trackAnalyticsEvent("assistant_response_received", { outcome: "success" });
     } catch (requestError) {
       const code = requestError instanceof ChatbotServiceError ? requestError.code : "unavailable";
       setErrorCode(code);
+      trackAnalyticsEvent("assistant_error", {
+        outcome: code === "rate_limited" ? "rate_limited" : "error",
+      });
     } finally {
       setIsSending(false);
     }
@@ -125,9 +156,15 @@ export default function PortfolioChatbot({ isOpen, onClose }: PortfolioChatbotPr
             <p>{t("chatbot.welcomeText")}</p>
             <div className="portfolio-chatbot__suggestions" aria-label={t("chatbot.suggestionLabel")}>
               {suggestions.map((suggestion, index) => (
-                <button key={suggestion} type="button" onClick={() => void sendMessage(suggestion)}>
+                <button
+                  key={suggestion.item}
+                  type="button"
+                  onClick={() =>
+                    void sendMessage(suggestion.content, "suggestion", suggestion.item)
+                  }
+                >
                   <span aria-hidden="true">0{index + 1}</span>
-                  {suggestion}
+                  {suggestion.content}
                 </button>
               ))}
             </div>

@@ -1,16 +1,22 @@
 import {
   BriefcaseBusiness,
   FileUser,
+  Github,
   Mail,
   MessageSquareText,
+  ShieldCheck,
   UserRound,
   Wrench,
 } from "lucide-react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import SkillsCard from "./SkillsCard";
+import {
+  trackAnalyticsEvent,
+  type AnalyticsItem,
+} from "../../services/analytics.service";
 
 type ChapterId = "profile" | "skills" | "experience" | "contact";
 
@@ -36,6 +42,13 @@ type ExperienceId = (typeof EXPERIENCE_IDS)[number];
 type ProjectId = (typeof PROJECT_IDS)[number];
 
 const PERSONAL_PROJECT_IDS: readonly ProjectId[] = ["trpg", "portfolioAssistant"];
+const PROJECT_ANALYTICS_IDS: Record<ProjectId, AnalyticsItem> = {
+  intranet: "intranet",
+  hrTools: "hr_tools",
+  alteryx: "alteryx",
+  trpg: "trpg",
+  portfolioAssistant: "portfolio_assistant",
+};
 
 function handleRovingTabKey<T extends string>(
   event: KeyboardEvent<HTMLButtonElement>,
@@ -76,6 +89,16 @@ function ExperienceChapter() {
   );
   const projectKind = PERSONAL_PROJECT_IDS.includes(activeProject) ? "personal" : "professional";
 
+  function selectExperience(experience: ExperienceId) {
+    setActiveExperience(experience);
+    trackAnalyticsEvent("experience_selected", { item: experience });
+  }
+
+  function selectProject(project: ProjectId) {
+    setActiveProject(project);
+    trackAnalyticsEvent("project_selected", { item: PROJECT_ANALYTICS_IDS[project] });
+  }
+
   return (
     <div className="portfolio-chapter portfolio-chapter--experience">
       <div className="portfolio-chapter__heading">
@@ -96,13 +119,13 @@ function ExperienceChapter() {
             aria-controls="experience-panel"
             aria-selected={activeExperience === experience}
             tabIndex={activeExperience === experience ? 0 : -1}
-            onClick={() => setActiveExperience(experience)}
+            onClick={() => selectExperience(experience)}
             onKeyDown={(event) =>
               handleRovingTabKey(
                 event,
                 EXPERIENCE_IDS,
                 activeExperience,
-                setActiveExperience,
+                selectExperience,
                 experienceTabRefs.current,
               )
             }
@@ -152,13 +175,13 @@ function ExperienceChapter() {
               aria-controls="project-panel"
               aria-selected={activeProject === project}
               tabIndex={activeProject === project ? 0 : -1}
-              onClick={() => setActiveProject(project)}
+              onClick={() => selectProject(project)}
               onKeyDown={(event) =>
                 handleRovingTabKey(
                   event,
                   PROJECT_IDS,
                   activeProject,
-                  setActiveProject,
+                  selectProject,
                   projectTabRefs.current,
                 )
               }
@@ -201,6 +224,10 @@ function Content({ onOpenChat }: ContentProps) {
   const [activeChapter, setActiveChapter] = useState<ChapterId>("profile");
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const activeIndex = CHAPTERS.findIndex((chapter) => chapter.id === activeChapter);
+
+  useEffect(() => {
+    trackAnalyticsEvent("chapter_viewed", { chapter: activeChapter });
+  }, [activeChapter]);
 
   function selectChapter(index: number) {
     const chapter = CHAPTERS[index];
@@ -251,26 +278,52 @@ function Content({ onOpenChat }: ContentProps) {
             <p>{t("portfolio.contact.intro")}</p>
           </div>
           <div className="contact-options">
-            <a href="mailto:arnaud.a.dev@gmail.com">
+            <a
+              href="mailto:arnaud.a.dev@gmail.com"
+              onClick={() => trackAnalyticsEvent("contact_clicked", { item: "email" })}
+            >
               <Mail size={20} aria-hidden="true" />
               <span>
                 <strong>{t("portfolio.contact.emailLabel")}</strong>
                 arnaud.a.dev@gmail.com
               </span>
             </a>
-            <a href="https://linkedin.com/in/arnaud-andre-356314177" target="_blank" rel="noreferrer">
+            <a
+              href="https://linkedin.com/in/arnaud-andre-356314177"
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackAnalyticsEvent("contact_clicked", { item: "linkedin" })}
+            >
               <MessageSquareText size={20} aria-hidden="true" />
               <span>
                 <strong>LinkedIn</strong>
                 {t("portfolio.contact.linkedinLabel")}
               </span>
             </a>
+            <a
+              href="https://github.com/andre-a13"
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => trackAnalyticsEvent("contact_clicked", { item: "github" })}
+            >
+              <Github size={20} aria-hidden="true" />
+              <span>
+                <strong>GitHub</strong>
+                {t("portfolio.contact.githubLabel")}
+              </span>
+            </a>
           </div>
           <p className="contact-mobility">{t("portfolio.contact.mobility")}</p>
-          <button className="portfolio-action" type="button" onClick={(event) => onOpenChat(event.currentTarget)}>
-            {t("portfolio.actions.ask")}
-            <span aria-hidden="true">→</span>
-          </button>
+          <div className="portfolio-actions portfolio-actions--contact">
+            <button className="portfolio-action" type="button" onClick={(event) => onOpenChat(event.currentTarget)}>
+              {t("portfolio.actions.ask")}
+              <span aria-hidden="true">→</span>
+            </button>
+            <Link className="portfolio-text-action" to="/privacy">
+              <ShieldCheck size={18} aria-hidden="true" />
+              {t("portfolio.contact.privacyLabel")}
+            </Link>
+          </div>
         </div>
       );
     }
@@ -293,7 +346,10 @@ function Content({ onOpenChat }: ContentProps) {
             {t("portfolio.actions.ask")}
             <span aria-hidden="true">→</span>
           </button>
-          <Link className="portfolio-text-action" to={`/cv/full-stack?lang=${language}`}>
+          <Link
+            className="portfolio-text-action"
+            to={`/cv/full-stack?lang=${language}`}
+          >
             <FileUser size={18} aria-hidden="true" />
             {t("portfolio.actions.resume")}
           </Link>
