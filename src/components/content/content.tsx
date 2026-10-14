@@ -13,6 +13,7 @@ import type { KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import SkillsCard from "./SkillsCard";
+import { hrCaseStudy, hrCaseStudyPath } from "../../datas/hr-case-study";
 import {
   trackAnalyticsEvent,
   type AnalyticsItem,
@@ -76,7 +77,9 @@ function handleRovingTabKey<T extends string>(
 }
 
 function ExperienceChapter() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const language = i18n.resolvedLanguage?.startsWith("en") ? "en" : "fr";
+  const study = hrCaseStudy[language];
   const [activeExperience, setActiveExperience] = useState<ExperienceId>("pwc");
   const [activeProject, setActiveProject] = useState<ProjectId>("intranet");
   const experienceTabRefs = useRef<Array<HTMLButtonElement | null>>([]);
@@ -105,6 +108,14 @@ function ExperienceChapter() {
         <h1>{t("portfolio.experience.title")}</h1>
         <p>{t("portfolio.experience.intro")}</p>
       </div>
+
+      <Link className="featured-project" to={hrCaseStudyPath(language)}>
+        <span className="featured-project__eyebrow">{study.eyebrow}</span>
+        <h2>{study.title}</h2>
+        <p>{study.summary}</p>
+        <span className="featured-project__meta">{study.facts.map(fact => fact.value).join(" · ")}</span>
+        <span className="featured-project__link">{study.read} <span aria-hidden="true">→</span></span>
+      </Link>
 
       <div className="experience-switch" role="tablist" aria-label={t("portfolio.experience.selectorLabel")}>
         {EXPERIENCE_IDS.map((experience, index) => (
@@ -212,6 +223,11 @@ function ExperienceChapter() {
               <li key={technology}>{technology}</li>
             ))}
           </ul>
+          {PERSONAL_PROJECT_IDS.includes(activeProject) && (
+            <a className="project-source" href={activeProject === "trpg" ? "https://github.com/andre-a13/trpg_python_backend" : "https://github.com/andre-a13/react-portfolio"} target="_blank" rel="noreferrer">
+              <Github size={15} aria-hidden="true" />{t("portfolio.actions.source")}
+            </a>
+          )}
         </article>
       </section>
     </div>
@@ -329,31 +345,40 @@ function Content({ onOpenChat }: ContentProps) {
     }
 
     const facts = translatedList(t("portfolio.profile.facts", { returnObjects: true }));
+    const study = hrCaseStudy[language];
     return (
       <div className="portfolio-chapter portfolio-chapter--profile">
         <div className="profile-title">
           <p>{t("portfolio.profile.name")}</p>
           <h1>{t("portfolio.profile.role")}</h1>
+          <h2 className="profile-subtitle">{t("portfolio.profile.subtitle")}</h2>
         </div>
         <p className="profile-intro">{t("portfolio.profile.intro")}</p>
+        <p className="profile-availability">{t("portfolio.profile.availability")}</p>
         <ul className="profile-facts">
           {facts.map((fact) => (
             <li key={fact}>{fact}</li>
           ))}
         </ul>
         <div className="portfolio-actions">
-          <button className="portfolio-action" type="button" onClick={(event) => onOpenChat(event.currentTarget)}>
-            {t("portfolio.actions.ask")}
+          <a className="portfolio-action" href="mailto:arnaud.a.dev@gmail.com" onClick={() => trackAnalyticsEvent("contact_clicked", { item: "email" })}>
+            {t("portfolio.actions.contact")}
             <span aria-hidden="true">→</span>
-          </button>
+          </a>
           <Link
             className="portfolio-text-action"
-            to={`/cv/full-stack?lang=${language}`}
+            to={`/cv?lang=${language}`}
           >
             <FileUser size={18} aria-hidden="true" />
             {t("portfolio.actions.resume")}
           </Link>
         </div>
+        <Link className="featured-project" to={hrCaseStudyPath(language)}>
+          <span className="featured-project__eyebrow">{t("portfolio.profile.featured")} · {study.facts[0].value}</span>
+          <h2>{study.title}</h2>
+          <p>{study.summary}</p>
+          <span className="featured-project__link">{study.read} <span aria-hidden="true">→</span></span>
+        </Link>
       </div>
     );
   }

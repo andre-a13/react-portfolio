@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "test": "vitest run",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pdf:generate": "node scripts/generate-resume-pdfs.mjs",
+    "pdf:check": "node scripts/check-resume-pdfs.mjs",
+    "prebuild": "npm run pdf:check"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.2.8",
@@ -37,5 +40,8 @@
     "typescript-eslint": "^8.30.1",
     "vite": "^6.3.5",
     "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
