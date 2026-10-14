@@ -16,7 +16,7 @@ export type AnalyticsEventName =
   | "assistant_reset"
   | "contact_clicked";
 
-export type AnalyticsRoute = "/" | "/privacy" | "/cv" | "/cv/microsoft" | "/cv/full-stack";
+export type AnalyticsRoute = "/" | "/privacy" | "/cv" | "/cv/microsoft" | "/cv/full-stack" | "/cv/project-management" | "/projects/hr-commissions";
 export type AnalyticsLanguage = "fr" | "en";
 export type AnalyticsChapter = "profile" | "skills" | "experience" | "contact";
 export type AnalyticsItem =
@@ -35,6 +35,7 @@ export type AnalyticsItem =
   | "general_cv"
   | "microsoft_cv"
   | "full_stack_cv"
+  | "project_management_cv"
   | "email"
   | "linkedin"
   | "github"
@@ -93,7 +94,7 @@ function currentLanguage(): AnalyticsLanguage {
 }
 
 function currentRoute(): AnalyticsRoute {
-  const routes: AnalyticsRoute[] = ["/", "/privacy", "/cv", "/cv/microsoft", "/cv/full-stack"];
+  const routes: AnalyticsRoute[] = ["/", "/privacy", "/cv", "/cv/microsoft", "/cv/full-stack", "/cv/project-management", "/projects/hr-commissions"];
   return routes.includes(window.location.pathname as AnalyticsRoute)
     ? (window.location.pathname as AnalyticsRoute)
     : "/";

@@ -1,6 +1,6 @@
 import "@fontsource-variable/manrope";
 import { FileUser, MessageSquareText } from "lucide-react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router";
 import PortfolioChatbot from "../../chatbot/PortfolioChatbot";
@@ -14,6 +14,13 @@ function Portfolio() {
   const language = i18n.resolvedLanguage?.startsWith("en") ? "en" : "fr";
   const [isChatOpen, setIsChatOpen] = useState(false);
   const lastChatTrigger = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    document.title = `Arnaud André — ${t("fullstack")}`;
+    document.documentElement.lang = language;
+    const description = document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (description) description.content = `${t("portfolio.profile.intro")} ${t("portfolio.profile.availability")}`;
+  }, [language, t]);
 
   const openChat = useCallback((trigger: HTMLButtonElement) => {
     lastChatTrigger.current = trigger;
@@ -41,7 +48,7 @@ function Portfolio() {
           <LangSwitch />
           <Link
             className="portfolio-header__resume"
-            to={`/cv/full-stack?lang=${language}`}
+            to={`/cv?lang=${language}`}
           >
             <FileUser size={17} aria-hidden="true" />
             <span>{t("portfolio.header.resume")}</span>

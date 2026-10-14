@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, ArrowUpRight, Award, BadgeCheck, Blocks, BriefcaseBusiness, Check, Cloud, CodeXml, Database, Github, Globe2, Languages, Linkedin, Mail, MapPin, Printer, Server, Share2, Workflow } from 'lucide-react';
+import { ArrowLeft, ArrowUpRight, Award, BadgeCheck, Blocks, BriefcaseBusiness, Check, Cloud, CodeXml, Database, Download, Github, Globe2, Languages, Linkedin, Mail, MapPin, Printer, Server, Share2, Workflow } from 'lucide-react';
 import { certifications, contact, resumeLabels, resumePath, resumes } from './resume-data';
 import type { ResumeLanguage, ResumeVariant } from './resume-data';
 import { trackAnalyticsEvent } from '../../../services/analytics.service';
@@ -50,7 +50,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
   useEffect(() => {
     const item = window.location.pathname === '/cv'
       ? 'general_cv'
-      : variant === 'microsoft' ? 'microsoft_cv' : 'full_stack_cv';
+      : variant === 'microsoft' ? 'microsoft_cv' : variant === 'project-management' ? 'project_management_cv' : 'full_stack_cv';
     trackAnalyticsEvent('cv_opened', { item });
   }, [variant]);
 
@@ -91,6 +91,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
 
       <main id="resume-main" className="resume-shell" tabIndex={-1}>
         <nav className="resume-versions" aria-label={labels.chooseVersion}>
+          <Link to={resumePath('project-management', language)} onClick={resetShare} className={variant === 'project-management' ? 'is-active' : ''} aria-current={variant === 'project-management' ? 'page' : undefined}><BriefcaseBusiness size={18} aria-hidden="true" />{labels.projectManagement}</Link>
           <Link to={resumePath('microsoft', language)} onClick={resetShare} className={variant === 'microsoft' ? 'is-active' : ''} aria-current={variant === 'microsoft' ? 'page' : undefined}><Blocks size={18} aria-hidden="true" />Microsoft</Link>
           <Link to={resumePath('full-stack', language)} onClick={resetShare} className={variant === 'full-stack' ? 'is-active' : ''} aria-current={variant === 'full-stack' ? 'page' : undefined}><CodeXml size={18} aria-hidden="true" />{labels.fullStack}</Link>
         </nav>
@@ -102,7 +103,8 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
             <h1 id="resume-title">{resume.title}</h1>
             <p className="resume-intro">{resume.intro}</p>
             <div className="resume-actions">
-              <button className="resume-button resume-button--primary" type="button" onClick={() => void copyLink()}>
+              <a className="resume-button resume-button--primary" href={`/resumes/arnaud-andre-${variant}-${language}.pdf`} download><Download size={18} aria-hidden="true" />{language === 'fr' ? 'Télécharger le CV PDF' : 'Download résumé PDF'}</a>
+              <button className="resume-button" type="button" onClick={() => void copyLink()}>
                 {shareState === 'copied' ? <Check size={18} aria-hidden="true" /> : <Share2 size={18} aria-hidden="true" />}
                 {shareState === 'copied' ? labels.copied : labels.copy}
               </button>
@@ -120,7 +122,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
               <li><Globe2 size={18} aria-hidden="true" />{labels.remote}</li>
               <li><CodeXml size={18} aria-hidden="true" />{labels.since}</li>
             </ul>
-            <span className="resume-engagement">{labels.b2b}</span>
+            <span className="resume-engagement">{labels.employment}</span>
           </aside>
         </section>
 
@@ -179,6 +181,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
               return <article className="resume-project" key={project.title}>
                 <div className="resume-project-title"><Icon size={22} aria-hidden="true" /><h3>{project.title}</h3></div>
                 <p>{project.description}</p>
+                {project.href && <a className="resume-project-link" href={project.href}>{project.href.startsWith('/') ? labels.caseStudy : 'GitHub'}<ArrowUpRight size={16} aria-hidden="true" /></a>}
                 <ul className="resume-tags">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
               </article>;
             })}
@@ -186,7 +189,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
         </section>
 
         <section className="resume-contact" aria-labelledby="resume-contact-title">
-          <div><p className="resume-eyebrow">{labels.remote} · {labels.b2b}</p><h2 id="resume-contact-title">{labels.contactTitle}</h2><p>{labels.contactText}</p></div>
+          <div><p className="resume-eyebrow">{labels.remote} · {labels.employment}</p><h2 id="resume-contact-title">{labels.contactTitle}</h2><p>{labels.contactText}</p></div>
           <div className="resume-contact-links">
             <a className="resume-email" href={`mailto:${contact.email}`} onClick={() => trackAnalyticsEvent('contact_clicked', { item: 'email' })}><Mail size={20} aria-hidden="true" />{contact.email}<ArrowUpRight size={19} aria-hidden="true" /></a>
             <div className="resume-socials"><a href={contact.linkedin} target="_blank" rel="noopener noreferrer" onClick={() => trackAnalyticsEvent('contact_clicked', { item: 'linkedin' })}><Linkedin size={19} aria-hidden="true" />LinkedIn<ArrowUpRight size={14} aria-hidden="true" /></a><a href={contact.github} target="_blank" rel="noopener noreferrer" onClick={() => trackAnalyticsEvent('contact_clicked', { item: 'github' })}><Github size={19} aria-hidden="true" />GitHub<ArrowUpRight size={14} aria-hidden="true" /></a></div>
@@ -195,7 +198,7 @@ export default function Resume({ variant = 'full-stack' }: { variant?: ResumeVar
 
         <footer className="resume-footer">
           <span>{contact.name}</span>
-          <span>{labels.resume} · {variant === 'microsoft' ? labels.microsoft : labels.fullStack}</span>
+          <span>{labels.resume} · {variant === 'microsoft' ? labels.microsoft : variant === 'project-management' ? labels.projectManagement : labels.fullStack}</span>
           <a href="/third-party/lucide-LICENSE.txt" target="_blank" rel="noopener noreferrer">{labels.iconLicense}</a>
         </footer>
       </main>

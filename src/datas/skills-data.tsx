@@ -49,7 +49,9 @@ export const skillsData = [
   {
     category: "skills.categories.delivery",
     skills: [
-      { name: "skills.items.rest", icon: <Network /> },
+      { name: "skills.items.prioritisation", icon: <Workflow /> },
+      { name: "skills.items.effort", icon: <BookOpenCheck /> },
+      { name: "skills.items.planning", icon: <GitBranch /> },
       { name: "skills.items.productOwner", icon: <BadgeCheck /> },
       { name: "skills.items.codeQuality", icon: <Code2 /> },
       { name: "skills.items.deployment", icon: <GitBranch /> },
@@ -60,7 +62,7 @@ export const skillsData = [
     skills: [
       { name: "skills.items.requirements", icon: <MessageCircleQuestion /> },
       { name: "skills.items.stakeholders", icon: <UsersRound /> },
-      { name: "skills.items.technicalAdvice", icon: <MessagesSquare /> },
+      { name: "skills.items.coordination", icon: <MessagesSquare /> },
       { name: "skills.items.knowledgeTransfer", icon: <BookOpenCheck /> },
     ],
   },

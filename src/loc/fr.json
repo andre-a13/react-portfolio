@@ -1,15 +1,15 @@
 {
   "hello": "Bonjour",
-  "fullstack": "Développeur senior front-end et cloud",
+  "fullstack": "Software Engineer — développement et coordination de projets IT",
   "proIntro": {
-    "1": "Développeur senior front-end et cloud, je conçois des applications web modernes, maintenables et ergonomiques avec React, TypeScript et JavaScript.",
+    "1": "Développeur depuis 2019, j’associe conception technique, développement d’applications métier et coordination d’équipe.",
     "2": "Mon expérience couvre SharePoint, Microsoft 365, SPFx, PnPjs, Microsoft Graph, les API REST et les services cloud.",
     "3": "Responsable technique sur des projets web complexes, je relie besoins métier, choix techniques, qualité du code et expérience utilisateur.",
-    "4": "Certifié AZ-900, AZ-204, AI-102 et PSPO I, je cible des missions B2B SharePoint / Microsoft 365 et Product Owner en télétravail."
+    "4": "Je recherche un poste salarié en développement logiciel ou en gestion de projet technique, principalement en télétravail."
   },
   "content": {
     "title": "Arnaud",
-    "subtitle": "Développeur senior front-end et cloud",
+    "subtitle": "Software Engineer — développement et coordination de projets IT",
     "experience": {
       "title": "Experience",
       "subtitle": "Parcours professionnel"
@@ -24,7 +24,7 @@
       "title": "Responsable technique / Développeur full-stack - WebexpR pour BNP Paribas",
       "period": "2019 - Juillet 2024",
       "contract": "CDI",
-      "location": "France · missions B2B à distance en Europe",
+      "location": "France",
       "description1": "Spécialisé sur l'écosystème Microsoft (SPFx, React, Microsoft Graph), j'ai développé des applications SharePoint et Microsoft 365 sur mesure pour des projets BNP Paribas.",
       "description2": "J'ai conçu des intranets brandés, des portails métiers, des systèmes de formation et des outils de gestion RH. Chaque projet était pensé avec une forte exigence UX et métier.",
       "description3": "J'ai intégré les solutions avec PnPjs, Microsoft Graph et des API REST, puis assuré déploiement, maintenance, support et transfert aux équipes internes.",
@@ -41,7 +41,6 @@
       "description4": "Ce poste me permet de concilier expertise technique et accompagnement stratégique, tout en évoluant dans des environnements exigeants où la rigueur et la communication sont essentielles."
     }
   },
-
   "skills": {
     "title": "Compétences",
     "subtitle": "Front-end, Back-end, Cloud & DevOps",
@@ -49,7 +48,7 @@
       "frontend": "Front-end",
       "microsoft": "Microsoft 365",
       "cloud": "Cloud & automatisation",
-      "delivery": "Produit & réalisation",
+      "delivery": "Gestion de projet & réalisation",
       "collaboration": "Collaboration & interactions"
     },
     "items": {
@@ -67,13 +66,17 @@
       "powerApps": "Power Apps",
       "scaleway": "Scaleway",
       "rest": "API REST",
-      "productOwner": "Product Owner (PSPO I)",
-      "codeQuality": "Qualité du code",
+      "productOwner": "Certification PSPO I",
+      "codeQuality": "Conception & revues de code",
       "deployment": "Déploiement & maintenance",
       "requirements": "Écoute & clarification des besoins",
       "stakeholders": "Collaboration avec les parties prenantes",
       "technicalAdvice": "Conseil & communication technique",
-      "knowledgeTransfer": "Support & transfert de connaissances"
+      "knowledgeTransfer": "Support & transfert de connaissances",
+      "prioritisation": "Priorisation du backlog avec le client",
+      "effort": "Suivi des jours-homme et des échéances",
+      "coordination": "Coordination & encadrement technique",
+      "planning": "Trello / Linear"
     }
   },
   "portfolio": {
@@ -89,21 +92,24 @@
     "header": {
       "homeLabel": "Accueil du portfolio",
       "ask": "Assistant personnel",
-      "resume": "CV"
+      "resume": "Mes CV"
     },
     "profile": {
       "name": "Arnaud André",
-      "role": "Développeur senior front-end et cloud",
-      "intro": "Un développeur senior front-end et cloud qui transforme les besoins métier en applications web et solutions Microsoft 365 fiables, maintenables et centrées sur les utilisateurs.",
+      "role": "Software Engineer",
+      "intro": "Développeur depuis 2019, j’associe conception technique, développement d’applications métier et coordination d’équipe, de la clarification des besoins à la mise en service.",
       "facts": [
-        "React, TypeScript, JavaScript et API REST pour des interfaces d’entreprise modernes.",
-        "Responsable technique sur des projets SharePoint, SPFx et Microsoft 365 pour BNP Paribas.",
-        "Azure, Power Platform et culture produit, appuyés par AZ-900, AZ-204, AI-102 et PSPO I."
-      ]
+        "React, TypeScript et Microsoft 365 pour les applications métier.",
+        "Conception, développement et revues de code ; encadrement technique.",
+        "Priorisation avec le client, coordination des délais et suivi des jours-homme."
+      ],
+      "subtitle": "Développement et coordination de projets IT",
+      "availability": "Je recherche un poste salarié en développement logiciel ou en gestion de projet technique, principalement en télétravail.",
+      "featured": "Une réalisation concrète"
     },
     "skills": {
       "title": "Compétences",
-      "intro": "Un socle front-end, Microsoft 365, cloud, produit et collaboration pour passer d’un besoin métier à une solution utile.",
+      "intro": "Développement logiciel, écosystème Microsoft et coordination de projet : des compétences reliées à des réalisations concrètes.",
       "selectorLabel": "Catégories de compétences"
     },
     "experience": {
@@ -144,50 +150,75 @@
           "title": "Intranets Microsoft 365 / SharePoint",
           "context": "WebexpR pour BNP Paribas",
           "description": "Interfaces SharePoint personnalisées et composants SPFx / React conçus pour la communication interne, la collaboration et une ergonomie adaptée aux usages.",
-          "technologies": ["SharePoint", "SPFx", "React", "TypeScript"]
+          "technologies": [
+            "SharePoint",
+            "SPFx",
+            "React",
+            "TypeScript"
+          ]
         },
         "hrTools": {
           "shortTitle": "Outils RH",
           "title": "Outils RH et applications métier",
           "context": "WebexpR pour BNP Paribas",
           "description": "Modèles de données fondés sur des listes, interfaces métier sur mesure, documentation et accompagnement des utilisateurs internes.",
-          "technologies": ["Microsoft 365", "API REST", "TypeScript"]
+          "technologies": [
+            "Microsoft 365",
+            "API REST",
+            "TypeScript"
+          ]
         },
         "alteryx": {
           "shortTitle": "Processus Alteryx",
           "title": "Amélioration d’un processus métier Alteryx",
           "context": "PwC",
           "description": "Évolution d’un processus métier existant reposant sur Alteryx, avec conseil technique, clarification des besoins et attention portée à la maintenabilité.",
-          "technologies": ["Alteryx", "Microsoft 365", "Analyse métier"]
+          "technologies": [
+            "Alteryx",
+            "Microsoft 365",
+            "Analyse métier"
+          ]
         },
         "trpg": {
           "shortTitle": "Application TRPG",
           "title": "Application full-stack TRPG",
           "context": "Projet personnel",
           "description": "Application associant une interface React / TypeScript à un back-end Python / FastAPI, avec intégration d’API et travail sur le déploiement.",
-          "technologies": ["React", "TypeScript", "Python", "FastAPI"]
+          "technologies": [
+            "React",
+            "TypeScript",
+            "Python",
+            "FastAPI"
+          ]
         },
         "portfolioAssistant": {
           "shortTitle": "Portfolio & assistant",
           "title": "Portfolio et assistant personnel",
           "context": "Projet personnel déployé",
           "description": "Portfolio bilingue en React / TypeScript connecté à un assistant professionnel FastAPI et Azure AI Foundry, avec un front Azure Static Web Apps et une API conteneurisée.",
-          "technologies": ["React", "TypeScript", "FastAPI", "Azure AI Foundry"]
+          "technologies": [
+            "React",
+            "TypeScript",
+            "FastAPI",
+            "Azure AI Foundry"
+          ]
         }
       }
     },
     "contact": {
       "title": "Échangeons",
-      "intro": "Une opportunité, une mission ou une question sur le parcours d’Arnaud ? Choisissez le canal le plus simple.",
+      "intro": "Un poste en développement logiciel ou en gestion de projet technique ? Échangeons sur votre équipe et vos besoins.",
       "emailLabel": "E-mail",
       "linkedinLabel": "Voir le profil professionnel",
       "githubLabel": "Découvrir les projets publics",
       "privacyLabel": "Confidentialité et mesure d’audience",
-      "mobility": "Basé en France, Arnaud recherche des missions B2B en télétravail en France et en Europe."
+      "mobility": "Basé en France, je recherche un poste salarié, principalement en télétravail."
     },
     "actions": {
       "ask": "Ouvrir l’assistant personnel",
-      "resume": "Consulter le CV"
+      "resume": "Consulter mes CV",
+      "contact": "Me contacter",
+      "source": "Voir le code"
     }
   },
   "chatbot": {
@@ -197,12 +228,12 @@
     "close": "Fermer l’assistant personnel",
     "reset": "Réinitialiser la conversation",
     "welcomeTitle": "Préparez votre entretien avec Arnaud.",
-    "welcomeText": "Posez une question sur son parcours, ses compétences ou son adéquation à un poste. Les réponses s’appuient sur des informations professionnelles documentées.",
+    "welcomeText": "Explorez son expérience en développement logiciel et en coordination de projets IT. Les réponses s’appuient sur des informations professionnelles documentées.",
     "suggestionLabel": "Questions suggérées",
     "suggestions": {
-      "fullstack": "Pourquoi faire appel à Arnaud pour une mission SharePoint / SPFx / Microsoft 365 ?",
-      "product": "Quelles preuves soutiennent ses compétences de Product Owner ?",
-      "project": "Quels sont ses principaux atouts front-end et cloud ?"
+      "fullstack": "Quels sont les atouts d’Arnaud pour un poste de Software Engineer ?",
+      "product": "Quelle expérience a-t-il en gestion de projet technique ?",
+      "project": "Quel était son rôle dans le projet de commissions RH ?"
     },
     "inputLabel": "Votre question",
     "placeholder": "Interrogez son expérience, ses compétences…",

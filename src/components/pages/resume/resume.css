@@ -104,6 +104,7 @@
 .resume-project { display: flex; flex-direction: column; align-items: flex-start; padding-left: 1.3rem; border-left: 2px solid var(--resume-border); }
 .resume-project-title { display: flex; align-items: center; gap: .75rem; margin-bottom: 1rem; }
 .resume-project-title svg { color: var(--resume-accent); flex-shrink: 0; }
+.resume-project-link { display: inline-flex; align-items: center; gap: .5rem; margin-bottom: 1rem; color: var(--resume-accent); font-size: .9rem; }
 .resume-project h3 { font-size: 1.0625rem; font-weight: 600; }
 .resume-project > p { color: var(--resume-muted); font-size: 1rem; margin-bottom: 1.25rem; flex-grow: 1; }
 .resume-contact { display: flex; gap: 2rem; align-items: center; justify-content: space-between; border: 1px solid var(--resume-border); border-radius: 10px; background: var(--resume-accent-soft); padding: 2rem; margin: 1rem 0 2.5rem; }
